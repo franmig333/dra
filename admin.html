@@ -1689,51 +1689,274 @@
             });
         }
 
-        // ——— Función principal de guardado ———
+        // ============================================================
+        // LECTORES DEL DOM — Cada función lee su sección y devuelve
+        // el objeto/array listo para ser enviado a Supabase.
+        // ============================================================
 
-        async function guardarCambiosEnVivo() {// --- NUEVAS FUNCIONES DE LECTURA ---
-            function leerHeroDelDOM() {
-                const inputs = document.querySelectorAll('#tab-identidad input, #tab-identidad textarea, #tab-identidad select');
+        /** Lee la pestaña Identidad & Estilo → tabla `identidad` */
+        function leerIdentidadDelDOM() {
+            const tabId = document.querySelector('#tab-identidad');
+            const allInputs = tabId.querySelectorAll('input, select');
+            // [0] símbolo logo, [1] color picker, [2] color text, [3] tipografía
+            // [4] portada URL (dentro del div con flex)
+            const simbolo  = allInputs[0]?.value ?? '';
+            const portada  = allInputs[1]?.value ?? '';
+            const colorPicker = allInputs[2]?.value ?? '#7A3B9F';
+            const colorText   = allInputs[3]?.value ?? '#7A3B9F';
+            const tipografia  = tabId.querySelector('select')?.value ?? 'cormorant';
+            return {
+                id: 1,
+                simbolo,
+                portada_url: portada,
+                color_principal: colorText || colorPicker,
+                tipografia
+            };
+        }
+
+        /** Lee la sección Hero (tab-textos → details #1) → tabla `hero` */
+        function leerHeroDelDOM() {
+            // El primer <details> del tab-textos contiene los inputs del Hero
+            const heroDetails = document.querySelector('#tab-textos details:nth-of-type(1)');
+            if (!heroDetails) return { id: 1 };
+            const inputs = heroDetails.querySelectorAll('input[type="text"], input[type="url"]');
+            const [
+                nombre_principal,   // "DRA. DANIELA DELGADO"
+                especialidad,       // "SALUD Y BIENESTAR INTEGRAL"
+                mision,             // frase tarjeta
+                btn_resultados,     // "RESULTADOS REALES"
+                btn_resultados_sub, // subtítulo botón
+                btn_contacto,       // "GUARDAR CONTACTO"
+                instruccion,        // "TOQUE EN LOS ICONOS"
+                firma,              // "v2026.1 · Dra. Daniela Delgado"
+                link_firma          // url de firma
+            ] = Array.from(inputs).map(i => i.value ?? '');
+            return {
+                id: 1,
+                nombre_principal:   nombre_principal   ?? '',
+                especialidad:       especialidad       ?? '',
+                mision:             mision             ?? '',
+                btn_resultados:     btn_resultados     ?? '',
+                btn_resultados_sub: btn_resultados_sub ?? '',
+                btn_contacto:       btn_contacto       ?? '',
+                instruccion:        instruccion        ?? '',
+                firma:              firma              ?? '',
+                link_firma:         link_firma         ?? ''
+            };
+        }
+
+        /** Lee la Franja de Estadísticas (details #2) → tabla `estadisticas` */
+        function leerEstadisticasDelDOM() {
+            const det = document.querySelector('#tab-textos details:nth-of-type(2)');
+            if (!det) return [];
+            const cols = det.querySelectorAll('.p-5 > .grid > div, .border-t + .grid > div');
+            // Cada <div> contiene 2 inputs: valor y etiqueta
+            const divs = det.querySelectorAll('div > div');
+            const filas = [];
+            let orden = 1;
+            det.querySelectorAll('.grid > div').forEach(col => {
+                const ins = col.querySelectorAll('input[type="text"]');
+                if (ins.length >= 2) {
+                    filas.push({
+                        id: orden,
+                        orden: orden,
+                        valor: ins[0]?.value ?? '',
+                        etiqueta: ins[1]?.value ?? ''
+                    });
+                    orden++;
+                }
+            });
+            return filas;
+        }
+
+        /** Lee la sección Sobre Mí (details #3) → tabla `sobre_mi` */
+        function leerSobreMiDelDOM() {
+            const det = document.querySelector('#tab-textos details:nth-of-type(3)');
+            if (!det) return { id: 1 };
+            const inputs = det.querySelectorAll('input[type="text"]');
+            const textareas = det.querySelectorAll('textarea');
+            return {
+                id: 1,
+                titulo:      inputs[0]?.value ?? '',
+                parrafo1:    textareas[0]?.value ?? '',
+                parrafo2:    textareas[1]?.value ?? '',
+                cita:        inputs[inputs.length - 2]?.value ?? '',
+                imagen_url:  inputs[inputs.length - 1]?.value ?? ''
+            };
+        }
+
+        /** Lee las tarjetas de Credenciales (en Sobre Mí) → tabla `credenciales` */
+        function leerCredencialesDelDOM() {
+            return Array.from(document.querySelectorAll('#credenciales-list > div')).map((el, i) => {
+                const sel = el.querySelector('select');
+                const inputs = el.querySelectorAll('input[type="text"]');
                 return {
-                    id: 1,
-                    nombre_principal: inputs[0].value,
-                    especialidad: inputs[3].value,
-                    mision: inputs[4].value,
-                    btn_resultados: inputs[5].value,
-                    btn_contacto: inputs[7].value,
-                    instruccion: inputs[9].value,
-                    firma: inputs[10].value,
-                    link_firma: inputs[11].value
+                    id: listaCredenciales[i]?.id ?? (Date.now() + i),
+                    orden: i + 1,
+                    icono:    sel?.value    ?? '',
+                    titulo:   inputs[0]?.value ?? '',
+                    subtitulo: inputs[1]?.value ?? ''
                 };
+            });
+        }
+
+        /** Lee la sección Servicios (details #4) → tabla `servicios_header` */
+        function leerServiciosHeaderDelDOM() {
+            const det = document.querySelector('#tab-textos details:nth-of-type(4)');
+            if (!det) return { id: 1 };
+            const inputs = det.querySelectorAll('input[type="text"]');
+            const ta = det.querySelector('textarea');
+            return {
+                id: 1,
+                titulo:  inputs[0]?.value ?? '',
+                intro:   ta?.value        ?? ''
+            };
+        }
+
+        /** Lee la Galería (details #5) → ya cubierto por leerGaleriaDelDOM() */
+        function leerGaleriaHeaderDelDOM() {
+            const det = document.querySelector('#tab-textos details:nth-of-type(5)');
+            if (!det) return { id: 1 };
+            const input = det.querySelector('input[type="text"]');
+            return { id: 1, titulo: input?.value ?? '' };
+        }
+
+        function leerGaleriaDelDOM() {
+            return Array.from(document.querySelectorAll('#galeria-list > div')).map((el, i) => {
+                const sel = el.querySelector('select');
+                const inputs = el.querySelectorAll('input[type="text"]');
+                return {
+                    id: listaGaleria[i]?.id ?? (Date.now() + i),
+                    orden: i + 1,
+                    formato:  sel?.value       ?? 'normal',
+                    url:      inputs[0]?.value ?? '',
+                    etiqueta: inputs[1]?.value ?? ''
+                };
+            });
+        }
+
+        /** Lee Testimoniales (details #6) → tabla `testimoniales` */
+        function leerTestimonialesDelDOM() {
+            const det = document.querySelector('#tab-textos details:nth-of-type(6)');
+            if (!det) return [];
+            const cards = det.querySelectorAll('.bg-slate-950');
+            return Array.from(cards).map((card, i) => {
+                const inputs = card.querySelectorAll('input[type="text"]');
+                const ta = card.querySelector('textarea');
+                return {
+                    id: i + 1,
+                    orden: i + 1,
+                    estrellas: inputs[0]?.value ?? '★★★★★',
+                    texto:     ta?.value       ?? '',
+                    nombre:    inputs[1]?.value ?? '',
+                    cargo:     inputs[2]?.value ?? ''
+                };
+            });
+        }
+
+        /** Lee los toggles de Secciones → tabla `secciones_config` */
+        function leerSeccionesDelDOM() {
+            const toggles = document.querySelectorAll('#tab-secciones .toggle-checkbox');
+            const nombres = ['estadisticas', 'sobre_mi', 'servicios', 'galeria', 'testimoniales', 'blog', 'contacto', 'footer'];
+            return nombres.map((nombre, i) => ({
+                id: i + 1,
+                seccion: nombre,
+                visible: toggles[i]?.checked ?? true
+            }));
+        }
+
+        /** Lee los botones Bento → tabla `bento` */
+        function leerBentoDelDOM() {
+            return Array.from(document.querySelectorAll('#bento-list > div')).map((el, i) => {
+                const sel = el.querySelector('select');
+                const inputs = el.querySelectorAll('input[type="text"]');
+                return {
+                    id: botonesBento[i]?.id ?? (Date.now() + i),
+                    orden: i + 1,
+                    icono: sel?.value       ?? '',
+                    titulo: inputs[0]?.value ?? '',
+                    link:   inputs[1]?.value ?? ''
+                };
+            });
+        }
+
+        // ============================================================
+        // FUNCIÓN PRINCIPAL DE GUARDADO — guardarCambiosEnVivo()
+        // Envía TODOS los datos a Supabase con Promise.allSettled para
+        // que un fallo parcial no bloquee el resto.
+        // ============================================================
+        async function guardarCambiosEnVivo() {
+            if (!supabaseClient) {
+                mostrarToast('Supabase no configurado. Revisa las credenciales.', 'error');
+                return;
             }
 
-            // --- FUNCIÓN GUARDAR ACTUALIZADA ---
-            async function guardarCambiosEnVivo() {
-                if (!supabaseClient) return;
+            const btn = document.getElementById('btn-guardar-vivo');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Guardando...';
 
-                const btn = document.getElementById('btn-guardar-vivo');
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Guardando...';
+            try {
+                const [
+                    identidad, hero, estadisticas, sobreMi, credenciales,
+                    servHeader, galeriaHeader, galeria, testimoniales, secciones,
+                    bento, blog, servicios, contacto, social,
+                    navFooter, servFooter, socialFooter
+                ] = await Promise.allSettled([
+                    supabaseClient.from('identidad').upsert(leerIdentidadDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('hero').upsert(leerHeroDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('estadisticas').upsert(leerEstadisticasDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('sobre_mi').upsert(leerSobreMiDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('credenciales').upsert(leerCredencialesDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('servicios_header').upsert(leerServiciosHeaderDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('galeria_header').upsert(leerGaleriaHeaderDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('galeria').upsert(leerGaleriaDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('testimoniales').upsert(leerTestimonialesDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('secciones_config').upsert(leerSeccionesDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('bento').upsert(leerBentoDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('blog').upsert(leerBlogDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('servicios').upsert(leerServiciosDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('contacto').upsert(leerContactoDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('redes_sociales').upsert(leerSocialDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('footer_nav').upsert(leerNavFooterDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('footer_servicios').upsert(leerServFooterDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('footer_social').upsert(leerSocialFooterDelDOM(), { onConflict: 'id' })
+                ]);
 
-                try {
-                    // Ahora guardamos TODAS las secciones
-                    const resultados = await Promise.allSettled([
-                        supabaseClient.from('hero').upsert(leerHeroDelDOM(), { onConflict: 'id' }),
-                        supabaseClient.from('blog').upsert(leerBlogDelDOM(), { onConflict: 'id' }),
-                        supabaseClient.from('servicios').upsert(leerServiciosDelDOM(), { onConflict: 'id' }),
-                        supabaseClient.from('contacto').upsert(leerContactoDelDOM(), { onConflict: 'id' }),
-                        supabaseClient.from('redes_sociales').upsert(leerSocialDelDOM(), { onConflict: 'id' }),
-                        supabaseClient.from('footer_nav').upsert(leerNavFooterDelDOM(), { onConflict: 'id' }),
-                        supabaseClient.from('footer_servicios').upsert(leerServFooterDelDOM(), { onConflict: 'id' }),
-                        supabaseClient.from('footer_social').upsert(leerSocialFooterDelDOM(), { onConflict: 'id' })
-                    ]);
+                // Analizar resultados y reportar errores individuales sin bloquear
+                const todas = [
+                    identidad, hero, estadisticas, sobreMi, credenciales,
+                    servHeader, galeriaHeader, galeria, testimoniales, secciones,
+                    bento, blog, servicios, contacto, social,
+                    navFooter, servFooter, socialFooter
+                ];
+                const nombresTablas = [
+                    'identidad', 'hero', 'estadisticas', 'sobre_mi', 'credenciales',
+                    'servicios_header', 'galeria_header', 'galeria', 'testimoniales', 'secciones_config',
+                    'bento', 'blog', 'servicios', 'contacto', 'redes_sociales',
+                    'footer_nav', 'footer_servicios', 'footer_social'
+                ];
+                const fallos = todas.reduce((acc, r, i) => {
+                    if (r.status === 'rejected' || r.value?.error) {
+                        acc.push(nombresTablas[i]);
+                        console.error(`[Supabase] ❌ Error en tabla "${nombresTablas[i]}":`, r.reason ?? r.value?.error);
+                    }
+                    return acc;
+                }, []);
 
-                    mostrarToast('¡Cambios guardados en la nube! ☁️', 'ok');
-                } catch (err) {
-                    mostrarToast('Error al guardar.', 'error');
-                    console.error(err);
-                } finally {
-                    btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-2"></i>Guardar en Vivo';
+                if (fallos.length === 0) {
+                    mostrarToast('✅ ¡Todo guardado en la nube!', 'ok');
+                } else if (fallos.length < todas.length) {
+                    mostrarToast(`⚠️ Guardado parcial. Falló: ${fallos.join(', ')}`, 'error');
+                } else {
+                    mostrarToast('❌ Error total. Revisa la consola.', 'error');
                 }
+
+            } catch (err) {
+                mostrarToast('❌ Error inesperado al guardar.', 'error');
+                console.error('[Supabase] Error inesperado:', err);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-2"></i>Guardar en Vivo';
             }
         }
 
