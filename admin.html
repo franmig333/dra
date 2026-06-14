@@ -1610,7 +1610,7 @@
                     titulo: inputs[3]?.value ?? '',
                     linkTxt: inputs[4]?.value ?? '',
                     linkUrl: inputs[5]?.value ?? '',
-                    desc: ta?.value ?? ''
+                    descripcion: ta?.value ?? ''
                 };
             });
         }
@@ -1625,7 +1625,7 @@
                     icono: sel?.value ?? '',
                     titulo: inputs[0]?.value ?? '',
                     link: inputs[1]?.value ?? '',
-                    desc: ta?.value ?? ''
+                    descripcion: ta?.value ?? ''
                 };
             });
         }
@@ -1700,11 +1700,11 @@
             const allInputs = tabId.querySelectorAll('input, select');
             // [0] símbolo logo, [1] color picker, [2] color text, [3] tipografía
             // [4] portada URL (dentro del div con flex)
-            const simbolo  = allInputs[0]?.value ?? '';
-            const portada  = allInputs[1]?.value ?? '';
+            const simbolo = allInputs[0]?.value ?? '';
+            const portada = allInputs[1]?.value ?? '';
             const colorPicker = allInputs[2]?.value ?? '#7A3B9F';
-            const colorText   = allInputs[3]?.value ?? '#7A3B9F';
-            const tipografia  = tabId.querySelector('select')?.value ?? 'cormorant';
+            const colorText = allInputs[3]?.value ?? '#7A3B9F';
+            const tipografia = tabId.querySelector('select')?.value ?? 'cormorant';
             return {
                 id: 1,
                 simbolo,
@@ -1733,15 +1733,15 @@
             ] = Array.from(inputs).map(i => i.value ?? '');
             return {
                 id: 1,
-                nombre_principal:   nombre_principal   ?? '',
-                especialidad:       especialidad       ?? '',
-                mision:             mision             ?? '',
-                btn_resultados:     btn_resultados     ?? '',
+                nombre_principal: nombre_principal ?? '',
+                especialidad: especialidad ?? '',
+                mision: mision ?? '',
+                btn_resultados: btn_resultados ?? '',
                 btn_resultados_sub: btn_resultados_sub ?? '',
-                btn_contacto:       btn_contacto       ?? '',
-                instruccion:        instruccion        ?? '',
-                firma:              firma              ?? '',
-                link_firma:         link_firma         ?? ''
+                btn_contacto: btn_contacto ?? '',
+                instruccion: instruccion ?? '',
+                firma: firma ?? '',
+                link_firma: link_firma ?? ''
             };
         }
 
@@ -1777,11 +1777,11 @@
             const textareas = det.querySelectorAll('textarea');
             return {
                 id: 1,
-                titulo:      inputs[0]?.value ?? '',
-                parrafo1:    textareas[0]?.value ?? '',
-                parrafo2:    textareas[1]?.value ?? '',
-                cita:        inputs[inputs.length - 2]?.value ?? '',
-                imagen_url:  inputs[inputs.length - 1]?.value ?? ''
+                titulo: inputs[0]?.value ?? '',
+                parrafo1: textareas[0]?.value ?? '',
+                parrafo2: textareas[1]?.value ?? '',
+                cita: inputs[inputs.length - 2]?.value ?? '',
+                imagen_url: inputs[inputs.length - 1]?.value ?? ''
             };
         }
 
@@ -1793,8 +1793,8 @@
                 return {
                     id: listaCredenciales[i]?.id ?? (Date.now() + i),
                     orden: i + 1,
-                    icono:    sel?.value    ?? '',
-                    titulo:   inputs[0]?.value ?? '',
+                    icono: sel?.value ?? '',
+                    titulo: inputs[0]?.value ?? '',
                     subtitulo: inputs[1]?.value ?? ''
                 };
             });
@@ -1808,8 +1808,8 @@
             const ta = det.querySelector('textarea');
             return {
                 id: 1,
-                titulo:  inputs[0]?.value ?? '',
-                intro:   ta?.value        ?? ''
+                titulo: inputs[0]?.value ?? '',
+                intro: ta?.value ?? ''
             };
         }
 
@@ -1828,8 +1828,8 @@
                 return {
                     id: listaGaleria[i]?.id ?? (Date.now() + i),
                     orden: i + 1,
-                    formato:  sel?.value       ?? 'normal',
-                    url:      inputs[0]?.value ?? '',
+                    formato: sel?.value ?? 'normal',
+                    url: inputs[0]?.value ?? '',
                     etiqueta: inputs[1]?.value ?? ''
                 };
             });
@@ -1847,9 +1847,9 @@
                     id: i + 1,
                     orden: i + 1,
                     estrellas: inputs[0]?.value ?? '★★★★★',
-                    texto:     ta?.value       ?? '',
-                    nombre:    inputs[1]?.value ?? '',
-                    cargo:     inputs[2]?.value ?? ''
+                    texto: ta?.value ?? '',
+                    nombre: inputs[1]?.value ?? '',
+                    cargo: inputs[2]?.value ?? ''
                 };
             });
         }
@@ -1873,9 +1873,9 @@
                 return {
                     id: botonesBento[i]?.id ?? (Date.now() + i),
                     orden: i + 1,
-                    icono: sel?.value       ?? '',
+                    icono: sel?.value ?? '',
                     titulo: inputs[0]?.value ?? '',
-                    link:   inputs[1]?.value ?? ''
+                    link: inputs[1]?.value ?? ''
                 };
             });
         }
