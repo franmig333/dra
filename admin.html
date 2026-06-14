@@ -53,6 +53,7 @@
             display: none;
         }
     </style>
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 </head>
 
 <body
@@ -1424,7 +1425,44 @@
         window.eliminarSocialFooter = function (id) { listaSocialFooter = listaSocialFooter.filter(c => c.id !== id); renderSocialFooter(); }
         window.moverSocialFooter = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaSocialFooter.length) return; const temp = listaSocialFooter[index]; listaSocialFooter[index] = listaSocialFooter[ni]; listaSocialFooter[ni] = temp; renderSocialFooter(); }
         renderSocialFooter();
+        // ==========================================
+        // SISTEMA DE SUBIDA DE IMÁGENES (CLOUDINARY)
+        // ==========================================
+        const cloudName = "drpuhj6mc";
+        const uploadPreset = "dradadel";
 
+        const myWidget = cloudinary.createUploadWidget({
+            cloudName: cloudName,
+            uploadPreset: uploadPreset,
+            sources: ['local', 'url', 'camera'],
+            multiple: false,
+            language: "es",
+            text: {
+                es: {
+                    menu: { files: "Subir desde equipo" },
+                    local: { browse: "Seleccionar archivo" }
+                }
+            }
+        }, (error, result) => {
+            if (!error && result && result.event === "success") {
+                const urlSegura = result.info.secure_url;
+                if (window.currentUploadInput) {
+                    window.currentUploadInput.value = urlSegura;
+                    window.currentUploadInput.dispatchEvent(new Event('input'));
+                }
+            }
+        });
+
+        document.body.addEventListener('click', function (e) {
+            const uploadBtn = e.target.closest('button');
+            if (uploadBtn && uploadBtn.querySelector('.fa-upload')) {
+                const inputElement = uploadBtn.previousElementSibling;
+                if (inputElement && inputElement.tagName === 'INPUT') {
+                    window.currentUploadInput = inputElement;
+                    myWidget.open();
+                }
+            }
+        });
     </script>
 </body>
 
