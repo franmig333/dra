@@ -53,7 +53,10 @@
             display: none;
         }
     </style>
+    <!-- Cloudinary Upload Widget -->
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    <!-- Supabase JS v2 (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 
 <body
@@ -868,6 +871,23 @@
     </div>
 
     <script>
+        // ============================================================
+        // SUPABASE — Configuración de conexión
+        // ⚠️  Reemplaza los valores antes de publicar
+        // ============================================================
+        const SUPABASE_URL = 'https://jzvktasmxbgwnvbofwza.supabase.co';       // ej. https://xyzabc.supabase.co
+        const SUPABASE_ANON = 'sb_publishable_VHg5K_dqA7z8KBim25P4RA_Ddsd-zmDY';  // clave pública (anon / public)
+
+        // Inicializa el cliente solo si las credenciales están configuradas
+        const supabase = (SUPABASE_URL !== 'YOUR_SUPABASE_URL')
+            ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON)
+            : null; // elimina esta línea una vez que configures tus credenciales
+
+        if (!supabase) {
+            console.warn('[Supabase] ⚠️  Cliente no inicializado. Reemplaza SUPABASE_URL y SUPABASE_ANON_KEY.');
+        }
+        // ============================================================
+
         // Array Global de Íconos para los clientes (Visual y amigable)
         const GALERIA_ICONOS = [
             { class: 'fa-solid fa-user-doctor', label: '👩‍⚕️ Médico / Doctora' },
