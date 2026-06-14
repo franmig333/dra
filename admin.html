@@ -4,184 +4,1124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control - Dra. Daniela Delgado</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Panel de Control CMS - Dra. Daniela Delgado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #9333ea;
+        }
+
+        .toggle-checkbox:checked+.toggle-label {
+            background-color: #9333ea;
+        }
+
+        .toggle-checkbox {
+            right: 4px;
+            z-index: 1;
+            border-color: #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .toggle-label {
+            width: 3rem;
+            height: 1.5rem;
+            background-color: #cbd5e1;
+            border-radius: 9999px;
+            transition: all 0.3s;
+        }
+
+        .bento-item {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 10px;
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
 </head>
 
 <body
     class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center font-sans antialiased selection:bg-purple-500 selection:text-white">
 
     <div id="login-card"
-        class="w-full max-w-md p-8 mx-4 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-xl shadow-2xl shadow-purple-950/20 transition-all duration-300">
+        class="w-full max-w-md p-8 mx-4 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-xl shadow-2xl transition-all duration-300">
         <div class="text-center mb-8">
             <div
                 class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 text-2xl mb-4">
-                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-fingerprint"></i>
             </div>
-            <h1 class="text-2xl font-semibold tracking-tight">Acceso Privado</h1>
-            <p class="text-sm text-slate-400 mt-1">Ingresa al panel de configuración</p>
+            <h1 class="text-2xl font-semibold tracking-tight">Acceso CMS</h1>
         </div>
-
         <form id="login-form" class="space-y-5">
-            <div>
-                <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Clave de Acceso
-                    Secreta</label>
-                <input type="password" id="password" required
-                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-center tracking-widest"
-                    placeholder="••••••••">
-            </div>
+            <input type="password" id="password" required
+                class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 text-center tracking-widest text-lg"
+                placeholder="Clave Maestra">
             <button type="submit"
-                class="w-full py-3.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-500 active:bg-purple-700 font-medium tracking-wide transition-all shadow-lg shadow-purple-600/20 active:scale-[0.98]">
-                <i class="fa-solid fa-key mr-2"></i> Entrar al Panel
+                class="w-full py-3.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-500 active:bg-purple-700 font-medium tracking-wide transition-all shadow-lg shadow-purple-600/20">
+                Desbloquear
             </button>
         </form>
     </div>
 
     <div id="dashboard-card"
-        class="hidden w-full max-w-4xl p-6 md:p-8 mx-4 my-8 bg-slate-900/40 border border-slate-800 rounded-3xl backdrop-blur-xl shadow-2xl transition-all duration-300">
-        <div
-            class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-8">
-            <div>
-                <div class="flex items-center gap-3">
-                    <span
-                        class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sistema Listo
-                    </span>
-                </div>
-                <h1 class="text-2xl font-bold tracking-tight mt-2">Configuración de la Web App</h1>
-                <p class="text-sm text-slate-400">Personaliza los colores, textos, enlaces y fotos de la plantilla en
-                    tiempo real</p>
+        class="hidden w-full max-w-7xl h-[94vh] mx-4 bg-slate-900/80 border border-slate-800 rounded-3xl backdrop-blur-xl shadow-2xl transition-all duration-300 flex flex-col overflow-hidden">
+
+        <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+            <div class="flex items-center gap-4">
+                <span
+                    class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> CMS Activo
+                </span>
+                <h1 class="text-lg font-bold">Web Builder <span class="text-purple-400">Pro</span></h1>
             </div>
-            <button id="btn-logout"
-                class="self-start md:self-auto px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-medium transition-colors border border-slate-700">
-                <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>Cerrar Sesión
-            </button>
-        </div>
-
-        <form id="config-form" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="space-y-6">
-                <h2
-                    class="text-sm font-semibold uppercase tracking-wider text-purple-400 border-b border-slate-800 pb-2">
-                    <i class="fa-solid fa-palette mr-2"></i> Identidad y Estilo</h2>
-
-                <div>
-                    <label class="block text-sm text-slate-300 mb-2">Color Principal de la Marca</label>
-                    <div class="flex gap-3">
-                        <input type="color" id="color-principal" value="#7A3B9F"
-                            class="w-14 h-12 rounded-xl border border-slate-700 bg-transparent cursor-pointer p-1">
-                        <input type="text" id="color-hex" value="#7A3B9F"
-                            class="w-full px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 font-mono focus:outline-none focus:border-purple-500">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm text-slate-300 mb-2">Nombre del Titular</label>
-                    <input type="text" id="titulo-web" value="DRA. DANIELA DELGADO"
-                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
-                </div>
-
-                <div>
-                    <label class="block text-sm text-slate-300 mb-2">Especialidad o Subtítulo</label>
-                    <input type="text" id="subtitulo-web" value="SALUD Y BIENESTAR INTEGRAL"
-                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
-                </div>
-
-                <div>
-                    <label class="block text-sm text-slate-300 mb-2">URL Foto de Perfil / Fondo (Cloudinary)</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="url-foto" placeholder="https://res.cloudinary.com/..."
-                            class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 text-sm focus:outline-none focus:border-purple-500">
-                        <button type="button"
-                            class="px-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition-colors text-sm"><i
-                                class="fa-solid fa-upload"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="space-y-6">
-                <h2
-                    class="text-sm font-semibold uppercase tracking-wider text-purple-400 border-b border-slate-800 pb-2">
-                    <i class="fa-solid fa-link mr-2"></i> Acciones del Bento Grid</h2>
-
-                <div>
-                    <label class="block text-sm text-slate-300 mb-2"><i
-                            class="fa-brands fa-whatsapp text-emerald-400 mr-1.5"></i> Enlace de WhatsApp
-                        (Citas)</label>
-                    <input type="url" id="link-whatsapp" placeholder="https://wa.me/..."
-                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
-                </div>
-
-                <div>
-                    <label class="block text-sm text-slate-300 mb-2"><i
-                            class="fa-solid fa-location-dot text-rose-400 mr-1.5"></i> Enlace de Ubicación (Google
-                        Maps)</label>
-                    <input type="url" id="link-mapa" placeholder="https://maps.google.com/..."
-                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
-                </div>
-
-                <div>
-                    <label class="block text-sm text-slate-300 mb-2"><i
-                            class="fa-brands fa-instagram text-pink-400 mr-1.5"></i> Enlace de Instagram</label>
-                    <input type="url" id="link-instagram" placeholder="https://instagram.com/..."
-                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
-                </div>
-
-                <div>
-                    <label class="block text-sm text-slate-300 mb-2"><i
-                            class="fa-solid fa-star text-amber-400 mr-1.5"></i> Botón Inferior: Resultados
-                        Reales</label>
-                    <input type="url" id="link-resultados" placeholder="Enlace a landing o portafolio"
-                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
-                </div>
-            </div>
-
-            <div class="md:col-span-2 border-t border-slate-800 pt-6 mt-4">
-                <button type="submit" id="btn-guardar"
-                    class="w-full md:w-auto float-right py-3.5 px-8 rounded-xl bg-purple-600 hover:bg-purple-500 active:bg-purple-700 font-medium tracking-wide transition-all shadow-lg shadow-purple-600/20 active:scale-[0.98]">
-                    <i class="fa-solid fa-floppy-disk mr-2"></i> Guardar Cambios en Vivo
+            <div class="flex gap-3">
+                <button id="btn-logout"
+                    class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm transition-colors border border-slate-700"><i
+                        class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                <button
+                    class="px-6 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-sm font-medium transition-colors shadow-lg shadow-purple-600/20">
+                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i>Guardar en Vivo
                 </button>
             </div>
-        </form>
+        </div>
+
+        <div class="flex flex-1 overflow-hidden">
+            <aside class="w-64 border-r border-slate-800 bg-slate-950/30 p-4 overflow-y-auto shrink-0">
+                <nav class="space-y-1">
+                    <button
+                        class="tab-btn active w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl bg-purple-600/10 text-purple-400 border border-purple-500/20 transition-all"
+                        data-target="tab-identidad">
+                        <i class="fa-solid fa-palette w-5 text-center"></i> Identidad & Estilo
+                    </button>
+                    <button
+                        class="tab-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-all"
+                        data-target="tab-bento">
+                        <i class="fa-solid fa-layer-group w-5 text-center"></i> Botones (Bento)
+                    </button>
+                    <button
+                        class="tab-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-all"
+                        data-target="tab-secciones">
+                        <i class="fa-solid fa-eye-slash w-5 text-center"></i> Ocultar Secciones
+                    </button>
+                    <button
+                        class="tab-btn w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-all"
+                        data-target="tab-textos">
+                        <i class="fa-solid fa-pen-nib w-5 text-center"></i> Editor de Contenido
+                    </button>
+                </nav>
+            </aside>
+
+            <main class="flex-1 p-6 md:p-8 overflow-y-auto">
+
+                <div id="tab-identidad" class="tab-content block space-y-8 max-w-3xl">
+                    <h2 class="text-xl font-bold mb-6 border-b border-slate-800 pb-2">Identidad Global</h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div
+                            class="col-span-2 grid grid-cols-2 gap-6 p-5 rounded-2xl bg-slate-900/50 border border-slate-800">
+                            <div>
+                                <label class="block text-sm text-slate-400 mb-2">Símbolo (Logo Letras)</label>
+                                <input type="text" value="DD"
+                                    class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 focus:border-purple-500 outline-none text-center text-2xl font-serif">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-slate-400 mb-2">Foto de Portada Principal (URL)</label>
+                                <div class="flex gap-2">
+                                    <input type="text" value="./assets/portada.png"
+                                        class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm outline-none focus:border-purple-500">
+                                    <button class="px-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition"><i
+                                            class="fa-solid fa-upload"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-2">Color Principal</label>
+                            <div class="flex gap-3">
+                                <input type="color" value="#7A3B9F"
+                                    class="w-12 h-12 rounded-xl border border-slate-700 bg-transparent cursor-pointer p-1">
+                                <input type="text" value="#7A3B9F"
+                                    class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 font-mono outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-2">Tipografía Principal</label>
+                            <select
+                                class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 outline-none text-slate-200">
+                                <option value="cormorant" selected>Cormorant Garamond (Elegante)</option>
+                                <option value="playfair">Playfair Display (Clásica)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-bento" class="tab-content hidden space-y-6 max-w-4xl">
+                    <div class="flex justify-between items-center mb-2 border-b border-slate-800 pb-4">
+                        <div>
+                            <h2 class="text-xl font-bold">Botones de Acceso Rápido</h2>
+                            <p class="text-sm text-slate-400">Reordena o edita los botones del menú inicial.</p>
+                        </div>
+                        <button id="btn-add-bento" type="button"
+                            class="px-5 py-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 text-sm font-medium transition-all">
+                            <i class="fa-solid fa-plus mr-2"></i>Añadir Botón
+                        </button>
+                    </div>
+                    <div class="space-y-3" id="bento-list">
+                    </div>
+                </div>
+
+                <div id="tab-secciones" class="tab-content hidden space-y-6 max-w-3xl">
+                    <h2 class="text-xl font-bold mb-2 border-b border-slate-800 pb-2">Control de Secciones (Toggles)
+                    </h2>
+                    <p class="text-sm text-slate-400 mb-6">Apaga las partes de la web que no desees mostrar al público.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div
+                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex-1">
+                                <h3 class="font-medium">Franja Estadísticas</h3>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex-1">
+                                <h3 class="font-medium">Sobre Mí</h3>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex-1">
+                                <h3 class="font-medium">Servicios</h3>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex-1">
+                                <h3 class="font-medium">Galería (Resultados)</h3>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex-1">
+                                <h3 class="font-medium">Testimoniales</h3>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex-1">
+                                <h3 class="font-medium">Blog / Noticias</h3>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex-1">
+                                <h3 class="font-medium">Contacto y CTA</h3>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <div class="flex-1">
+                                <h3 class="font-medium">Pie de Página (Footer)</h3>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-textos" class="tab-content hidden space-y-6 max-w-6xl">
+                    <h2 class="text-xl font-bold mb-2">Editor Maestro de Contenidos</h2>
+                    <p class="text-sm text-slate-400 mb-6">Despliega cada sección para editar textos e imágenes de la
+                        web.</p>
+
+                    <div class="space-y-4">
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-purple-400 hover:bg-slate-800/50 transition">
+                                <span><i class="fa-solid fa-home mr-2"></i> 1. Portada (Hero)</span><span
+                                    class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid gap-6">
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-1">
+                                            Nombre Principal
+                                            <span class="flex gap-2 text-slate-600"><i
+                                                    class="fa-solid fa-arrow-up cursor-pointer hover:text-purple-400"
+                                                    title="Subir"></i><i
+                                                    class="fa-solid fa-arrow-down cursor-pointer hover:text-purple-400"
+                                                    title="Bajar"></i><i
+                                                    class="fa-solid fa-eye text-emerald-400 cursor-pointer ml-1"
+                                                    title="Ocultar/Mostrar"></i></span>
+                                        </label>
+                                        <input type="text" value="DRA. DANIELA DELGADO"
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none focus:border-purple-500 text-sm font-serif">
+                                    </div>
+                                    <div>
+                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-1">
+                                            Especialidad (Subtítulo)
+                                            <span class="flex gap-2 text-slate-600"><i
+                                                    class="fa-solid fa-arrow-up cursor-pointer hover:text-purple-400"
+                                                    title="Subir"></i><i
+                                                    class="fa-solid fa-arrow-down cursor-pointer hover:text-purple-400"
+                                                    title="Bajar"></i><i
+                                                    class="fa-solid fa-eye text-emerald-400 cursor-pointer ml-1"
+                                                    title="Ocultar/Mostrar"></i></span>
+                                        </label>
+                                        <input type="text" value="SALUD Y BIENESTAR INTEGRAL"
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none focus:border-purple-500 text-sm">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-1">
+                                            Misión / Frase en Tarjeta
+                                            <span class="flex gap-2 text-slate-600"><i
+                                                    class="fa-solid fa-arrow-up cursor-pointer hover:text-purple-400"
+                                                    title="Subir"></i><i
+                                                    class="fa-solid fa-arrow-down cursor-pointer hover:text-purple-400"
+                                                    title="Bajar"></i><i
+                                                    class="fa-solid fa-eye text-emerald-400 cursor-pointer ml-1"
+                                                    title="Ocultar/Mostrar"></i></span>
+                                        </label>
+                                        <input type="text"
+                                            value='"Cuidar de tu salud integral es realzar la belleza que nace de tu bienestar."'
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none focus:border-purple-500 text-sm italic">
+                                    </div>
+                                </div>
+                                <div class="grid md:grid-cols-2 gap-4 border-t border-slate-800 pt-5">
+                                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                                            <span class="font-bold text-slate-300"><i
+                                                    class="fa-solid fa-images mr-1"></i> Botón: Resultados Reales</span>
+                                        </label>
+                                        <input type="text" value="RESULTADOS REALES"
+                                            class="w-full bg-transparent border-b border-slate-700 pb-1 outline-none text-sm font-bold mb-3">
+                                        <input type="text" value="ANTES & DESPUÉS · CASOS DE ÉXITO"
+                                            class="w-full bg-transparent border-b border-slate-700 pb-1 outline-none text-xs text-slate-400"
+                                            title="Subtítulo del botón">
+                                    </div>
+                                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                                            <span class="font-bold text-slate-300"><i
+                                                    class="fa-solid fa-address-card mr-1"></i> Botón: Guardar
+                                                Contacto</span>
+                                        </label>
+                                        <input type="text" value="GUARDAR CONTACTO"
+                                            class="w-full bg-transparent border-b border-slate-700 pb-1 outline-none text-sm font-bold">
+                                    </div>
+                                </div>
+                                <div
+                                    class="grid md:grid-cols-2 gap-4 border-t border-slate-800 pt-5 bg-slate-900/50 -mx-5 px-5 pb-5 rounded-b-2xl">
+                                    <div>
+                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                                            <span class="font-bold">Instrucción Inferior</span>
+                                        </label>
+                                        <input type="text" value="TOQUE EN LOS ICONOS"
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm uppercase">
+                                    </div>
+                                    <div>
+                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                                            <span class="font-bold text-purple-400">Firma / Versión (Con Link)</span>
+                                        </label>
+                                        <div class="flex flex-col gap-2">
+                                            <input type="text" value="v2026.1 · Dra. Daniela Delgado"
+                                                class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm font-bold text-white">
+                                            <div class="flex items-center gap-2">
+                                                <i class="fa-solid fa-link text-purple-400 text-xs"></i>
+                                                <input type="url" placeholder="https://tu-enlace.com"
+                                                    class="w-full bg-purple-900/20 border border-purple-500/60 focus:border-purple-400 p-2 rounded-lg outline-none text-xs text-purple-200">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-emerald-400 hover:bg-slate-800/50 transition">
+                                <span><i class="fa-solid fa-chart-bar mr-2"></i> 2. Franja de Estadísticas</span><span
+                                    class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div><input type="text" value="+10"
+                                        class="w-full font-serif text-xl bg-slate-950 border border-slate-700 p-2 rounded-lg text-center mb-2"><input
+                                        type="text" value="Años de Experiencia"
+                                        class="w-full bg-slate-950 border border-slate-700 p-2 text-xs rounded-lg text-center">
+                                </div>
+                                <div><input type="text" value="+2K"
+                                        class="w-full font-serif text-xl bg-slate-950 border border-slate-700 p-2 rounded-lg text-center mb-2"><input
+                                        type="text" value="Pacientes Atendidas"
+                                        class="w-full bg-slate-950 border border-slate-700 p-2 text-xs rounded-lg text-center">
+                                </div>
+                                <div><input type="text" value="98%"
+                                        class="w-full font-serif text-xl bg-slate-950 border border-slate-700 p-2 rounded-lg text-center mb-2"><input
+                                        type="text" value="Satisfacción"
+                                        class="w-full bg-slate-950 border border-slate-700 p-2 text-xs rounded-lg text-center">
+                                </div>
+                                <div><input type="text" value="15+"
+                                        class="w-full font-serif text-xl bg-slate-950 border border-slate-700 p-2 rounded-lg text-center mb-2"><input
+                                        type="text" value="Tratamientos"
+                                        class="w-full bg-slate-950 border border-slate-700 p-2 text-xs rounded-lg text-center">
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-blue-400 hover:bg-slate-800/50 transition">
+                                <span><i class="fa-solid fa-user-doctor mr-2"></i> 3. Sección "Sobre Mí"</span><span
+                                    class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid gap-6">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="col-span-2"><label class="block text-xs text-slate-500 mb-1">Título
+                                            Principal</label><input type="text"
+                                            value="Un enfoque humano en cada consulta."
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
+                                    </div>
+                                    <div class="col-span-2"><label class="block text-xs text-slate-500 mb-1">Párrafo
+                                            1</label><textarea rows="2"
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">La Dra. Daniela Delgado es especialista en Medicina Estética y Bienestar Integral, con más de diez años dedicados a acompañar a sus pacientes en el camino hacia una salud plena y duradera.</textarea>
+                                    </div>
+                                    <div class="col-span-2"><label class="block text-xs text-slate-500 mb-1">Párrafo
+                                            2</label><textarea rows="3"
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">Su filosofía es sencilla: la belleza auténtica florece cuando el cuerpo y la mente están en equilibrio. Por eso, cada tratamiento parte de una evaluación integral que combina medicina basada en evidencia con un trato cercano y personalizado.</textarea>
+                                    </div>
+                                </div>
+                                <div class="border-t border-slate-800 pt-5">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Tarjetas de Credenciales</h4>
+                                        </div>
+                                        <button id="btn-add-credencial" type="button"
+                                            class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 text-xs font-medium transition-all">
+                                            <i class="fa-solid fa-plus mr-1"></i>Añadir
+                                        </button>
+                                    </div>
+                                    <div class="space-y-3" id="credenciales-list"></div>
+                                </div>
+                                <div
+                                    class="grid md:grid-cols-2 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800 mt-2">
+                                    <div><label class="block text-xs text-slate-500 mb-1">Cita bajo la
+                                            foto</label><input type="text"
+                                            value='"La medicina más poderosa es la que nace del cuidado genuino."'
+                                            class="w-full bg-slate-900 border border-slate-700 p-2.5 rounded-lg outline-none text-sm italic">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-slate-500 mb-1">Imagen "Sobre Mí" (URL)</label>
+                                        <div class="flex gap-2">
+                                            <input type="text" placeholder="https://..."
+                                                class="w-full bg-slate-900 border border-slate-700 p-2.5 rounded-lg outline-none focus:border-blue-500 text-sm">
+                                            <button
+                                                class="px-4 rounded-lg bg-slate-800 hover:bg-slate-700 transition"><i
+                                                    class="fa-solid fa-upload"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-rose-400 hover:bg-slate-800/50 transition">
+                                <span><i class="fa-solid fa-spa mr-2"></i> 4. Sección "Servicios"</span><span
+                                    class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid gap-6">
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-1">Título
+                                            Principal</label>
+                                        <input type="text" value="Nuestros Tratamientos."
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-1">Texto
+                                            Introductorio</label>
+                                        <textarea rows="2"
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">Cada servicio está diseñado para llevarte a tu mejor versión, combinando ciencia médica con bienestar integral.</textarea>
+                                    </div>
+                                </div>
+                                <div class="border-t border-slate-800 pt-5">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Tarjetas de Tratamientos</h4>
+                                        </div>
+                                        <button id="btn-add-servicio" type="button"
+                                            class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20 text-xs font-medium transition-all">
+                                            <i class="fa-solid fa-plus mr-1"></i>Añadir
+                                        </button>
+                                    </div>
+                                    <div class="space-y-3" id="servicios-list"></div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-indigo-400 hover:bg-slate-800/50 transition">
+                                <span><i class="fa-solid fa-images mr-2"></i> 5. Galería de Resultados</span><span
+                                    class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid gap-6">
+                                <div><label class="block text-xs text-slate-500 mb-1">Título de la Sección</label><input
+                                        type="text" value="Resultados Reales."
+                                        class="w-full md:w-1/2 bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
+                                </div>
+                                <div class="border-t border-slate-800 pt-5">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Imágenes del Grid</h4>
+                                        </div>
+                                        <button id="btn-add-galeria" type="button"
+                                            class="px-3 py-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 text-xs font-medium transition-all">
+                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Imagen
+                                        </button>
+                                    </div>
+                                    <div class="space-y-3" id="galeria-list"></div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-amber-400 hover:bg-slate-800/50 transition">
+                                <span><i class="fa-solid fa-star mr-2"></i> 6. Reseñas de Pacientes</span><span
+                                    class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-2">
+                                    <input type="text" value="★★★★★"
+                                        class="w-full text-amber-400 bg-transparent text-sm outline-none"><textarea
+                                        rows="3"
+                                        class="w-full text-xs text-slate-300 bg-transparent resize-none outline-none italic">"La Dra. Delgado transformó no solo mi piel sino mi confianza..."</textarea><input
+                                        type="text" value="María G."
+                                        class="w-full font-bold bg-transparent text-sm outline-none border-b border-slate-700"><input
+                                        type="text" value="Paciente · Medicina Estética"
+                                        class="w-full text-xs text-slate-500 bg-transparent outline-none">
+                                </div>
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-2">
+                                    <input type="text" value="★★★★★"
+                                        class="w-full text-amber-400 bg-transparent text-sm outline-none"><textarea
+                                        rows="3"
+                                        class="w-full text-xs text-slate-300 bg-transparent resize-none outline-none italic">"Por fin encontré una doctora que me escucha y entiende..."</textarea><input
+                                        type="text" value="Sofía R."
+                                        class="w-full font-bold bg-transparent text-sm outline-none border-b border-slate-700"><input
+                                        type="text" value="Paciente · Bienestar Integral"
+                                        class="w-full text-xs text-slate-500 bg-transparent outline-none">
+                                </div>
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-2">
+                                    <input type="text" value="★★★★★"
+                                        class="w-full text-amber-400 bg-transparent text-sm outline-none"><textarea
+                                        rows="3"
+                                        class="w-full text-xs text-slate-300 bg-transparent resize-none outline-none italic">"Profesional, empática y con resultados visibles..."</textarea><input
+                                        type="text" value="Andrea L."
+                                        class="w-full font-bold bg-transparent text-sm outline-none border-b border-slate-700"><input
+                                        type="text" value="Paciente · Nutrición Clínica"
+                                        class="w-full text-xs text-slate-500 bg-transparent outline-none">
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-cyan-400 hover:bg-slate-800/50 transition">
+                                <span><i class="fa-solid fa-newspaper mr-2"></i> 7. Sección Blog</span><span
+                                    class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid gap-6">
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div><label class="block text-xs text-slate-500 mb-1">Título de la
+                                            Sección</label><input type="text" value="Salud & Conocimiento."
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
+                                    </div>
+                                    <div><label class="block text-xs text-slate-500 mb-1">Texto del Botón "Ver
+                                            más"</label><input type="text" value="VER TODOS →"
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-teal-400 hover:bg-slate-800/50 transition">
+                                <span><i class="fa-solid fa-paper-plane mr-2"></i> 8. Contacto y Cierre
+                                    (CTA)</span><span class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4
+                                        class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b border-slate-800 pb-2">
+                                        Franja CTA</h4>
+                                    <div class="space-y-3">
+                                        <input type="text" value="Tu salud, tu bienestar."
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden" open>
+                            <summary
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-fuchsia-400 hover:bg-slate-800/50 transition bg-slate-800/20">
+                                <span><i class="fa-solid fa-arrow-down mr-2"></i> 9. Pie de Página (Footer)</span><span
+                                    class="transition group-open:rotate-180"><i
+                                        class="fa-solid fa-chevron-down"></i></span>
+                            </summary>
+                            <div class="p-5 border-t border-slate-800 grid gap-8">
+
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label
+                                            class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Color
+                                            de Fondo del Footer</label>
+                                        <div class="flex gap-2">
+                                            <input type="color" value="#1A1228"
+                                                class="w-10 h-10 rounded border border-slate-700 bg-transparent cursor-pointer p-0.5">
+                                            <input type="text" value="#1A1228"
+                                                class="w-full bg-slate-950 border border-slate-700 focus:border-fuchsia-500 text-sm text-slate-300 px-3 rounded outline-none font-mono">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Frase
+                                            / Eslogan</label>
+                                        <textarea rows="2"
+                                            class="w-full bg-slate-950 border border-slate-700 focus:border-fuchsia-500 text-xs text-slate-300 p-2 rounded outline-none resize-none">"La belleza auténtica florece cuando el cuerpo y la mente están en equilibrio."</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-slate-800 pt-5">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Columna 1: Navegación</h4>
+                                            <input type="text" value="NAVEGACIÓN"
+                                                class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 outline-none text-xs text-slate-300 mt-1 pb-0.5"
+                                                title="Título de la columna">
+                                        </div>
+                                        <button id="btn-add-nav-footer" type="button"
+                                            class="px-3 py-1.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20 hover:bg-fuchsia-500/20 text-xs font-medium transition-all">
+                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Link
+                                        </button>
+                                    </div>
+                                    <div class="space-y-2" id="nav-footer-list">
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-slate-800 pt-5">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Columna 2: Servicios</h4>
+                                            <input type="text" value="SERVICIOS"
+                                                class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 outline-none text-xs text-slate-300 mt-1 pb-0.5"
+                                                title="Título de la columna">
+                                        </div>
+                                        <button id="btn-add-serv-footer" type="button"
+                                            class="px-3 py-1.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20 hover:bg-fuchsia-500/20 text-xs font-medium transition-all">
+                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Link
+                                        </button>
+                                    </div>
+                                    <div class="space-y-2" id="serv-footer-list">
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-slate-800 pt-5">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Columna 3: Contacto y Redes</h4>
+                                            <input type="text" value="CONTACTO"
+                                                class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 outline-none text-xs text-slate-300 mt-1 pb-0.5"
+                                                title="Título de la columna">
+                                        </div>
+                                        <button id="btn-add-social-footer" type="button"
+                                            class="px-3 py-1.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20 hover:bg-fuchsia-500/20 text-xs font-medium transition-all">
+                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Red Social
+                                        </button>
+                                    </div>
+
+                                    <div
+                                        class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                                        <div><label class="text-[9px] uppercase text-slate-500">Teléfono</label><input
+                                                type="text" value="+52 123 456 7890"
+                                                class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs outline-none pb-0.5 mt-1">
+                                        </div>
+                                        <div><label class="text-[9px] uppercase text-slate-500">Email</label><input
+                                                type="text" value="contacto@dradanieladelgado.com"
+                                                class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs outline-none pb-0.5 mt-1">
+                                        </div>
+                                        <div><label class="text-[9px] uppercase text-slate-500">Dirección</label><input
+                                                type="text" value="Av. Salud 123, Col. Centro, CDMX"
+                                                class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs outline-none pb-0.5 mt-1">
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-2" id="social-footer-list">
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-slate-800 pt-5 grid md:grid-cols-2 gap-4">
+                                    <div><label class="text-[10px] uppercase text-slate-500">Copyright</label><input
+                                            type="text"
+                                            value="© 2026 Dra. Daniela Delgado · Todos los derechos reservados"
+                                            class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs pb-1 outline-none text-slate-300">
+                                    </div>
+                                    <div><label class="text-[10px] uppercase text-slate-500">Créditos /
+                                            Versión</label><input type="text" value="v2026.1 · Diseño High-End"
+                                            class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs pb-1 outline-none md:text-right text-slate-400">
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                    </div>
+                </div>
+
+            </main>
+        </div>
     </div>
 
     <script>
-        const loginCard = document.getElementById('login-card');
-        const dashboardCard = document.getElementById('dashboard-card');
-        const loginForm = document.getElementById('login-form');
-        const passwordInput = document.getElementById('password');
-        const btnLogout = document.getElementById('btn-logout');
+        // Array Global de Íconos para los clientes (Visual y amigable)
+        const GALERIA_ICONOS = [
+            { class: 'fa-solid fa-user-doctor', label: '👩‍⚕️ Médico / Doctora' },
+            { class: 'fa-solid fa-stethoscope', label: '🩺 Estetoscopio' },
+            { class: 'fa-solid fa-heart', label: '❤️ Corazón' },
+            { class: 'fa-solid fa-spa', label: '🌿 Spa / Relajación' },
+            { class: 'fa-solid fa-face-smile', label: '✨ Rostro / Estética' },
+            { class: 'fa-solid fa-leaf', label: '🍃 Hoja / Natural' },
+            { class: 'fa-solid fa-sun', label: '☀️ Sol / Piel' },
+            { class: 'fa-solid fa-apple-whole', label: '🍎 Nutrición' },
+            { class: 'fa-solid fa-shield-heart', label: '🛡️ Prevención' },
+            { class: 'fa-solid fa-syringe', label: '💉 Tratamiento' },
+            { class: 'fa-solid fa-capsules', label: '💊 Pastillas' },
+            { class: 'fa-brands fa-whatsapp', label: '💬 WhatsApp' },
+            { class: 'fa-solid fa-phone', label: '📞 Teléfono' },
+            { class: 'fa-regular fa-envelope', label: '✉️ Email' },
+            { class: 'fa-solid fa-location-dot', label: '📍 Ubicación' },
+            { class: 'fa-brands fa-instagram', label: '📸 Instagram' },
+            { class: 'fa-brands fa-tiktok', label: '🎵 TikTok' },
+            { class: 'fa-brands fa-facebook', label: '📘 Facebook' },
+            { class: 'fa-brands fa-youtube', label: '▶️ YouTube' },
+            { class: 'fa-brands fa-linkedin-in', label: '💼 LinkedIn' },
+            { class: 'fa-solid fa-link', label: '🔗 Enlace Web' },
+            { class: 'fa-solid fa-certificate', label: '📜 Certificado' },
+            { class: 'fa-solid fa-user-graduate', label: '🎓 Graduado/a' },
+            { class: 'fa-solid fa-star', label: '⭐ Estrella' }
+        ];
 
-        // LA CLAVE MAESTRA ESTÁ AQUÍ
-        const CLAVE_SECRETA = 'admin';
+        function renderIconOptions(selectedClass) {
+            return GALERIA_ICONOS.map(ic =>
+                `<option value="${ic.class}" ${selectedClass === ic.class ? 'selected' : ''}>${ic.label}</option>`
+            ).join('');
+        }
 
-        // Al presionar el botón de Entrar
-        loginForm.addEventListener('submit', (e) => {
+        // Login & Tabs
+        document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
-
-            if (passwordInput.value === CLAVE_SECRETA) {
-                // Si la clave es correcta, oculta el candado y muestra el panel
-                loginCard.classList.add('hidden');
-                dashboardCard.classList.remove('hidden');
-            } else {
-                // Si es incorrecta, muestra error y limpia la caja
-                alert('Clave incorrecta. Acceso denegado.');
-                passwordInput.value = '';
-            }
+            if (document.getElementById('password').value === 'admin') {
+                document.getElementById('login-card').classList.add('hidden');
+                document.getElementById('dashboard-card').classList.remove('hidden');
+            } else { alert('Clave incorrecta'); }
+        });
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            document.getElementById('dashboard-card').classList.add('hidden');
+            document.getElementById('login-card').classList.remove('hidden');
+            document.getElementById('password').value = '';
         });
 
-        // Al presionar el botón de Cerrar Sesión
-        btnLogout.addEventListener('click', () => {
-            dashboardCard.classList.add('hidden');
-            loginCard.classList.remove('hidden');
-            passwordInput.value = '';
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => {
+                    b.classList.remove('bg-purple-600/10', 'text-purple-400', 'border-purple-500/20');
+                    b.classList.add('text-slate-400');
+                });
+                btn.classList.add('bg-purple-600/10', 'text-purple-400', 'border-purple-500/20');
+                btn.classList.remove('text-slate-400');
+                tabContents.forEach(content => content.classList.add('hidden'));
+                document.getElementById(btn.getAttribute('data-target')).classList.remove('hidden');
+            });
         });
 
-        // Prevenir que el panel recargue la página al guardar (temporal hasta conectar Supabase)
-        document.getElementById('config-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('¡Listo para conectar con la base de datos!');
+        // ==========================================
+        // LÓGICAS ANTERIORES (BENTO, SERVICIOS, ETC)
+        // ==========================================
+        const bentoList = document.getElementById('bento-list');
+        let botonesBento = [
+            { id: 1, tipo: 'whatsapp', icono: 'fa-brands fa-whatsapp', color: 'text-emerald-400', titulo: 'Agendar Cita Rápida', link: 'https://wa.me/...' },
+            { id: 2, tipo: 'email', icono: 'fa-regular fa-envelope', color: 'text-blue-400', titulo: 'Soporte Médico', link: 'mailto:contacto@...' },
+            { id: 3, tipo: 'mapa', icono: 'fa-solid fa-location-dot', color: 'text-rose-400', titulo: 'Ubicación y Citas', link: 'https://maps.google...' }
+        ];
+
+        function renderBentoGrid() {
+            if (!bentoList) return;
+            bentoList.innerHTML = '';
+            botonesBento.forEach((boton, index) => {
+                const itemHTML = `
+                <div class="bento-item flex items-center gap-4 bg-slate-950 border border-slate-800 p-3 rounded-2xl group hover:border-slate-700">
+                    <div class="flex flex-col gap-1 text-slate-600 px-2">
+                        <button type="button" onclick="moverBoton(${index}, -1)" class="hover:text-purple-400"><i class="fa-solid fa-chevron-up"></i></button>
+                        <button type="button" onclick="moverBoton(${index}, 1)" class="hover:text-purple-400"><i class="fa-solid fa-chevron-down"></i></button>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-slate-900 flex items-center justify-center ${boton.color} border border-slate-800">
+                        <i class="${boton.icono} text-xl" id="b-preview-${boton.id}"></i>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div>
+                            <label class="text-[10px] uppercase tracking-wider text-slate-500">Ícono Visual</label>
+                            <div class="bg-slate-900 border border-slate-700 rounded px-2">
+                                <select onchange="document.getElementById('b-preview-${boton.id}').className = this.value + ' text-xl'" class="w-full bg-transparent text-xs text-purple-400 py-2 outline-none cursor-pointer">
+                                    ${renderIconOptions(boton.icono)}
+                                </select>
+                            </div>
+                        </div>
+                        <div><label class="text-[10px] uppercase tracking-wider text-slate-500">Título</label><input type="text" value="${boton.titulo}" class="w-full bg-transparent border-b border-slate-800 focus:border-purple-500 text-sm text-slate-200 pb-1 outline-none"></div>
+                        <div><label class="text-[10px] uppercase tracking-wider text-slate-500">Enlace (URL)</label><input type="text" value="${boton.link}" class="w-full bg-transparent border-b border-slate-800 focus:border-purple-500 text-sm text-slate-400 pb-1 outline-none font-mono"></div>
+                    </div>
+                    <div class="flex items-center gap-2 px-2 border-l border-slate-800">
+                        <button type="button" onclick="eliminarBoton(${boton.id})" class="w-8 h-8 rounded-lg text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`;
+                bentoList.insertAdjacentHTML('beforeend', itemHTML);
+            });
+        }
+
+        document.getElementById('btn-add-bento')?.addEventListener('click', () => {
+            botonesBento.push({ id: Date.now(), icono: 'fa-solid fa-link', color: 'text-slate-400', titulo: 'Nuevo Botón', link: 'https://...' });
+            renderBentoGrid();
         });
+        window.eliminarBoton = function (id) { botonesBento = botonesBento.filter(b => b.id !== id); renderBentoGrid(); }
+        window.moverBoton = function (index, dir) {
+            const ni = index + dir; if (ni < 0 || ni >= botonesBento.length) return;
+            const temp = botonesBento[index]; botonesBento[index] = botonesBento[ni]; botonesBento[ni] = temp; renderBentoGrid();
+        }
+        renderBentoGrid();
+
+        const credencialesList = document.getElementById('credenciales-list');
+        let listaCredenciales = [
+            { id: 1, icono: 'fa-solid fa-user-graduate', titulo: 'Médico Cirujano', subtitulo: 'Universidad Autónoma — Promoción Cum Laude' },
+            { id: 2, icono: 'fa-solid fa-certificate', titulo: 'Especialidad en Medicina Estética', subtitulo: 'Certificada · Colegio de Médicos Estéticos' },
+            { id: 3, icono: 'fa-solid fa-heart', titulo: 'Bienestar Integral', subtitulo: '+10 años de experiencia · +2,000 pacientes' }
+        ];
+
+        function renderCredenciales() {
+            if (!credencialesList) return;
+            credencialesList.innerHTML = '';
+            listaCredenciales.forEach((cred, index) => {
+                const itemHTML = `
+                <div class="flex items-center gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
+                    <div class="flex flex-col gap-1 text-slate-500 px-1">
+                        <button type="button" onclick="moverCredencial(${index}, -1)" class="hover:text-blue-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverCredencial(${index}, 1)" class="hover:text-blue-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-3">
+                        <div class="md:col-span-3">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Ícono Visual</label>
+                            <div class="flex items-center gap-2 bg-slate-950 border border-slate-700 rounded px-2">
+                                <i class="${cred.icono} text-blue-400 text-xs w-4 text-center" id="c-preview-${cred.id}"></i>
+                                <select onchange="document.getElementById('c-preview-${cred.id}').className = this.value + ' text-blue-400 text-xs w-4 text-center'" class="w-full bg-transparent focus:border-blue-500 text-xs text-slate-300 py-1.5 outline-none cursor-pointer">
+                                    ${renderIconOptions(cred.icono)}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="md:col-span-4">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Título</label>
+                            <input type="text" value="${cred.titulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-blue-500 text-sm text-slate-200 pb-1 outline-none font-bold">
+                        </div>
+                        <div class="md:col-span-5">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Subtítulo / Descripción</label>
+                            <input type="text" value="${cred.subtitulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-blue-500 text-xs text-slate-400 pb-1 outline-none">
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 px-2 border-l border-slate-700">
+                        <button type="button" class="w-7 h-7 rounded flex items-center justify-center text-emerald-500/70 hover:bg-slate-800 hover:text-emerald-400 transition-colors" title="Ocultar/Mostrar"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" onclick="eliminarCredencial(${cred.id})" class="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`;
+                credencialesList.insertAdjacentHTML('beforeend', itemHTML);
+            });
+        }
+        document.getElementById('btn-add-credencial')?.addEventListener('click', () => { listaCredenciales.push({ id: Date.now(), icono: 'fa-solid fa-star', titulo: 'Nueva Credencial', subtitulo: 'Descripción breve...' }); renderCredenciales(); });
+        window.eliminarCredencial = function (id) { listaCredenciales = listaCredenciales.filter(c => c.id !== id); renderCredenciales(); }
+        window.moverCredencial = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaCredenciales.length) return; const temp = listaCredenciales[index]; listaCredenciales[index] = listaCredenciales[ni]; listaCredenciales[ni] = temp; renderCredenciales(); }
+        renderCredenciales();
+
+        const serviciosList = document.getElementById('servicios-list');
+        let listaServicios = [
+            { id: 1, icono: 'fa-solid fa-user-doctor', titulo: 'Consulta Médica', desc: 'Evaluación integral de salud...', link: 'Ver más →' },
+            { id: 2, icono: 'fa-solid fa-face-smile', titulo: 'Estética Facial', desc: 'Tratamientos no invasivos...', link: 'Ver más →' },
+            { id: 3, icono: 'fa-solid fa-heart', titulo: 'Bienestar Integral', desc: 'Programa holístico...', link: 'Ver más →' }
+        ];
+
+        function renderServicios() {
+            if (!serviciosList) return;
+            serviciosList.innerHTML = '';
+            listaServicios.forEach((srv, index) => {
+                const itemHTML = `
+                <div class="flex items-center gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
+                    <div class="flex flex-col gap-1 text-slate-500 px-1">
+                        <button type="button" onclick="moverServicio(${index}, -1)" class="hover:text-rose-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverServicio(${index}, 1)" class="hover:text-rose-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-3">
+                        <div class="md:col-span-3">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Ícono Visual</label>
+                            <div class="flex items-center gap-2 bg-slate-950 border border-slate-700 rounded px-2">
+                                <i class="${srv.icono} text-rose-400 text-xs w-4 text-center" id="s-preview-${srv.id}"></i>
+                                <select onchange="document.getElementById('s-preview-${srv.id}').className = this.value + ' text-rose-400 text-xs w-4 text-center'" class="w-full bg-transparent focus:border-rose-500 text-xs text-slate-300 py-1.5 outline-none cursor-pointer">
+                                    ${renderIconOptions(srv.icono)}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="md:col-span-4">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Título del Tratamiento</label>
+                            <input type="text" value="${srv.titulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-rose-500 text-sm text-slate-200 pb-1 outline-none font-bold">
+                        </div>
+                        <div class="md:col-span-5">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Texto del Enlace</label>
+                            <input type="text" value="${srv.link}" class="w-full bg-transparent border-b border-slate-700 focus:border-rose-500 text-xs text-slate-400 pb-1 outline-none">
+                        </div>
+                        <div class="md:col-span-12 mt-1">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Descripción</label>
+                            <textarea rows="2" class="w-full bg-slate-950 border border-slate-700 focus:border-rose-500 text-xs text-slate-300 p-2 rounded outline-none resize-none">${srv.desc}</textarea>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 px-2 border-l border-slate-700 h-full">
+                        <button type="button" class="w-7 h-7 rounded flex items-center justify-center text-emerald-500/70 hover:bg-slate-800 hover:text-emerald-400 transition-colors" title="Ocultar/Mostrar"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" onclick="eliminarServicio(${srv.id})" class="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`;
+                serviciosList.insertAdjacentHTML('beforeend', itemHTML);
+            });
+        }
+        document.getElementById('btn-add-servicio')?.addEventListener('click', () => { listaServicios.push({ id: Date.now(), icono: 'fa-solid fa-star', titulo: 'Nuevo', desc: '...', link: 'Ver más →' }); renderServicios(); });
+        window.eliminarServicio = function (id) { listaServicios = listaServicios.filter(c => c.id !== id); renderServicios(); }
+        window.moverServicio = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaServicios.length) return; const temp = listaServicios[index]; listaServicios[index] = listaServicios[ni]; listaServicios[ni] = temp; renderServicios(); }
+        renderServicios();
+
+        const galeriaList = document.getElementById('galeria-list');
+        let listaGaleria = [
+            { id: 1, formato: 'tall', url: '', etiqueta: 'Antes / Después' },
+            { id: 2, formato: 'normal', url: '', etiqueta: 'Estética Facial' },
+            { id: 3, formato: 'normal', url: '', etiqueta: 'Bienestar' },
+            { id: 4, formato: 'wide', url: '', etiqueta: 'Clínica & Consultorio' }
+        ];
+
+        function renderGaleria() {
+            if (!galeriaList) return;
+            galeriaList.innerHTML = '';
+            listaGaleria.forEach((img, index) => {
+                const itemHTML = `
+                <div class="flex items-center gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
+                    <div class="flex flex-col gap-1 text-slate-500 px-1">
+                        <button type="button" onclick="moverGaleria(${index}, -1)" class="hover:text-indigo-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverGaleria(${index}, 1)" class="hover:text-indigo-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-3">
+                        <div class="md:col-span-3">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Formato (Grid)</label>
+                            <select class="w-full bg-slate-950 border border-slate-700 focus:border-indigo-500 text-xs text-slate-300 p-1.5 rounded outline-none cursor-pointer">
+                                <option value="normal" ${img.formato === 'normal' ? 'selected' : ''}>Cuadrado (Normal)</option>
+                                <option value="tall" ${img.formato === 'tall' ? 'selected' : ''}>Vertical (Alto)</option>
+                                <option value="wide" ${img.formato === 'wide' ? 'selected' : ''}>Horizontal (Ancho)</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-5">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">URL Imagen</label>
+                            <div class="flex gap-2 items-center">
+                                <input type="text" placeholder="https://..." value="${img.url}" class="w-full bg-transparent border-b border-slate-700 focus:border-indigo-500 text-xs text-slate-300 pb-1 outline-none font-mono">
+                                <button class="px-2 text-slate-400 hover:text-white transition"><i class="fa-solid fa-upload text-[10px]"></i></button>
+                            </div>
+                        </div>
+                        <div class="md:col-span-4">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Etiqueta (Texto)</label>
+                            <input type="text" value="${img.etiqueta}" class="w-full bg-transparent border-b border-slate-700 focus:border-indigo-500 text-sm text-slate-200 pb-1 outline-none font-bold">
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 px-2 border-l border-slate-700 h-full">
+                        <button type="button" class="w-7 h-7 rounded flex items-center justify-center text-emerald-500/70 hover:bg-slate-800 hover:text-emerald-400 transition-colors" title="Ocultar/Mostrar"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" onclick="eliminarGaleria(${img.id})" class="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`;
+                galeriaList.insertAdjacentHTML('beforeend', itemHTML);
+            });
+        }
+        document.getElementById('btn-add-galeria')?.addEventListener('click', () => { listaGaleria.push({ id: Date.now(), formato: 'normal', url: '', etiqueta: 'Nueva Imagen' }); renderGaleria(); });
+        window.eliminarGaleria = function (id) { listaGaleria = listaGaleria.filter(c => c.id !== id); renderGaleria(); }
+        window.moverGaleria = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaGaleria.length) return; const temp = listaGaleria[index]; listaGaleria[index] = listaGaleria[ni]; listaGaleria[ni] = temp; renderGaleria(); }
+        renderGaleria();
+
+        // ==========================================
+        // NUEVA LÓGICA DEL FOOTER (SECCIÓN 9)
+        // ==========================================
+
+        // 9.1 Lista de Navegación Footer
+        const navFooterList = document.getElementById('nav-footer-list');
+        let listaNavFooter = [
+            { id: 1, titulo: 'Sobre Mí', link: '#sobre-mi' },
+            { id: 2, titulo: 'Servicios', link: '#servicios' },
+            { id: 3, titulo: 'Galería', link: '#galeria' },
+            { id: 4, titulo: 'Blog', link: '#blog' },
+            { id: 5, titulo: 'Contacto', link: '#contacto' }
+        ];
+
+        function renderNavFooter() {
+            if (!navFooterList) return;
+            navFooterList.innerHTML = '';
+            listaNavFooter.forEach((item, index) => {
+                const html = `
+                <div class="flex items-center gap-2 bg-slate-900 border border-slate-700 p-2 rounded-lg">
+                    <div class="flex flex-col text-slate-500 px-1">
+                        <button type="button" onclick="moverNavFooter(${index}, -1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverNavFooter(${index}, 1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-2 gap-2">
+                        <input type="text" value="${item.titulo}" class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-200 outline-none pb-0.5">
+                        <input type="text" value="${item.link}" class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-400 outline-none font-mono pb-0.5">
+                    </div>
+                    <button type="button" onclick="eliminarNavFooter(${item.id})" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
+                </div>`;
+                navFooterList.insertAdjacentHTML('beforeend', html);
+            });
+        }
+        document.getElementById('btn-add-nav-footer')?.addEventListener('click', () => { listaNavFooter.push({ id: Date.now(), titulo: 'Nuevo Link', link: '#' }); renderNavFooter(); });
+        window.eliminarNavFooter = function (id) { listaNavFooter = listaNavFooter.filter(c => c.id !== id); renderNavFooter(); }
+        window.moverNavFooter = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaNavFooter.length) return; const temp = listaNavFooter[index]; listaNavFooter[index] = listaNavFooter[ni]; listaNavFooter[ni] = temp; renderNavFooter(); }
+        renderNavFooter();
+
+        // 9.2 Lista de Servicios Footer
+        const servFooterList = document.getElementById('serv-footer-list');
+        let listaServFooter = [
+            { id: 1, titulo: 'Consulta Médica', link: '#servicios' },
+            { id: 2, titulo: 'Estética Facial', link: '#servicios' },
+            { id: 3, titulo: 'Bienestar Integral', link: '#servicios' },
+            { id: 4, titulo: 'Dermatología', link: '#servicios' },
+            { id: 5, titulo: 'Nutrición', link: '#servicios' }
+        ];
+
+        function renderServFooter() {
+            if (!servFooterList) return;
+            servFooterList.innerHTML = '';
+            listaServFooter.forEach((item, index) => {
+                const html = `
+                <div class="flex items-center gap-2 bg-slate-900 border border-slate-700 p-2 rounded-lg">
+                    <div class="flex flex-col text-slate-500 px-1">
+                        <button type="button" onclick="moverServFooter(${index}, -1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverServFooter(${index}, 1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-2 gap-2">
+                        <input type="text" value="${item.titulo}" class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-200 outline-none pb-0.5">
+                        <input type="text" value="${item.link}" class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-400 outline-none font-mono pb-0.5">
+                    </div>
+                    <button type="button" onclick="eliminarServFooter(${item.id})" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
+                </div>`;
+                servFooterList.insertAdjacentHTML('beforeend', html);
+            });
+        }
+        document.getElementById('btn-add-serv-footer')?.addEventListener('click', () => { listaServFooter.push({ id: Date.now(), titulo: 'Nuevo Link', link: '#' }); renderServFooter(); });
+        window.eliminarServFooter = function (id) { listaServFooter = listaServFooter.filter(c => c.id !== id); renderServFooter(); }
+        window.moverServFooter = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaServFooter.length) return; const temp = listaServFooter[index]; listaServFooter[index] = listaServFooter[ni]; listaServFooter[ni] = temp; renderServFooter(); }
+        renderServFooter();
+
+        // 9.3 Lista de Redes Sociales Footer
+        const socialFooterList = document.getElementById('social-footer-list');
+        let listaSocialFooter = [
+            { id: 1, icono: 'fa-brands fa-instagram', link: 'https://instagram.com/dradanieladelgado' },
+            { id: 2, icono: 'fa-brands fa-tiktok', link: 'https://tiktok.com/@dradanieladelgado' },
+            { id: 3, icono: 'fa-brands fa-facebook', link: 'https://facebook.com/dradanieladelgado' }
+        ];
+
+        function renderSocialFooter() {
+            if (!socialFooterList) return;
+            socialFooterList.innerHTML = '';
+            listaSocialFooter.forEach((item, index) => {
+                const html = `
+                <div class="flex items-center gap-2 bg-slate-900 border border-slate-700 p-2 rounded-lg group hover:border-slate-600">
+                    <div class="flex flex-col text-slate-500 px-1">
+                        <button type="button" onclick="moverSocialFooter(${index}, -1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverSocialFooter(${index}, 1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex items-center gap-2 px-2 border-r border-slate-700">
+                        <i class="${item.icono} text-fuchsia-400 text-xs w-4 text-center" id="sf-preview-${item.id}"></i>
+                        <select onchange="document.getElementById('sf-preview-${item.id}').className = this.value + ' text-fuchsia-400 text-xs w-4 text-center'" class="w-24 bg-transparent text-xs text-slate-300 outline-none cursor-pointer">
+                            ${renderIconOptions(item.icono)}
+                        </select>
+                    </div>
+                    <div class="flex-1 px-2">
+                        <input type="text" value="${item.link}" class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-400 outline-none font-mono pb-0.5">
+                    </div>
+                    <button type="button" onclick="eliminarSocialFooter(${item.id})" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
+                </div>`;
+                socialFooterList.insertAdjacentHTML('beforeend', html);
+            });
+        }
+        document.getElementById('btn-add-social-footer')?.addEventListener('click', () => { listaSocialFooter.push({ id: Date.now(), icono: 'fa-solid fa-link', link: 'https://...' }); renderSocialFooter(); });
+        window.eliminarSocialFooter = function (id) { listaSocialFooter = listaSocialFooter.filter(c => c.id !== id); renderSocialFooter(); }
+        window.moverSocialFooter = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaSocialFooter.length) return; const temp = listaSocialFooter[index]; listaSocialFooter[index] = listaSocialFooter[ni]; listaSocialFooter[ni] = temp; renderSocialFooter(); }
+        renderSocialFooter();
+
     </script>
 </body>
 
