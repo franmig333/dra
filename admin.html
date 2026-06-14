@@ -578,24 +578,51 @@
                             </div>
                         </details>
 
-                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden" open>
                             <summary
-                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-cyan-400 hover:bg-slate-800/50 transition">
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-cyan-400 hover:bg-slate-800/50 transition bg-slate-800/20">
                                 <span><i class="fa-solid fa-newspaper mr-2"></i> 7. Sección Blog</span><span
                                     class="transition group-open:rotate-180"><i
                                         class="fa-solid fa-chevron-down"></i></span>
                             </summary>
                             <div class="p-5 border-t border-slate-800 grid gap-6">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div><label class="block text-xs text-slate-500 mb-1">Título de la
-                                            Sección</label><input type="text" value="Salud & Conocimiento."
-                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
+
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="md:col-span-2">
+                                        <label class="block text-xs text-slate-500 mb-1">Título Principal</label>
+                                        <input type="text" value="Salud & Conocimiento."
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg focus:border-cyan-500">
                                     </div>
-                                    <div><label class="block text-xs text-slate-500 mb-1">Texto del Botón "Ver
-                                            más"</label><input type="text" value="VER TODOS →"
-                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">
+                                    <div>
+                                        <label class="block text-xs text-slate-500 mb-1">Botón "Ver Todos"</label>
+                                        <div class="flex flex-col gap-2">
+                                            <input type="text" value="VER TODOS →"
+                                                class="w-full bg-slate-950 border border-slate-700 p-2 rounded-lg outline-none text-xs focus:border-cyan-500"
+                                                title="Texto del botón">
+                                            <input type="text" value="#blog"
+                                                class="w-full bg-slate-950 border border-slate-700 p-2 rounded-lg outline-none text-xs font-mono text-slate-400 focus:border-cyan-500"
+                                                title="Enlace del botón">
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="border-t border-slate-800 pt-5">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <div>
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Artículos Destacados</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">Añade, reordena y edita las
+                                                tarjetas del blog (imagen, categoría, título, etc).</p>
+                                        </div>
+                                        <button id="btn-add-blog" type="button"
+                                            class="px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500/20 text-xs font-medium transition-all">
+                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Artículo
+                                        </button>
+                                    </div>
+                                    <div class="space-y-3" id="blog-list">
+                                    </div>
+                                </div>
+
                             </div>
                         </details>
 
@@ -1012,6 +1039,84 @@
         window.eliminarGaleria = function (id) { listaGaleria = listaGaleria.filter(c => c.id !== id); renderGaleria(); }
         window.moverGaleria = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaGaleria.length) return; const temp = listaGaleria[index]; listaGaleria[index] = listaGaleria[ni]; listaGaleria[ni] = temp; renderGaleria(); }
         renderGaleria();
+
+        // ==========================================
+        // 7. LÓGICA DEL BLOG (CONSTRUCTOR)
+        // ==========================================
+        const blogList = document.getElementById('blog-list');
+        let listaBlog = [
+            { id: 1, tag: 'BIENESTAR', fecha: 'JUNIO 2026', titulo: '5 Hábitos Diarios para una Piel Radiante y Saludable', desc: 'Descubre los rituales de cuidado que la ciencia respalda para mantener tu piel joven y luminosa desde adentro.', linkTxt: 'Leer más →', linkUrl: '#', img: '' },
+            { id: 2, tag: 'MEDICINA ESTÉTICA', fecha: 'MAYO 2026', titulo: 'Ácido Hialurónico: Mitos y Verdades que Debes Conocer', desc: 'La guía definitiva sobre el tratamiento más popular de medicina estética, explicada por nuestra especialista.', linkTxt: 'Leer más →', linkUrl: '#', img: '' },
+            { id: 3, tag: 'NUTRICIÓN', fecha: 'ABRIL 2026', titulo: 'La Conexión entre Intestino Sano y Belleza Integral', desc: 'Cómo el microbioma intestinal influye directamente en el estado de tu piel, cabello y energía diaria.', linkTxt: 'Leer más →', linkUrl: '#', img: '' }
+        ];
+
+        function renderBlog() {
+            if (!blogList) return;
+            blogList.innerHTML = '';
+            listaBlog.forEach((item, index) => {
+                const html = `
+                <div class="flex items-start gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
+                    <div class="flex flex-col gap-1 text-slate-500 px-1 mt-2">
+                        <button type="button" onclick="moverArr(listaBlog, ${index}, -1, renderBlog)" class="hover:text-cyan-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverArr(listaBlog, ${index}, 1, renderBlog)" class="hover:text-cyan-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4">
+                        <div class="md:col-span-4 space-y-2">
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">URL Imagen Portada</label>
+                                <div class="flex gap-2 items-center">
+                                    <input type="text" placeholder="https://..." value="${item.img}" class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 text-xs text-slate-300 p-1.5 rounded outline-none font-mono">
+                                    <button type="button" class="px-2 py-1.5 bg-slate-800 rounded hover:bg-slate-700 text-slate-300 transition"><i class="fa-solid fa-upload text-[10px]"></i></button>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <div class="w-1/2">
+                                    <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Categoría</label>
+                                    <input type="text" value="${item.tag}" class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 text-xs text-cyan-400 p-1.5 rounded outline-none font-semibold">
+                                </div>
+                                <div class="w-1/2">
+                                    <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Fecha</label>
+                                    <input type="text" value="${item.fecha}" class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 text-xs text-slate-400 p-1.5 rounded outline-none text-right">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 space-y-2 md:border-l border-slate-700 md:pl-4">
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Título del Artículo</label>
+                                <input type="text" value="${item.titulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-cyan-500 text-sm text-slate-200 pb-1 outline-none font-bold font-serif">
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Extracto (Resumen)</label>
+                                <textarea rows="2" class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 text-xs text-slate-300 p-2 rounded outline-none resize-none">${item.desc}</textarea>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="w-1/3">
+                                    <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Texto Enlace</label>
+                                    <input type="text" value="${item.linkTxt}" class="w-full bg-transparent border-b border-slate-700 focus:border-cyan-500 text-xs text-cyan-400 pb-1 outline-none font-medium">
+                                </div>
+                                <div class="w-2/3">
+                                    <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">URL Destino</label>
+                                    <input type="text" value="${item.linkUrl}" class="w-full bg-transparent border-b border-slate-700 focus:border-cyan-500 text-xs text-slate-400 pb-1 outline-none font-mono">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 pl-2 border-l border-slate-700 h-full justify-center">
+                        <button type="button" class="w-7 h-7 rounded flex items-center justify-center text-emerald-500/70 hover:bg-slate-800 hover:text-emerald-400 transition-colors" title="Ocultar/Mostrar"><i class="fa-solid fa-eye text-xs"></i></button>
+                        <button type="button" onclick="eliminarArr(listaBlog, ${item.id}, renderBlog)" class="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors" title="Eliminar"><i class="fa-solid fa-trash text-xs"></i></button>
+                    </div>
+                </div>`;
+                blogList.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        document.getElementById('btn-add-blog')?.addEventListener('click', () => {
+            listaBlog.push({ id: Date.now(), tag: 'NUEVA', fecha: 'MES AÑO', titulo: 'Título...', desc: '...', linkTxt: 'Leer más →', linkUrl: '#', img: '' });
+            renderBlog();
+        });
+
+        // NOTA: Asegúrate de llamar a renderBlog() en tu lista de inicializadores al final del script.
+        renderBlog();
 
         // ==========================================
         // NUEVA LÓGICA DEL FOOTER (SECCIÓN 9)
