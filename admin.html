@@ -1691,42 +1691,49 @@
 
         // ——— Función principal de guardado ———
 
-        async function guardarCambiosEnVivo() {
-            if (!supabaseClient) {
-                mostrarToast('Supabase no está configurado. Conecta tu proyecto primero.', 'error');
-                return;
+        async function guardarCambiosEnVivo() {// --- NUEVAS FUNCIONES DE LECTURA ---
+            function leerHeroDelDOM() {
+                const inputs = document.querySelectorAll('#tab-identidad input, #tab-identidad textarea, #tab-identidad select');
+                return {
+                    id: 1,
+                    nombre_principal: inputs[0].value,
+                    especialidad: inputs[3].value,
+                    mision: inputs[4].value,
+                    btn_resultados: inputs[5].value,
+                    btn_contacto: inputs[7].value,
+                    instruccion: inputs[9].value,
+                    firma: inputs[10].value,
+                    link_firma: inputs[11].value
+                };
             }
 
-            const btn = document.getElementById('btn-guardar-vivo');
-            const textoOriginal = btn?.innerHTML ?? '';
-            if (btn) btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Guardando...';
+            // --- FUNCIÓN GUARDAR ACTUALIZADA ---
+            async function guardarCambiosEnVivo() {
+                if (!supabaseClient) return;
 
-            try {
-                const resultados = await Promise.allSettled([
-                    supabaseClient.from('blog').upsert(leerBlogDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('servicios').upsert(leerServiciosDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('contacto').upsert(leerContactoDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('redes_sociales').upsert(leerSocialDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('footer_nav').upsert(leerNavFooterDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('footer_servicios').upsert(leerServFooterDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('footer_social').upsert(leerSocialFooterDelDOM(), { onConflict: 'id' })
-                ]);
+                const btn = document.getElementById('btn-guardar-vivo');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Guardando...';
 
-                const errores = resultados
-                    .filter(r => r.status === 'fulfilled' && r.value?.error)
-                    .map(r => r.value.error.message);
+                try {
+                    // Ahora guardamos TODAS las secciones
+                    const resultados = await Promise.allSettled([
+                        supabaseClient.from('hero').upsert(leerHeroDelDOM(), { onConflict: 'id' }),
+                        supabaseClient.from('blog').upsert(leerBlogDelDOM(), { onConflict: 'id' }),
+                        supabaseClient.from('servicios').upsert(leerServiciosDelDOM(), { onConflict: 'id' }),
+                        supabaseClient.from('contacto').upsert(leerContactoDelDOM(), { onConflict: 'id' }),
+                        supabaseClient.from('redes_sociales').upsert(leerSocialDelDOM(), { onConflict: 'id' }),
+                        supabaseClient.from('footer_nav').upsert(leerNavFooterDelDOM(), { onConflict: 'id' }),
+                        supabaseClient.from('footer_servicios').upsert(leerServFooterDelDOM(), { onConflict: 'id' }),
+                        supabaseClient.from('footer_social').upsert(leerSocialFooterDelDOM(), { onConflict: 'id' })
+                    ]);
 
-                if (errores.length > 0) {
-                    console.error('[Guardar] Errores parciales:', errores);
-                    mostrarToast(`Guardado parcial — ${errores.length} sección(es) fallaron. Revisa la consola.`, 'error');
-                } else {
                     mostrarToast('¡Cambios guardados en la nube! ☁️', 'ok');
+                } catch (err) {
+                    mostrarToast('Error al guardar.', 'error');
+                    console.error(err);
+                } finally {
+                    btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-2"></i>Guardar en Vivo';
                 }
-            } catch (err) {
-                console.error('[Guardar] Error inesperado:', err);
-                mostrarToast('Error inesperado al guardar. Revisa la consola.', 'error');
-            } finally {
-                if (btn) btn.innerHTML = textoOriginal;
             }
         }
 
