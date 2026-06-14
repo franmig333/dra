@@ -97,7 +97,7 @@
                 <button id="btn-logout"
                     class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm transition-colors border border-slate-700"><i
                         class="fa-solid fa-arrow-right-from-bracket"></i></button>
-                <button
+                <button id="btn-guardar-vivo"
                     class="px-6 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-sm font-medium transition-colors shadow-lg shadow-purple-600/20">
                     <i class="fa-solid fa-cloud-arrow-up mr-2"></i>Guardar en Vivo
                 </button>
@@ -1062,11 +1062,12 @@
         renderCredenciales();
 
         const serviciosList = document.getElementById('servicios-list');
-        let listaServicios = [
+        const SERVICIOS_FALLBACK = [
             { id: 1, icono: 'fa-solid fa-user-doctor', titulo: 'Consulta Médica', desc: 'Evaluación integral de salud...', link: 'Ver más →' },
             { id: 2, icono: 'fa-solid fa-face-smile', titulo: 'Estética Facial', desc: 'Tratamientos no invasivos...', link: 'Ver más →' },
             { id: 3, icono: 'fa-solid fa-heart', titulo: 'Bienestar Integral', desc: 'Programa holístico...', link: 'Ver más →' }
         ];
+        let listaServicios = [...SERVICIOS_FALLBACK];
 
         function renderServicios() {
             if (!serviciosList) return;
@@ -1170,11 +1171,13 @@
         // 7. LÓGICA DEL BLOG (CONSTRUCTOR)
         // ==========================================
         const blogList = document.getElementById('blog-list');
-        let listaBlog = [
+        // Datos de fallback — se usan si Supabase no está disponible o la tabla está vacía
+        const BLOG_FALLBACK = [
             { id: 1, tag: 'BIENESTAR', fecha: 'JUNIO 2026', titulo: '5 Hábitos Diarios para una Piel Radiante y Saludable', desc: 'Descubre los rituales de cuidado que la ciencia respalda para mantener tu piel joven y luminosa desde adentro.', linkTxt: 'Leer más →', linkUrl: '#', img: '' },
             { id: 2, tag: 'MEDICINA ESTÉTICA', fecha: 'MAYO 2026', titulo: 'Ácido Hialurónico: Mitos y Verdades que Debes Conocer', desc: 'La guía definitiva sobre el tratamiento más popular de medicina estética, explicada por nuestra especialista.', linkTxt: 'Leer más →', linkUrl: '#', img: '' },
             { id: 3, tag: 'NUTRICIÓN', fecha: 'ABRIL 2026', titulo: 'La Conexión entre Intestino Sano y Belleza Integral', desc: 'Cómo el microbioma intestinal influye directamente en el estado de tu piel, cabello y energía diaria.', linkTxt: 'Leer más →', linkUrl: '#', img: '' }
         ];
+        let listaBlog = [...BLOG_FALLBACK];
 
         function renderBlog() {
             if (!blogList) return;
@@ -1249,11 +1252,12 @@
 
         // 8.1 Contacto
         const contactoList = document.getElementById('contacto-list');
-        let listaContacto = [
+        const CONTACTO_FALLBACK = [
             { id: 1, icono: 'fa-brands fa-whatsapp', titulo: 'TELÉFONO / WHATSAPP', valor: '+52 123 456 7890' },
             { id: 2, icono: 'fa-regular fa-envelope', titulo: 'E-MAIL', valor: 'contacto@dradanieladelgado.com' },
             { id: 3, icono: 'fa-solid fa-location-dot', titulo: 'DIRECCIÓN', valor: 'Av. Salud 123, Col. Centro, CDMX' }
         ];
+        let listaContacto = [...CONTACTO_FALLBACK];
 
         function renderContacto() {
             if (!contactoList) return;
@@ -1299,11 +1303,12 @@
 
         // 8.2 Redes Sociales
         const socialList = document.getElementById('social-list');
-        let listaSocial = [
+        const SOCIAL_FALLBACK = [
             { id: 1, icono: 'fa-brands fa-instagram', link: 'https://instagram.com/dradanieladelgado' },
             { id: 2, icono: 'fa-brands fa-tiktok', link: 'https://tiktok.com/@dradanieladelgado' },
             { id: 3, icono: 'fa-brands fa-facebook', link: 'https://facebook.com/dradanieladelgado' }
         ];
+        let listaSocial = [...SOCIAL_FALLBACK];
 
         function renderSocial() {
             if (!socialList) return;
@@ -1350,13 +1355,14 @@
 
         // 9.1 Lista de Navegación Footer
         const navFooterList = document.getElementById('nav-footer-list');
-        let listaNavFooter = [
+        const NAV_FOOTER_FALLBACK = [
             { id: 1, titulo: 'Sobre Mí', link: '#sobre-mi' },
             { id: 2, titulo: 'Servicios', link: '#servicios' },
             { id: 3, titulo: 'Galería', link: '#galeria' },
             { id: 4, titulo: 'Blog', link: '#blog' },
             { id: 5, titulo: 'Contacto', link: '#contacto' }
         ];
+        let listaNavFooter = [...NAV_FOOTER_FALLBACK];
 
         function renderNavFooter() {
             if (!navFooterList) return;
@@ -1384,13 +1390,14 @@
 
         // 9.2 Lista de Servicios Footer
         const servFooterList = document.getElementById('serv-footer-list');
-        let listaServFooter = [
+        const SERV_FOOTER_FALLBACK = [
             { id: 1, titulo: 'Consulta Médica', link: '#servicios' },
             { id: 2, titulo: 'Estética Facial', link: '#servicios' },
             { id: 3, titulo: 'Bienestar Integral', link: '#servicios' },
             { id: 4, titulo: 'Dermatología', link: '#servicios' },
             { id: 5, titulo: 'Nutrición', link: '#servicios' }
         ];
+        let listaServFooter = [...SERV_FOOTER_FALLBACK];
 
         function renderServFooter() {
             if (!servFooterList) return;
@@ -1418,11 +1425,12 @@
 
         // 9.3 Lista de Redes Sociales Footer
         const socialFooterList = document.getElementById('social-footer-list');
-        let listaSocialFooter = [
+        const SOCIAL_FOOTER_FALLBACK = [
             { id: 1, icono: 'fa-brands fa-instagram', link: 'https://instagram.com/dradanieladelgado' },
             { id: 2, icono: 'fa-brands fa-tiktok', link: 'https://tiktok.com/@dradanieladelgado' },
             { id: 3, icono: 'fa-brands fa-facebook', link: 'https://facebook.com/dradanieladelgado' }
         ];
+        let listaSocialFooter = [...SOCIAL_FOOTER_FALLBACK];
 
         function renderSocialFooter() {
             if (!socialFooterList) return;
@@ -1490,22 +1498,242 @@
                 }
             }
         });
-        // ==========================================
+        // ============================================================
         // INICIALIZADORES DE ARRANQUE (¡No borrar!)
-        // ==========================================
-        // Estas funciones se ejecutan apenas carga la página 
-        // para "dibujar" todos los datos en tu CMS.
-
+        // ============================================================
+        // Render inmediato con datos locales (fallback) para que el
+        // CMS sea usable al instante, sin esperar a la red.
         renderBentoGrid();
         renderCredenciales();
         renderServicios();
         renderGaleria();
-        renderBlog();       // Activa la sección 7
-        renderContacto();   // Activa la sección 8 (Contacto)
-        renderSocial();     // Activa la sección 8 (Redes)
-        renderNavF();       // Activa Footer Col 1
-        renderServF();      // Activa Footer Col 2
-        renderSocF();       // Activa Footer Col 3    
+        renderBlog();
+        renderContacto();
+        renderSocial();
+        renderNavFooter();
+        renderServFooter();
+        renderSocialFooter();
+
+        // ============================================================
+        // CARGA DINÁMICA DESDE SUPABASE
+        // Sobreescribe los fallback con los datos reales de la BD.
+        // Si supabaseClient es null o cualquier tabla falla,
+        // se mantiene el fallback y NO se interrumpe nada.
+        // ============================================================
+        async function cargarDatos() {
+            if (!supabaseClient) {
+                console.info('[CMS] Supabase no disponible — usando datos locales.');
+                return;
+            }
+
+            // Helper: extrae data de la respuesta; devuelve fallback si hay error o vacío
+            function extraer(resultado, fallback) {
+                if (resultado.status === 'rejected') return fallback;
+                const { data, error } = resultado.value;
+                if (error) { console.warn('[Supabase] Error en consulta:', error.message); return fallback; }
+                return (Array.isArray(data) && data.length > 0) ? data : fallback;
+            }
+
+            console.info('[CMS] 🔄 Cargando datos desde Supabase...');
+
+            const resultados = await Promise.allSettled([
+                supabaseClient.from('blog').select('*').order('id'),
+                supabaseClient.from('servicios').select('*').order('id'),
+                supabaseClient.from('contacto').select('*').order('id'),
+                supabaseClient.from('redes_sociales').select('*').order('id'),
+                supabaseClient.from('footer_nav').select('*').order('id'),
+                supabaseClient.from('footer_servicios').select('*').order('id'),
+                supabaseClient.from('footer_social').select('*').order('id')
+            ]);
+
+            const [resBlog, resServ, resCont, resSoc, resNavF, resSrvF, resSocF] = resultados;
+
+            listaBlog        = extraer(resBlog,  BLOG_FALLBACK);
+            listaServicios   = extraer(resServ,  SERVICIOS_FALLBACK);
+            listaContacto    = extraer(resCont,  CONTACTO_FALLBACK);
+            listaSocial      = extraer(resSoc,   SOCIAL_FALLBACK);
+            listaNavFooter   = extraer(resNavF,  NAV_FOOTER_FALLBACK);
+            listaServFooter  = extraer(resSrvF,  SERV_FOOTER_FALLBACK);
+            listaSocialFooter = extraer(resSocF, SOCIAL_FOOTER_FALLBACK);
+
+            // Re-pintar todas las secciones con los datos de la BD
+            renderBlog();
+            renderServicios();
+            renderContacto();
+            renderSocial();
+            renderNavFooter();
+            renderServFooter();
+            renderSocialFooter();
+
+            console.info('[CMS] ✅ Datos cargados correctamente desde Supabase.');
+        }
+
+        // ============================================================
+        // GUARDAR EN VIVO — Sincronización con Supabase
+        // ============================================================
+
+        // Toast de notificación premium (reemplaza alert() nativo)
+        function mostrarToast(mensaje, tipo = 'ok') {
+            const existing = document.getElementById('cms-toast');
+            if (existing) existing.remove();
+            const estilos = {
+                ok:    'bg-emerald-500/20 border-emerald-500/40 text-emerald-300',
+                error: 'bg-rose-500/20 border-rose-500/40 text-rose-300',
+                info:  'bg-purple-500/20 border-purple-500/40 text-purple-300'
+            };
+            const iconos = { ok: 'fa-circle-check', error: 'fa-circle-xmark', info: 'fa-circle-info' };
+            const toast = document.createElement('div');
+            toast.id = 'cms-toast';
+            toast.className = `fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-2xl border backdrop-blur-xl shadow-2xl ${estilos[tipo]}`;
+            toast.style.cssText = 'transition: opacity 0.3s, transform 0.3s; transform: translateY(1rem); opacity: 0;';
+            toast.innerHTML = `<i class="fa-solid ${iconos[tipo]} text-lg"></i><span class="text-sm font-medium">${mensaje}</span>`;
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => { toast.style.transform = 'translateY(0)'; toast.style.opacity = '1'; });
+            setTimeout(() => {
+                toast.style.opacity = '0'; toast.style.transform = 'translateY(1rem)';
+                setTimeout(() => toast.remove(), 350);
+            }, 3500);
+        }
+
+        // ——— Lectores del DOM: convierten inputs visibles en arrays de objetos ———
+
+        function leerBlogDelDOM() {
+            return Array.from(document.querySelectorAll('#blog-list > div')).map((el, i) => {
+                const inputs = el.querySelectorAll('input[type="text"]');
+                const ta = el.querySelector('textarea');
+                return {
+                    id:      listaBlog[i]?.id ?? (Date.now() + i),
+                    img:     inputs[0]?.value ?? '',
+                    tag:     inputs[1]?.value ?? '',
+                    fecha:   inputs[2]?.value ?? '',
+                    titulo:  inputs[3]?.value ?? '',
+                    linkTxt: inputs[4]?.value ?? '',
+                    linkUrl: inputs[5]?.value ?? '',
+                    desc:    ta?.value ?? ''
+                };
+            });
+        }
+
+        function leerServiciosDelDOM() {
+            return Array.from(document.querySelectorAll('#servicios-list > div')).map((el, i) => {
+                const sel = el.querySelector('select');
+                const inputs = el.querySelectorAll('input[type="text"]');
+                const ta = el.querySelector('textarea');
+                return {
+                    id:     listaServicios[i]?.id ?? (Date.now() + i),
+                    icono:  sel?.value ?? '',
+                    titulo: inputs[0]?.value ?? '',
+                    link:   inputs[1]?.value ?? '',
+                    desc:   ta?.value ?? ''
+                };
+            });
+        }
+
+        function leerContactoDelDOM() {
+            return Array.from(document.querySelectorAll('#contacto-list > div')).map((el, i) => {
+                const sel = el.querySelector('select');
+                const inputs = el.querySelectorAll('input[type="text"]');
+                return {
+                    id:     listaContacto[i]?.id ?? (Date.now() + i),
+                    icono:  sel?.value ?? '',
+                    titulo: inputs[0]?.value ?? '',
+                    valor:  inputs[1]?.value ?? ''
+                };
+            });
+        }
+
+        function leerSocialDelDOM() {
+            return Array.from(document.querySelectorAll('#social-list > div')).map((el, i) => {
+                const sel = el.querySelector('select');
+                const inputs = el.querySelectorAll('input[type="text"]');
+                return {
+                    id:    listaSocial[i]?.id ?? (Date.now() + i),
+                    icono: sel?.value ?? '',
+                    link:  inputs[0]?.value ?? ''
+                };
+            });
+        }
+
+        function leerNavFooterDelDOM() {
+            return Array.from(document.querySelectorAll('#nav-footer-list > div')).map((el, i) => {
+                const inputs = el.querySelectorAll('input[type="text"]');
+                return {
+                    id:     listaNavFooter[i]?.id ?? (Date.now() + i),
+                    titulo: inputs[0]?.value ?? '',
+                    link:   inputs[1]?.value ?? ''
+                };
+            });
+        }
+
+        function leerServFooterDelDOM() {
+            return Array.from(document.querySelectorAll('#serv-footer-list > div')).map((el, i) => {
+                const inputs = el.querySelectorAll('input[type="text"]');
+                return {
+                    id:     listaServFooter[i]?.id ?? (Date.now() + i),
+                    titulo: inputs[0]?.value ?? '',
+                    link:   inputs[1]?.value ?? ''
+                };
+            });
+        }
+
+        function leerSocialFooterDelDOM() {
+            return Array.from(document.querySelectorAll('#social-footer-list > div')).map((el, i) => {
+                const sel = el.querySelector('select');
+                const inputs = el.querySelectorAll('input[type="text"]');
+                return {
+                    id:    listaSocialFooter[i]?.id ?? (Date.now() + i),
+                    icono: sel?.value ?? '',
+                    link:  inputs[0]?.value ?? ''
+                };
+            });
+        }
+
+        // ——— Función principal de guardado ———
+
+        async function guardarCambiosEnVivo() {
+            if (!supabaseClient) {
+                mostrarToast('Supabase no está configurado. Conecta tu proyecto primero.', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btn-guardar-vivo');
+            const textoOriginal = btn?.innerHTML ?? '';
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Guardando...';
+
+            try {
+                const resultados = await Promise.allSettled([
+                    supabaseClient.from('blog').upsert(leerBlogDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('servicios').upsert(leerServiciosDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('contacto').upsert(leerContactoDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('redes_sociales').upsert(leerSocialDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('footer_nav').upsert(leerNavFooterDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('footer_servicios').upsert(leerServFooterDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('footer_social').upsert(leerSocialFooterDelDOM(), { onConflict: 'id' })
+                ]);
+
+                const errores = resultados
+                    .filter(r => r.status === 'fulfilled' && r.value?.error)
+                    .map(r => r.value.error.message);
+
+                if (errores.length > 0) {
+                    console.error('[Guardar] Errores parciales:', errores);
+                    mostrarToast(`Guardado parcial — ${errores.length} sección(es) fallaron. Revisa la consola.`, 'error');
+                } else {
+                    mostrarToast('¡Cambios guardados en la nube! ☁️', 'ok');
+                }
+            } catch (err) {
+                console.error('[Guardar] Error inesperado:', err);
+                mostrarToast('Error inesperado al guardar. Revisa la consola.', 'error');
+            } finally {
+                if (btn) btn.innerHTML = textoOriginal;
+            }
+        }
+
+        document.getElementById('btn-guardar-vivo')
+            ?.addEventListener('click', guardarCambiosEnVivo);
+
+        // Disparar la carga dinámica (no bloquea el hilo principal)
+        cargarDatos();
     </script>
 </body>
 
