@@ -626,21 +626,119 @@
                             </div>
                         </details>
 
-                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden" open>
                             <summary
-                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-teal-400 hover:bg-slate-800/50 transition">
+                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-teal-400 hover:bg-slate-800/50 transition bg-slate-800/20">
                                 <span><i class="fa-solid fa-paper-plane mr-2"></i> 8. Contacto y Cierre
                                     (CTA)</span><span class="transition group-open:rotate-180"><i
                                         class="fa-solid fa-chevron-down"></i></span>
                             </summary>
-                            <div class="p-5 border-t border-slate-800 grid md:grid-cols-2 gap-6">
+                            <div class="p-5 border-t border-slate-800 grid gap-8">
+
                                 <div>
                                     <h4
-                                        class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b border-slate-800 pb-2">
-                                        Franja CTA</h4>
-                                    <div class="space-y-3">
-                                        <input type="text" value="Tu salud, tu bienestar."
-                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
+                                        class="text-sm font-bold text-slate-300 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                        <i class="fa-solid fa-bullhorn text-teal-400"></i> Franja Superior (Call to
+                                        Action)
+                                    </h4>
+                                    <div
+                                        class="grid md:grid-cols-3 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                        <div>
+                                            <label
+                                                class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Subtítulo
+                                                Pequeño</label>
+                                            <input type="text" value="¿Lista para empezar?"
+                                                class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none text-sm pb-1">
+                                        </div>
+                                        <div>
+                                            <label
+                                                class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Título
+                                                Grande</label>
+                                            <input type="text" value="Tu salud, tu bienestar."
+                                                class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none font-serif text-lg pb-1">
+                                        </div>
+                                        <div>
+                                            <label
+                                                class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Texto
+                                                del Botón</label>
+                                            <input type="text" value="Agendar Consulta"
+                                                class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none text-sm font-bold text-purple-400 pb-1">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-800">
+                                    <div class="space-y-4">
+                                        <h4
+                                            class="text-sm font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2">
+                                            <i class="fa-solid fa-message text-teal-400"></i> Textos Principales
+                                        </h4>
+                                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-4">
+                                            <div>
+                                                <label
+                                                    class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Título
+                                                    de la Sección</label>
+                                                <input type="text" value="Hablemos hoy."
+                                                    class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none font-serif text-xl pb-1">
+                                            </div>
+                                            <div>
+                                                <label
+                                                    class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Párrafo
+                                                    Introductorio</label>
+                                                <textarea rows="3"
+                                                    class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none text-sm resize-none pb-1">Agenda tu consulta inicial y da el primer paso hacia tu bienestar integral. Estoy aquí para acompañarte en cada etapa de tu proceso.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-4">
+                                        <h4
+                                            class="text-sm font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2">
+                                            <i class="fa-solid fa-server text-teal-400"></i> Configuración del
+                                            Formulario
+                                        </h4>
+                                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                            <label
+                                                class="block text-[10px] uppercase tracking-wider text-slate-500 mb-2">Enviar
+                                                datos a (Email o Webhook URL)</label>
+                                            <div class="flex items-center gap-2">
+                                                <i class="fa-solid fa-link text-teal-400"></i>
+                                                <input type="text"
+                                                    value="https://formsubmit.co/contacto@dradanieladelgado.com"
+                                                    class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none text-sm font-mono pb-1"
+                                                    title="URL donde se enviarán los datos del formulario">
+                                            </div>
+                                            <p class="text-[10px] text-slate-500 mt-2">Usa servicios como FormSubmit
+                                                para recibir los correos.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-800">
+                                    <div>
+                                        <div class="flex justify-between items-center mb-4">
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Medios de Contacto</h4>
+                                            <button id="btn-add-contacto" type="button"
+                                                class="px-3 py-1.5 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20 hover:bg-teal-500/20 text-xs font-medium transition-all">
+                                                <i class="fa-solid fa-plus mr-1"></i>Añadir
+                                            </button>
+                                        </div>
+                                        <div class="space-y-3" id="contacto-list">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex justify-between items-center mb-4">
+                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Botones de Redes Sociales</h4>
+                                            <button id="btn-add-social" type="button"
+                                                class="px-3 py-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 text-xs font-medium transition-all">
+                                                <i class="fa-solid fa-plus mr-1"></i>Añadir
+                                            </button>
+                                        </div>
+                                        <div class="space-y-3" id="social-list">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1117,7 +1215,107 @@
 
         // NOTA: Asegúrate de llamar a renderBlog() en tu lista de inicializadores al final del script.
         renderBlog();
+        // ==========================================
+        // 8. LÓGICA DE CONTACTO Y REDES SOCIALES
+        // ==========================================
 
+        // 8.1 Contacto
+        const contactoList = document.getElementById('contacto-list');
+        let listaContacto = [
+            { id: 1, icono: 'fa-brands fa-whatsapp', titulo: 'TELÉFONO / WHATSAPP', valor: '+52 123 456 7890' },
+            { id: 2, icono: 'fa-regular fa-envelope', titulo: 'E-MAIL', valor: 'contacto@dradanieladelgado.com' },
+            { id: 3, icono: 'fa-solid fa-location-dot', titulo: 'DIRECCIÓN', valor: 'Av. Salud 123, Col. Centro, CDMX' }
+        ];
+
+        function renderContacto() {
+            if (!contactoList) return;
+            contactoList.innerHTML = '';
+            listaContacto.forEach((c, index) => {
+                const itemHTML = `
+                <div class="flex items-center gap-3 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
+                    <div class="flex flex-col text-slate-500">
+                        <button type="button" onclick="moverArr(listaContacto, ${index}, -1, renderContacto)" class="hover:text-teal-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverArr(listaContacto, ${index}, 1, renderContacto)" class="hover:text-teal-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-3">
+                        <div class="md:col-span-4">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Ícono</label>
+                            <div class="flex items-center gap-2 bg-slate-950 border border-slate-700 rounded px-2">
+                                <i class="${c.icono} text-teal-400 text-xs w-4 text-center" id="con-preview-${c.id}"></i>
+                                <select onchange="document.getElementById('con-preview-${c.id}').className = this.value + ' text-teal-400 text-xs w-4 text-center'" class="w-full bg-transparent focus:border-teal-500 text-xs text-slate-300 py-1.5 outline-none cursor-pointer">
+                                    ${renderIconOptions(c.icono)}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="md:col-span-3">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Título</label>
+                            <input type="text" value="${c.titulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 text-xs text-slate-200 pb-1 outline-none font-bold">
+                        </div>
+                        <div class="md:col-span-5">
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Dato</label>
+                            <input type="text" value="${c.valor}" class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 text-xs text-slate-400 pb-1 outline-none">
+                        </div>
+                    </div>
+                    <div class="flex items-center pl-2 border-l border-slate-700 h-full">
+                        <button type="button" onclick="eliminarArr(listaContacto, ${c.id}, renderContacto)" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
+                    </div>
+                </div>`;
+                contactoList.insertAdjacentHTML('beforeend', itemHTML);
+            });
+        }
+
+        document.getElementById('btn-add-contacto')?.addEventListener('click', () => {
+            listaContacto.push({ id: Date.now(), icono: 'fa-solid fa-phone', titulo: 'NUEVO CONTACTO', valor: '+00 000...' });
+            renderContacto();
+        });
+
+        // 8.2 Redes Sociales
+        const socialList = document.getElementById('social-list');
+        let listaSocial = [
+            { id: 1, icono: 'fa-brands fa-instagram', link: 'https://instagram.com/dradanieladelgado' },
+            { id: 2, icono: 'fa-brands fa-tiktok', link: 'https://tiktok.com/@dradanieladelgado' },
+            { id: 3, icono: 'fa-brands fa-facebook', link: 'https://facebook.com/dradanieladelgado' }
+        ];
+
+        function renderSocial() {
+            if (!socialList) return;
+            socialList.innerHTML = '';
+            listaSocial.forEach((r, index) => {
+                const itemHTML = `
+                <div class="flex items-center gap-3 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
+                    <div class="flex flex-col text-slate-500">
+                        <button type="button" onclick="moverArr(listaSocial, ${index}, -1, renderSocial)" class="hover:text-indigo-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                        <button type="button" onclick="moverArr(listaSocial, ${index}, 1, renderSocial)" class="hover:text-indigo-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Red Social (Ícono)</label>
+                            <div class="flex items-center gap-2 bg-slate-950 border border-slate-700 rounded px-2">
+                                <i class="${r.icono} text-indigo-400 text-xs w-4 text-center" id="soc-preview-${r.id}"></i>
+                                <select onchange="document.getElementById('soc-preview-${r.id}').className = this.value + ' text-indigo-400 text-xs w-4 text-center'" class="w-full bg-transparent focus:border-indigo-500 text-xs text-slate-300 py-1.5 outline-none cursor-pointer">
+                                    ${renderIconOptions(r.icono)}
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Enlace (URL del perfil)</label>
+                            <input type="text" value="${r.link}" class="w-full bg-transparent border-b border-slate-700 focus:border-indigo-500 text-xs text-slate-400 pb-1 outline-none font-mono">
+                        </div>
+                    </div>
+                    <div class="flex items-center pl-2 border-l border-slate-700 h-full">
+                        <button type="button" onclick="eliminarArr(listaSocial, ${r.id}, renderSocial)" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
+                    </div>
+                </div>`;
+                socialList.insertAdjacentHTML('beforeend', itemHTML);
+            });
+        }
+
+        document.getElementById('btn-add-social')?.addEventListener('click', () => {
+            listaSocial.push({ id: Date.now(), icono: 'fa-solid fa-link', link: 'https://...' });
+            renderSocial();
+        });
+
+        // NOTA: Asegúrate de que tu bloque final de inicializadores incluya renderContacto() y renderSocial()
         // ==========================================
         // NUEVA LÓGICA DEL FOOTER (SECCIÓN 9)
         // ==========================================
