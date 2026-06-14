@@ -10,14 +10,12 @@
     <meta name="theme-color" content="#7A3B9F" />
     <title>Dra. Daniela Delgado — Salud y Bienestar Integral</title>
 
-    <!-- Google Fonts: Cormorant Garamond (serif) + DM Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -44,11 +42,9 @@
         }
     </script>
 
-    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
-    <!-- Custom CSS (global tokens + below-fold sections) -->
     <link rel="stylesheet" href="style.css" />
 
     <style>
@@ -293,9 +289,6 @@
 
 <body class="bg-beige overflow-x-hidden">
 
-    <!-- ============================================================
-       FLOATING WHATSAPP BUTTON (sticky, always visible)
-  ============================================================ -->
     <a class="wa-float" href="https://wa.me/521234567890?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta"
         target="_blank" rel="noopener noreferrer" aria-label="Agendar cita por WhatsApp">
         <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -307,9 +300,6 @@
         <span class="hidden sm:inline">Agendar Cita</span>
     </a>
 
-    <!-- ============================================================
-       MOBILE MENU
-  ============================================================ -->
     <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
         <nav class="flex flex-col items-center gap-3 mb-8">
             <a href="#inicio"
@@ -332,44 +322,25 @@
             class="px-8 py-3 rounded-full bg-azufrado text-white text-sm font-medium tracking-widest uppercase hover:bg-azufrado-dark transition-colors">
             Agendar Cita
         </a>
-        <div class="flex items-center justify-center gap-2 mt-2">
-            <p class="text-xs text-gray-400">© 2026 Dra. Daniela Delgado</p>
-            <a href="admin.html" class="text-gray-500 hover:text-purple-500 transition-colors">
-                <i class="fa-solid fa-lock text-[10px]"></i>
-            </a>
-        </div>
     </div>
 
-    <!-- ============================================================
-       HERO — Full-background photo + Glassmorphism interface
-       Replicates MP Parra card structure with DD branding
-  ============================================================ -->
     <section id="inicio" class="relative min-h-svh flex flex-col overflow-hidden">
 
-        <!-- ── Background Photo Layer ── -->
         <div class="hero-photo" aria-hidden="true">
-            REEMPLAZA este SVG con la foto real:
             <img src="./assets/portada.png" alt="Dra. Daniela Delgado" class="hero-photo">
-
         </div>
 
-        <!-- ── Gradient Overlay (improves card legibility) ── -->
         <div class="absolute inset-0 z-10 pointer-events-none"
             style="background: linear-gradient(180deg, rgba(243,239,233,0.55) 0%, rgba(243,239,233,0.1) 30%, rgba(26,8,48,0.6) 100%);"
             aria-hidden="true"></div>
 
-        <!-- ── Decorative "1" (like image_37.png) ── -->
         <div class="absolute right-0 top-1/3 z-10 font-serif leading-none select-none pointer-events-none text-[#7A3B9F]"
             style="font-size: clamp(160px,35vw,340px); opacity: 0.05; transform: translateY(-40%);" aria-hidden="true">1
         </div>
 
-        <!-- ══════════════════════════════════════════════════════════
-         INTERFACE — Replicating MP Parra layout with DD branding
-    ══════════════════════════════════════════════════════════ -->
         <div class="relative z-20 flex flex-col items-center w-full max-w-sm mx-auto px-3 pt-10 pb-6 min-h-svh"
             id="hero-interface">
 
-            <!-- ── Hamburger (top-right corner) ── -->
             <button id="menu-toggle"
                 class="absolute top-4 right-4 flex flex-col justify-center items-center gap-[5px] w-11 h-11 rounded-xl border border-white/40 glass text-gray-700"
                 aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
@@ -378,9 +349,7 @@
                 <span class="ham-line w-[11px] self-start ml-[3.5px]"></span>
             </button>
 
-            <!-- ══ DD LOGO (centered, like MP Parra) ══ -->
             <div class="hcard-anim flex flex-col items-center gap-0 mb-1" id="logo-block">
-                <!-- Logo box — replicates the square logo from image_40.png -->
                 <div class="w-20 h-20 rounded-2xl glass flex items-center justify-center text-azufrado shadow-lg mb-3">
                     <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" aria-label="Logo DD">
                         <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -396,10 +365,8 @@
                     </svg>
                 </div>
 
-                <!-- Horizontal lavender line (like MP Parra gold line) -->
                 <span class="line-lavender w-full max-w-[280px] mb-3"></span>
 
-                <!-- Name (serif, like image_37.png) -->
                 <h1 class="font-serif text-center leading-[1.05] tracking-tight mb-1">
                     <span class="block text-[1.35rem] font-light text-gray-600 tracking-[0.06em]"
                         style="font-family:'Cormorant Garamond',serif">DRA. DANIELA</span>
@@ -407,7 +374,6 @@
                         style="font-family:'Cormorant Garamond',serif">DELGADO</span>
                 </h1>
 
-                <!-- Specialty with micro-divider -->
                 <div class="flex flex-col items-center gap-1.5 mt-1">
                     <span class="line-lavender-sm"></span>
                     <p class="text-[0.58rem] font-semibold tracking-[0.22em] uppercase text-azufrado">Salud y Bienestar
@@ -415,7 +381,6 @@
                 </div>
             </div>
 
-            <!-- ── Mission statement card ── -->
             <div class="hcard-anim w-full glass rounded-2xl px-4 py-3 mt-3 mb-3" id="card-mission">
                 <p class="font-serif text-[0.88rem] italic font-light text-gray-700 text-center leading-relaxed"
                     style="font-family:'Cormorant Garamond',serif">
@@ -424,11 +389,9 @@
                 <span class="line-lavender-sm mt-2.5 mx-auto block"></span>
             </div>
 
-            <!-- ══ 2×2 ICON GRID (exact MP Parra structure) ══ -->
             <div class="hcard-anim w-full glass rounded-2xl overflow-hidden mb-2" id="card-icons">
                 <div class="grid grid-cols-2 divide-x divide-y divide-white/40">
 
-                    <!-- Icon 1: WhatsApp → AGENDAR CITA RÁPIDA -->
                     <a href="https://wa.me/521234567890?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta"
                         target="_blank" rel="noopener noreferrer"
                         class="action-card flex flex-col items-center gap-2 px-3 py-4 min-h-[90px]" id="ia-whatsapp"
@@ -448,7 +411,6 @@
                             CITA<br>RÁPIDA</span>
                     </a>
 
-                    <!-- Icon 2: E-Mail → SOPORTE MÉDICO -->
                     <a href="mailto:contacto@dradanieladelgado.com"
                         class="action-card flex flex-col items-center gap-2 px-3 py-4 min-h-[90px]" id="ia-email"
                         aria-label="Soporte médico por email">
@@ -465,7 +427,6 @@
                             class="text-[0.58rem] font-semibold tracking-[0.1em] uppercase text-gray-700 text-center leading-tight">SOPORTE<br>MÉDICO</span>
                     </a>
 
-                    <!-- Icon 3: Location → UBICACIÓN Y CITAS -->
                     <a href="https://maps.google.com/?q=Av+Salud+123+Ciudad+de+Mexico" target="_blank"
                         rel="noopener noreferrer"
                         class="action-card flex flex-col items-center gap-2 px-3 py-4 min-h-[90px]" id="ia-location"
@@ -485,10 +446,8 @@
                             CITAS</span>
                     </a>
 
-                    <!-- Icon 4: Instagram + TikTok → REDES SOCIALES -->
                     <div class="action-card flex flex-col items-center gap-2 px-3 py-4 min-h-[90px]" id="ia-social"
                         role="group" aria-label="Redes sociales">
-                        <!-- Dual icons like MP Parra but adapted -->
                         <div class="flex gap-2">
                             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
                                 aria-label="Instagram"
@@ -518,11 +477,9 @@
                 </div>
             </div>
 
-            <!-- ══ RESULTADOS REALES (replicates "CASOS DE ÉXITO" button) ══ -->
             <a href="#galeria"
                 class="hcard-anim action-card w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl glass mb-2"
                 id="card-resultados">
-                <!-- Icon box (like MP Parra briefcase) -->
                 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
                     style="background:rgba(122,59,159,0.18); border:1px solid rgba(216,175,255,0.5)">
                     <svg class="w-5 h-5 text-azufrado" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -531,22 +488,19 @@
                         <path stroke-linecap="round" d="M6 15l6-6 6 6" opacity="0.3" />
                     </svg>
                 </div>
-                <!-- Text block -->
                 <div class="flex flex-col flex-1 min-w-0">
                     <span
                         class="text-[0.72rem] font-bold tracking-[0.14em] uppercase text-gray-800 leading-tight">RESULTADOS
                         REALES</span>
-                    <span class="text-[0.58rem] text-gray-500 tracking-wide mt-0.5">ANTES &amp; DESPUÉS · CASOS DE
+                    <span class="text-[0.58rem] text-gray-500 tracking-wide mt-0.5">ANTES & DESPUÉS · CASOS DE
                         ÉXITO</span>
                 </div>
-                <!-- Arrow (like MP Parra) -->
                 <svg class="w-4 h-4 text-azufrado flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor"
                     stroke-width="2" aria-hidden="true">
                     <path stroke-linecap="round" d="M4 10h12M12 6l4 4-4 4" />
                 </svg>
             </a>
 
-            <!-- ══ GUARDAR CONTACTO (VCard download — pill like MP Parra) ══ -->
             <button id="card-guardar-contacto"
                 class="hcard-anim flex items-center justify-center gap-2.5 px-7 py-2.5 rounded-full glass text-azufrado font-medium text-[0.75rem] tracking-[0.1em] uppercase hover:bg-white/40 active:scale-95 transition-all mb-4"
                 aria-label="Guardar contacto de la Dra. Daniela Delgado en tu teléfono">
@@ -557,9 +511,7 @@
                 <span class="card-action-text">GUARDAR CONTACTO</span>
             </button>
 
-            <!-- ══ Footer (like MP Parra footer text) ══ -->
             <div class="mt-auto flex flex-col items-center gap-1.5 pt-2">
-                <!-- Instruction (like "TOQUE EN LOS ICONOS") -->
                 <div class="flex items-center gap-1.5">
                     <svg class="w-3 h-3 text-white/40" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path
@@ -567,20 +519,12 @@
                     </svg>
                     <p class="text-[0.58rem] tracking-[0.2em] uppercase text-white/40">Toque en los iconos</p>
                 </div>
-                <!-- Version info (like MP Parra "Diseño web app:") -->
                 <p class="text-[0.52rem] text-white/25 tracking-wide">v2026.1 · Dra. Daniela Delgado · <span
                         class="sparkle">✦</span></p>
             </div>
 
         </div>
-        <!-- /hero-interface -->
-
     </section>
-    <!-- /hero -->
-
-    <!-- ============================================================
-       STATS BAND
-  ============================================================ -->
     <div class="stats-band">
         <div class="stats-inner">
             <div class="stat reveal">
@@ -605,9 +549,6 @@
         </div>
     </div>
 
-    <!-- ============================================================
-       SOBRE MÍ
-  ============================================================ -->
     <section id="sobre-mi" class="section section--alt about-section">
         <div class="section-inner">
             <div class="section-label reveal">
@@ -671,9 +612,6 @@
                 <div class="about-visual">
                     <div class="about-img-card">
                         <div class="about-img-placeholder">
-                            <!--
-                FOTO REAL: <img src="./assets/foto-dra-about.jpg" alt="Dra. Daniela Delgado" style="width:100%;height:100%;object-fit:cover;border-radius:24px">
-              -->
                             <svg viewBox="0 0 360 480" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
                                 <defs>
                                     <linearGradient id="ab1" x1="0" y1="0" x2="0" y2="1">
@@ -707,9 +645,6 @@
         </div>
     </section>
 
-    <!-- ============================================================
-       SERVICIOS
-  ============================================================ -->
     <section id="servicios" class="section">
         <div class="section-inner">
             <div class="services-header">
@@ -797,9 +732,6 @@
         </div>
     </section>
 
-    <!-- ============================================================
-       GALERÍA
-  ============================================================ -->
     <section id="galeria" class="section section--alt">
         <div class="section-inner">
             <div class="section-label reveal">
@@ -810,7 +742,6 @@
             <div class="gallery-grid" style="margin-top:clamp(40px,6vw,60px)">
                 <div class="gallery-item gallery-item--tall">
                     <div class="gallery-placeholder gallery-placeholder--purple">
-                        <!-- <img src="./assets/resultado-1.jpg" alt="Resultado 1" style="width:100%;height:100%;object-fit:cover"> -->
                         <span>Antes / Después</span>
                     </div>
                 </div>
@@ -833,9 +764,6 @@
         </div>
     </section>
 
-    <!-- ============================================================
-       TESTIMONIALES
-  ============================================================ -->
     <section id="testimoniales" class="section">
         <div class="section-inner">
             <div class="section-label reveal">
@@ -884,9 +812,6 @@
         </div>
     </section>
 
-    <!-- ============================================================
-       BLOG
-  ============================================================ -->
     <section id="blog" class="section section--alt">
         <div class="section-inner">
             <div class="blog-header">
@@ -895,7 +820,7 @@
                         <div class="label-line" aria-hidden="true"></div>
                         <span>Blog</span>
                     </div>
-                    <h2 class="section-title reveal">Salud &amp;<br><em>Conocimiento.</em></h2>
+                    <h2 class="section-title reveal">Salud &<br><em>Conocimiento.</em></h2>
                 </div>
                 <a href="#blog" class="btn btn--ghost reveal">Ver todos →</a>
             </div>
@@ -940,9 +865,6 @@
         </div>
     </section>
 
-    <!-- ============================================================
-       CTA BAND
-  ============================================================ -->
     <div class="cta-band">
         <div class="cta-inner section-inner">
             <div>
@@ -953,9 +875,6 @@
         </div>
     </div>
 
-    <!-- ============================================================
-       CONTACTO
-  ============================================================ -->
     <section id="contacto" class="section">
         <div class="section-inner">
             <div class="contact-grid">
@@ -1076,9 +995,6 @@
         </div>
     </section>
 
-    <!-- ============================================================
-       FOOTER
-  ============================================================ -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
@@ -1146,9 +1062,6 @@
         </div>
     </footer>
 
-    <!-- ============================================================
-       GSAP + Script
-  ============================================================ -->
     <script src="script.js" defer></script>
     <script>
         // ── Mobile Menu (inline, no dependencies) ──
@@ -1225,6 +1138,12 @@
         }
         window.addEventListener('load', initHeroAnim);
     </script>
+
+    <a href="admin.html"
+        class="fixed bottom-4 left-4 z-[999] p-3 bg-white/10 backdrop-blur-md rounded-full text-gray-500 hover:text-purple-600 transition-all opacity-20 hover:opacity-100 hover:scale-110 shadow-lg"
+        title="Panel de Administración" aria-label="Admin">
+        <i class="fa-solid fa-lock text-sm"></i>
+    </a>
 
 </body>
 
