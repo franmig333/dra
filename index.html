@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Dra. Daniela Delgado — Salud y Bienestar Integral. Medicina estética, bienestar y cuidado de la salud con un enfoque humano y profesional." />
+  <meta name="theme-color" content="#7A3B9F" />
+  <title>Dra. Daniela Delgado — Salud y Bienestar Integral</title>
+
+  <!-- Google Fonts: Cormorant Garamond (serif) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            azufrado:  '#7A3B9F',
+            'azufrado-dark': '#4A2070',
+            'azufrado-mid':  '#9B4FC0',
+            lavender:  '#D8AFFF',
+            'lavender-lt': '#EDE5F5',
+            'lavender-xlt': '#F8F4FD',
+            beige:     '#F3EFE9',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans:  ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+          backdropBlur: {
+            xs: '4px',
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Custom CSS (global tokens + below-fold sections) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ── Custom utilities not coverable with Tailwind CDN ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    html { -webkit-tap-highlight-color: transparent; }
+
+    /* Glassmorphism token */
+    .glass        { background: rgba(255,255,255,0.28); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.55); }
+    .glass-dark   { background: rgba(74,32,112,0.22);  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(216,175,255,0.25); }
+    .glass-subtle { background: rgba(255,255,255,0.15); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.35); }
+
+    /* Hero photo fill */
+    .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-photo svg { width: 100%; height: 100%; }
+
+    /* Lavender horizontal divider line */
+    .line-lavender {
+      display: block; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, #D8AFFF 35%, #D8AFFF 65%, transparent);
+    }
+    .line-lavender-sm {
+      display: block; width: 48px; height: 1px;
+      background: linear-gradient(90deg, transparent, #D8AFFF, transparent);
+    }
+
+    /* Icon circles */
+    .icon-circle {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: #7A3B9F; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(122,59,159,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      flex-shrink: 0;
+    }
+    .icon-circle:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(122,59,159,0.55); }
+    .icon-circle svg  { width: 22px; height: 22px; color: #fff; }
+
+    /* Action card hover */
+    .action-card { transition: background 0.2s ease, transform 0.18s ease; }
+    .action-card:hover { background: rgba(255,255,255,0.38); }
+    .action-card:active { transform: scale(0.98); }
+
+    /* Decorative sparkle */
+    .sparkle { color: #D8AFFF; font-size: 0.7rem; }
+
+    /* WA sticky button */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 18px; z-index: 300;
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 18px; border-radius: 50px;
+      background: #25D366; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.45); text-decoration: none;
+      min-height: 48px;
+      animation: wa-pop 0.5s cubic-bezier(0.16,1,0.3,1) 1.8s both;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .wa-float:hover  { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37,211,102,0.55); }
+    .wa-float:active { transform: scale(0.96); }
+    @keyframes wa-pop { from { opacity:0; transform: translateY(20px) scale(0.8); } to { opacity:1; transform: none; } }
+
+    /* Mobile menu overlay */
+    #mobile-menu {
+      position: fixed; inset: 0; z-index: 99;
+      background: rgba(248,244,253,0.96); backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      opacity: 0; transform: translateY(8px); pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    #mobile-menu.is-open { opacity: 1; transform: none; pointer-events: auto; }
+
+    /* Ham lines */
+    .ham-line { display: block; width: 18px; height: 1.5px; background: currentColor; border-radius: 2px; transition: transform 0.3s ease, opacity 0.2s ease; transform-origin: center; }
+    #menu-toggle.is-open .ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    #menu-toggle.is-open .ham-line:nth-child(2) { transform: translateY(-6.5px) rotate(-45deg); }
+    #menu-toggle.is-open .ham-line:nth-child(3) { opacity: 0; transform: translateX(-8px); }
+
+    /* GSAP initial states for cards */
+    .hcard-anim { opacity: 0; transform: translateY(22px) scale(0.97); will-change: opacity, transform; }
+
+    /* Below-fold section vars */
+    .section-py { padding-top: clamp(60px,8vw,120px); padding-bottom: clamp(60px,8vw,120px); }
+
+    /* Scroll bar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #D8AFFF; border-radius: 999px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hcard-anim { opacity: 1 !important; transform: none !important; }
+      .wa-float   { animation: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-beige overflow-x-hidden">
+
+  <!-- ============================================================
+       FLOATING WHATSAPP BUTTON (sticky, always visible)
+  ============================================================ -->
+  <a class="wa-float"
+     href="https://wa.me/521234567890?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Agendar cita por WhatsApp">
+    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.135.558 4.141 1.53 5.881L0 24l6.295-1.507A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.011-1.374l-.36-.214-3.733.894.944-3.633-.235-.374A9.818 9.818 0 1112 21.818z"/>
+    </svg>
+    <span class="hidden sm:inline">Agendar Cita</span>
+  </a>
+
+  <!-- ============================================================
+       MOBILE MENU
+  ============================================================ -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <nav class="flex flex-col items-center gap-3 mb-8">
+      <a href="#inicio"    class="font-serif text-3xl font-light text-gray-500 hover:text-azufrado transition-colors py-2" onclick="closeMobileMenu()">Inicio</a>
+      <a href="#sobre-mi"  class="font-serif text-3xl font-light text-gray-500 hover:text-azufrado transition-colors py-2" onclick="closeMobileMenu()">Sobre Mí</a>
+      <a href="#servicios" class="font-serif text-3xl font-light text-gray-500 hover:text-azufrado transition-colors py-2" onclick="closeMobileMenu()">Servicios</a>
+      <a href="#galeria"   class="font-serif text-3xl font-light text-gray-500 hover:text-azufrado transition-colors py-2" onclick="closeMobileMenu()">Galería</a>
+      <a href="#blog"      class="font-serif text-3xl font-light text-gray-500 hover:text-azufrado transition-colors py-2" onclick="closeMobileMenu()">Blog</a>
+    </nav>
+    <a href="#contacto" onclick="closeMobileMenu()"
+       class="px-8 py-3 rounded-full bg-azufrado text-white text-sm font-medium tracking-widest uppercase hover:bg-azufrado-dark transition-colors">
+      Agendar Cita
+    </a>
+    <p class="absolute bottom-6 text-xs text-gray-400">© 2026 Dra. Daniela Delgado</p>
+  </div>
+
+  <!-- ============================================================
+       HERO — Full-background photo + Glassmorphism interface
+       Replicates MP Parra card structure with DD branding
+  ============================================================ -->
+  <section id="inicio" class="relative min-h-svh flex flex-col overflow-hidden">
+
+    <!-- ── Background Photo Layer ── -->
+    <div class="hero-photo" aria-hidden="true">
+      <!--
+        REEMPLAZA este SVG con la foto real:
+        <img src="./assets/foto-dra.jpg" alt="Dra. Daniela Delgado" class="hero-photo">
+      -->
+      <svg viewBox="0 0 480 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice" class="hero-photo">
+        <defs>
+          <linearGradient id="bg1" x1="0" y1="0" x2="0.3" y2="1">
+            <stop offset="0%"   stop-color="#EDE5F5"/>
+            <stop offset="50%"  stop-color="#D4C4E8"/>
+            <stop offset="100%" stop-color="#B095D0"/>
+          </linearGradient>
+          <linearGradient id="fade1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#F3EFE9" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#2D0A52" stop-opacity="0.55"/>
+          </linearGradient>
+        </defs>
+        <rect width="480" height="700" fill="#F3EFE9"/>
+        <rect width="480" height="700" fill="url(#bg1)" opacity="0.3"/>
+        <!-- Chair -->
+        <rect x="158" y="382" width="164" height="8" rx="4" fill="#DDD0F0" opacity="0.55"/>
+        <rect x="168" y="390" width="9" height="195" rx="4.5" fill="#D4C0E8" opacity="0.5"/>
+        <rect x="303" y="390" width="9" height="195" rx="4.5" fill="#D4C0E8" opacity="0.5"/>
+        <ellipse cx="240" cy="502" rx="88" ry="28" fill="#EDE5F5" opacity="0.7"/>
+        <!-- White coat -->
+        <path d="M138 308 Q106 385 98 492 L382 492 Q374 385 342 308 Q302 282 240 280 Q178 282 138 308Z" fill="white" opacity="0.88"/>
+        <path d="M240 280 L210 362 L240 378 L270 362Z" fill="#EDE5F5"/>
+        <!-- Torso (purple scrubs) -->
+        <ellipse cx="240" cy="238" rx="72" ry="80" fill="#7A3B9F" opacity="0.38"/>
+        <!-- Head -->
+        <ellipse cx="240" cy="166" rx="52" ry="56" fill="#E8D8F4" opacity="0.7"/>
+        <!-- Hair -->
+        <ellipse cx="240" cy="122" rx="52" ry="24" fill="#B095D0" opacity="0.42"/>
+        <!-- Face features -->
+        <ellipse cx="228" cy="160" rx="5" ry="6" fill="#4A2070" opacity="0.22"/>
+        <ellipse cx="252" cy="160" rx="5" ry="6" fill="#4A2070" opacity="0.22"/>
+        <path d="M229 179 Q240 187 251 179" stroke="#4A2070" stroke-width="1.8" fill="none" opacity="0.25" stroke-linecap="round"/>
+        <!-- Stethoscope (purple) -->
+        <path d="M203 328 Q182 368 185 400 Q189 424 207 424 Q227 424 230 400 Q235 368 216 328"
+              stroke="#7A3B9F" stroke-width="5" fill="none" opacity="0.48" stroke-linecap="round"/>
+        <circle cx="207" cy="425" r="11" fill="#7A3B9F" opacity="0.4"/>
+        <!-- Medical cross -->
+        <rect x="296" y="334" width="22" height="6" rx="3" fill="#7A3B9F" opacity="0.16"/>
+        <rect x="303" y="327" width="6" height="22" rx="3" fill="#7A3B9F" opacity="0.16"/>
+        <!-- Legs suggestion -->
+        <ellipse cx="198" cy="484" rx="38" ry="16" fill="#C4ADDF" opacity="0.38"/>
+        <ellipse cx="282" cy="484" rx="38" ry="16" fill="#C4ADDF" opacity="0.38"/>
+        <!-- Gradient fade bottom -->
+        <rect width="480" height="700" fill="url(#fade1)"/>
+      </svg>
+    </div>
+
+    <!-- ── Gradient Overlay (improves card legibility) ── -->
+    <div class="absolute inset-0 z-10 pointer-events-none"
+         style="background: linear-gradient(180deg, rgba(243,239,233,0.55) 0%, rgba(243,239,233,0.1) 30%, rgba(26,8,48,0.6) 100%);"
+         aria-hidden="true"></div>
+
+    <!-- ── Decorative "1" (like image_37.png) ── -->
+    <div class="absolute right-0 top-1/3 z-10 font-serif leading-none select-none pointer-events-none text-[#7A3B9F]"
+         style="font-size: clamp(160px,35vw,340px); opacity: 0.05; transform: translateY(-40%);"
+         aria-hidden="true">1</div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         INTERFACE — Replicating MP Parra layout with DD branding
+    ══════════════════════════════════════════════════════════ -->
+    <div class="relative z-20 flex flex-col items-center w-full max-w-sm mx-auto px-3 pt-10 pb-6 min-h-svh" id="hero-interface">
+
+      <!-- ── Hamburger (top-right corner) ── -->
+      <button id="menu-toggle"
+              class="absolute top-4 right-4 flex flex-col justify-center items-center gap-[5px] w-11 h-11 rounded-xl border border-white/40 glass text-gray-700"
+              aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="ham-line w-[18px]"></span>
+        <span class="ham-line w-[18px]"></span>
+        <span class="ham-line w-[11px] self-start ml-[3.5px]"></span>
+      </button>
+
+      <!-- ══ DD LOGO (centered, like MP Parra) ══ -->
+      <div class="hcard-anim flex flex-col items-center gap-0 mb-1" id="logo-block">
+        <!-- Logo box — replicates the square logo from image_40.png -->
+        <div class="w-20 h-20 rounded-2xl glass flex items-center justify-center text-azufrado shadow-lg mb-3">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" aria-label="Logo DD">
+            <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.18"/>
+            <path d="M27 21 C25 27,23 33,24 39 C25 45,28 49,30 53 C32 57,31 61,29 63 L37 63 C39 59,41 55,41 51 C41 47,39 43,39 39 C39 31,39 25,37 21Z"
+                  fill="currentColor" opacity="0.1"/>
+            <text x="13" y="54" font-family="Georgia,serif" font-size="40" font-weight="700" fill="currentColor" opacity="0.95">D</text>
+            <text x="33" y="54" font-family="Georgia,serif" font-size="40" font-weight="300" fill="currentColor" opacity="0.48">D</text>
+            <circle cx="40" cy="13" r="2.2" fill="currentColor" opacity="0.35"/>
+          </svg>
+        </div>
+
+        <!-- Horizontal lavender line (like MP Parra gold line) -->
+        <span class="line-lavender w-full max-w-[280px] mb-3"></span>
+
+        <!-- Name (serif, like image_37.png) -->
+        <h1 class="font-serif text-center leading-[1.05] tracking-tight mb-1">
+          <span class="block text-[1.35rem] font-light text-gray-600 tracking-[0.06em]" style="font-family:'Cormorant Garamond',serif">DRA. DANIELA</span>
+          <span class="block text-[2.2rem] font-semibold text-gray-800 -mt-1" style="font-family:'Cormorant Garamond',serif">DELGADO</span>
+        </h1>
+
+        <!-- Specialty with micro-divider -->
+        <div class="flex flex-col items-center gap-1.5 mt-1">
+          <span class="line-lavender-sm"></span>
+          <p class="text-[0.58rem] font-semibold tracking-[0.22em] uppercase text-azufrado">Salud y Bienestar Integral</p>
+        </div>
+      </div>
+
+      <!-- ── Mission statement card ── -->
+      <div class="hcard-anim w-full glass rounded-2xl px-4 py-3 mt-3 mb-3" id="card-mission">
+        <p class="font-serif text-[0.88rem] italic font-light text-gray-700 text-center leading-relaxed" style="font-family:'Cormorant Garamond',serif">
+          "Cuidar de tu salud integral es realzar la belleza que nace de tu bienestar."
+        </p>
+        <span class="line-lavender-sm mt-2.5 mx-auto block"></span>
+      </div>
+
+      <!-- ══ 2×2 ICON GRID (exact MP Parra structure) ══ -->
+      <div class="hcard-anim w-full glass rounded-2xl overflow-hidden mb-2" id="card-icons">
+        <div class="grid grid-cols-2 divide-x divide-y divide-white/40">
+
+          <!-- Icon 1: WhatsApp → AGENDAR CITA RÁPIDA -->
+          <a href="https://wa.me/521234567890?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta"
+             target="_blank" rel="noopener noreferrer"
+             class="action-card flex flex-col items-center gap-2 px-3 py-4 min-h-[90px]"
+             id="ia-whatsapp" aria-label="Agendar cita por WhatsApp">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.135.558 4.141 1.53 5.881L0 24l6.295-1.507A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.011-1.374l-.36-.214-3.733.894.944-3.633-.235-.374A9.818 9.818 0 1112 21.818z"/>
+              </svg>
+            </div>
+            <div class="w-full h-px" style="background:linear-gradient(90deg,transparent,#D8AFFF,transparent)"></div>
+            <span class="text-[0.58rem] font-semibold tracking-[0.1em] uppercase text-gray-700 text-center leading-tight">AGENDAR CITA<br>RÁPIDA</span>
+          </a>
+
+          <!-- Icon 2: E-Mail → SOPORTE MÉDICO -->
+          <a href="mailto:contacto@dradanieladelgado.com"
+             class="action-card flex flex-col items-center gap-2 px-3 py-4 min-h-[90px]"
+             id="ia-email" aria-label="Soporte médico por email">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect width="20" height="14" x="2" y="5" rx="3"/>
+                <path stroke-linecap="round" d="M2 8l10 6 10-6"/>
+              </svg>
+            </div>
+            <div class="w-full h-px" style="background:linear-gradient(90deg,transparent,#D8AFFF,transparent)"></div>
+            <span class="text-[0.58rem] font-semibold tracking-[0.1em] uppercase text-gray-700 text-center leading-tight">SOPORTE<br>MÉDICO</span>
+          </a>
+
+          <!-- Icon 3: Location → UBICACIÓN Y CITAS -->
+          <a href="https://maps.google.com/?q=Av+Salud+123+Ciudad+de+Mexico"
+             target="_blank" rel="noopener noreferrer"
+             class="action-card flex flex-col items-center gap-2 px-3 py-4 min-h-[90px]"
+             id="ia-location" aria-label="Ver ubicación en Google Maps">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path stroke-linecap="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none" opacity="0.55"/>
+              </svg>
+            </div>
+            <div class="w-full h-px" style="background:linear-gradient(90deg,transparent,#D8AFFF,transparent)"></div>
+            <span class="text-[0.58rem] font-semibold tracking-[0.1em] uppercase text-gray-700 text-center leading-tight">UBICACIÓN<br>Y CITAS</span>
+          </a>
+
+          <!-- Icon 4: Instagram + TikTok → REDES SOCIALES -->
+          <div class="action-card flex flex-col items-center gap-2 px-3 py-4 min-h-[90px]"
+               id="ia-social" role="group" aria-label="Redes sociales">
+            <!-- Dual icons like MP Parra but adapted -->
+            <div class="flex gap-2">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                 aria-label="Instagram"
+                 class="icon-circle !w-[44px] !h-[44px] hover:scale-110 transition-transform">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <rect width="18" height="18" x="3" y="3" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
+                 aria-label="TikTok"
+                 class="icon-circle !w-[44px] !h-[44px] !bg-azufrado-dark hover:scale-110 transition-transform">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/>
+                </svg>
+              </a>
+            </div>
+            <div class="w-full h-px" style="background:linear-gradient(90deg,transparent,#D8AFFF,transparent)"></div>
+            <span class="text-[0.58rem] font-semibold tracking-[0.1em] uppercase text-gray-700 text-center leading-tight">REDES<br>SOCIALES</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ RESULTADOS REALES (replicates "CASOS DE ÉXITO" button) ══ -->
+      <a href="#galeria"
+         class="hcard-anim action-card w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl glass mb-2"
+         id="card-resultados">
+        <!-- Icon box (like MP Parra briefcase) -->
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+             style="background:rgba(122,59,159,0.18); border:1px solid rgba(216,175,255,0.5)">
+          <svg class="w-5 h-5 text-azufrado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" d="M6 9l6 6 6-6"/>
+            <path stroke-linecap="round" d="M6 15l6-6 6 6" opacity="0.3"/>
+          </svg>
+        </div>
+        <!-- Text block -->
+        <div class="flex flex-col flex-1 min-w-0">
+          <span class="text-[0.72rem] font-bold tracking-[0.14em] uppercase text-gray-800 leading-tight">RESULTADOS REALES</span>
+          <span class="text-[0.58rem] text-gray-500 tracking-wide mt-0.5">ANTES &amp; DESPUÉS · CASOS DE ÉXITO</span>
+        </div>
+        <!-- Arrow (like MP Parra) -->
+        <svg class="w-4 h-4 text-azufrado flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 10h12M12 6l4 4-4 4"/>
+        </svg>
+      </a>
+
+      <!-- ══ GUARDAR CONTACTO (VCard download — pill like MP Parra) ══ -->
+      <button id="card-guardar-contacto"
+              class="hcard-anim flex items-center justify-center gap-2.5 px-7 py-2.5 rounded-full glass text-azufrado font-medium text-[0.75rem] tracking-[0.1em] uppercase hover:bg-white/40 active:scale-95 transition-all mb-4"
+              aria-label="Guardar contacto de la Dra. Daniela Delgado en tu teléfono">
+        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" d="M10 3v10M6 9l4 4 4-4M3 17h18"/>
+        </svg>
+        <span class="card-action-text">GUARDAR CONTACTO</span>
+      </button>
+
+      <!-- ══ Footer (like MP Parra footer text) ══ -->
+      <div class="mt-auto flex flex-col items-center gap-1.5 pt-2">
+        <!-- Instruction (like "TOQUE EN LOS ICONOS") -->
+        <div class="flex items-center gap-1.5">
+          <svg class="w-3 h-3 text-white/40" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+          </svg>
+          <p class="text-[0.58rem] tracking-[0.2em] uppercase text-white/40">Toque en los iconos</p>
+        </div>
+        <!-- Version info (like MP Parra "Diseño web app:") -->
+        <p class="text-[0.52rem] text-white/25 tracking-wide">v2026.1 · Dra. Daniela Delgado · <span class="sparkle">✦</span></p>
+      </div>
+
+    </div>
+    <!-- /hero-interface -->
+
+  </section>
+  <!-- /hero -->
+
+  <!-- ============================================================
+       STATS BAND
+  ============================================================ -->
+  <div class="stats-band">
+    <div class="stats-inner">
+      <div class="stat reveal">
+        <span class="stat-num">+10</span>
+        <span class="stat-label">Años de Experiencia</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat reveal">
+        <span class="stat-num">+2K</span>
+        <span class="stat-label">Pacientes Atendidas</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat reveal">
+        <span class="stat-num">98%</span>
+        <span class="stat-label">Satisfacción</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat reveal">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Tratamientos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SOBRE MÍ
+  ============================================================ -->
+  <section id="sobre-mi" class="section section--alt about-section">
+    <div class="section-inner">
+      <div class="section-label reveal">
+        <div class="label-line" aria-hidden="true"></div>
+        <span>Sobre Mí</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title reveal">
+            Un enfoque humano<br>
+            <em>en cada consulta.</em>
+          </h2>
+          <p class="body-text reveal">
+            La Dra. Daniela Delgado es especialista en Medicina Estética y Bienestar Integral, con más de diez años dedicados a acompañar a sus pacientes en el camino hacia una salud plena y duradera.
+          </p>
+          <p class="body-text reveal">
+            Su filosofía es sencilla: la belleza auténtica florece cuando el cuerpo y la mente están en equilibrio. Por eso, cada tratamiento parte de una evaluación integral que combina medicina basada en evidencia con un trato cercano y personalizado.
+          </p>
+          <ul class="credentials reveal">
+            <li class="credential">
+              <div class="credential-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+              </div>
+              <div>
+                <strong>Médico Cirujano</strong>
+                <p>Universidad Autónoma — Promoción Cum Laude</p>
+              </div>
+            </li>
+            <li class="credential">
+              <div class="credential-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+              </div>
+              <div>
+                <strong>Especialidad en Medicina Estética</strong>
+                <p>Certificada · Colegio de Médicos Estéticos</p>
+              </div>
+            </li>
+            <li class="credential">
+              <div class="credential-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+              </div>
+              <div>
+                <strong>Bienestar Integral</strong>
+                <p>+10 años de experiencia · +2,000 pacientes</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="about-visual">
+          <div class="about-img-card">
+            <div class="about-img-placeholder">
+              <!--
+                FOTO REAL: <img src="./assets/foto-dra-about.jpg" alt="Dra. Daniela Delgado" style="width:100%;height:100%;object-fit:cover;border-radius:24px">
+              -->
+              <svg viewBox="0 0 360 480" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                <defs>
+                  <linearGradient id="ab1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#EDE5F5"/>
+                    <stop offset="100%" stop-color="#C4ADDF"/>
+                  </linearGradient>
+                </defs>
+                <rect width="360" height="480" rx="24" fill="url(#ab1)"/>
+                <ellipse cx="180" cy="145" rx="58" ry="62" fill="#C4ADDF" opacity="0.65"/>
+                <circle cx="180" cy="108" r="42" fill="#B095D0" opacity="0.8"/>
+                <path d="M85 210 Q65 255 60 360 L300 360 Q295 255 275 210 Q238 188 180 186 Q122 188 85 210Z" fill="white" opacity="0.88"/>
+                <path d="M180 186 L155 265 L180 278 L205 265Z" fill="#EDE5F5"/>
+                <path d="M150 222 Q130 258 133 282 Q137 305 155 305 Q174 305 176 282 Q180 258 163 222" stroke="#6B35A0" stroke-width="4" fill="none" opacity="0.6" stroke-linecap="round"/>
+                <circle cx="155" cy="306" r="10" fill="#6B35A0" opacity="0.5"/>
+                <text x="116" y="420" font-family="Georgia,serif" font-size="11" fill="#9070C0" opacity="0.4" text-anchor="middle">Reemplaza con foto real</text>
+              </svg>
+            </div>
+            <div class="about-quote-card">
+              <p>"La medicina más poderosa es la que nace del cuidado genuino."</p>
+              <span>— Dra. Daniela Delgado</span>
+            </div>
+            <div class="about-deco-num" aria-hidden="true">1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICIOS
+  ============================================================ -->
+  <section id="servicios" class="section">
+    <div class="section-inner">
+      <div class="services-header">
+        <div>
+          <div class="section-label reveal">
+            <div class="label-line" aria-hidden="true"></div>
+            <span>Servicios</span>
+          </div>
+          <h2 class="section-title reveal">Nuestros<br><em>Tratamientos.</em></h2>
+        </div>
+        <p class="body-text reveal services-intro">
+          Cada servicio está diseñado para llevarte a tu mejor versión, combinando ciencia médica con bienestar integral.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+          <h3 class="service-title">Consulta Médica</h3>
+          <p class="service-desc">Evaluación integral de salud con diagnóstico personalizado y plan de tratamiento basado en evidencia científica.</p>
+          <span class="service-link">Ver más →</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg></div>
+          <h3 class="service-title">Estética Facial</h3>
+          <p class="service-desc">Tratamientos no invasivos para rejuvenecimiento facial: botox, ácido hialurónico, bioestimulación y más.</p>
+          <span class="service-link">Ver más →</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></div>
+          <h3 class="service-title">Bienestar Integral</h3>
+          <p class="service-desc">Programa holístico que combina nutrición, manejo del estrés y equilibrio hormonal para tu salud óptima.</p>
+          <span class="service-link">Ver más →</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2M4.929 4.929l1.414 1.414M17.657 17.657l1.414 1.414M4.929 19.071l1.414-1.414M17.657 6.343l1.414-1.414"/></svg></div>
+          <h3 class="service-title">Dermatología</h3>
+          <p class="service-desc">Diagnóstico y tratamiento de afecciones cutáneas, peeling químico, laser y cuidado especializado de la piel.</p>
+          <span class="service-link">Ver más →</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+          <h3 class="service-title">Nutrición Clínica</h3>
+          <p class="service-desc">Planes nutricionales personalizados para control de peso, salud metabólica y optimización de energía diaria.</p>
+          <span class="service-link">Ver más →</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg></div>
+          <h3 class="service-title">Medicina Preventiva</h3>
+          <p class="service-desc">Chequeos preventivos, análisis de laboratorio avanzados y programas de salud para mantener tu bienestar a largo plazo.</p>
+          <span class="service-link">Ver más →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERÍA
+  ============================================================ -->
+  <section id="galeria" class="section section--alt">
+    <div class="section-inner">
+      <div class="section-label reveal">
+        <div class="label-line" aria-hidden="true"></div>
+        <span>Galería</span>
+      </div>
+      <h2 class="section-title reveal">Resultados<br><em>Reales.</em></h2>
+      <div class="gallery-grid" style="margin-top:clamp(40px,6vw,60px)">
+        <div class="gallery-item gallery-item--tall">
+          <div class="gallery-placeholder gallery-placeholder--purple">
+            <!-- <img src="./assets/resultado-1.jpg" alt="Resultado 1" style="width:100%;height:100%;object-fit:cover"> -->
+            <span>Antes / Después</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder gallery-placeholder--lavender">
+            <span>Estética Facial</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder gallery-placeholder--rose">
+            <span>Bienestar</span>
+          </div>
+        </div>
+        <div class="gallery-item gallery-item--wide">
+          <div class="gallery-placeholder gallery-placeholder--mauve">
+            <span>Clínica & Consultorio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALES
+  ============================================================ -->
+  <section id="testimoniales" class="section">
+    <div class="section-inner">
+      <div class="section-label reveal">
+        <div class="label-line" aria-hidden="true"></div>
+        <span>Testimoniales</span>
+      </div>
+      <h2 class="section-title reveal">Lo que dicen<br><em>mis pacientes.</em></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-stars">★★★★★</p>
+          <blockquote class="testimonial-quote">"La Dra. Delgado transformó no solo mi piel sino mi confianza. Su enfoque integral es único y sus resultados son increíbles."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div>
+              <strong>María G.</strong>
+              <p>Paciente · Medicina Estética</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-stars">★★★★★</p>
+          <blockquote class="testimonial-quote">"Por fin encontré una doctora que me escucha y entiende. El programa de bienestar integral cambió mi calidad de vida completamente."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div>
+              <strong>Sofía R.</strong>
+              <p>Paciente · Bienestar Integral</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-stars">★★★★★</p>
+          <blockquote class="testimonial-quote">"Profesional, empática y con resultados visibles desde la primera consulta. La recomiendo ampliamente a todas mis amigas."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div>
+              <strong>Andrea L.</strong>
+              <p>Paciente · Nutrición Clínica</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BLOG
+  ============================================================ -->
+  <section id="blog" class="section section--alt">
+    <div class="section-inner">
+      <div class="blog-header">
+        <div>
+          <div class="section-label reveal">
+            <div class="label-line" aria-hidden="true"></div>
+            <span>Blog</span>
+          </div>
+          <h2 class="section-title reveal">Salud &amp;<br><em>Conocimiento.</em></h2>
+        </div>
+        <a href="#blog" class="btn btn--ghost reveal">Ver todos →</a>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <div class="blog-img blog-img--1">
+            <span class="blog-tag">Bienestar</span>
+          </div>
+          <div class="blog-body">
+            <p class="blog-date">Junio 2026</p>
+            <h3 class="blog-title">5 Hábitos Diarios para una Piel Radiante y Saludable</h3>
+            <p class="blog-excerpt">Descubre los rituales de cuidado que la ciencia respalda para mantener tu piel joven y luminosa desde adentro.</p>
+            <span class="blog-link">Leer más →</span>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-img blog-img--2">
+            <span class="blog-tag">Medicina Estética</span>
+          </div>
+          <div class="blog-body">
+            <p class="blog-date">Mayo 2026</p>
+            <h3 class="blog-title">Ácido Hialurónico: Mitos y Verdades que Debes Conocer</h3>
+            <p class="blog-excerpt">La guía definitiva sobre el tratamiento más popular de medicina estética, explicada por nuestra especialista.</p>
+            <span class="blog-link">Leer más →</span>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-img blog-img--3">
+            <span class="blog-tag">Nutrición</span>
+          </div>
+          <div class="blog-body">
+            <p class="blog-date">Abril 2026</p>
+            <h3 class="blog-title">La Conexión entre Intestino Sano y Belleza Integral</h3>
+            <p class="blog-excerpt">Cómo el microbioma intestinal influye directamente en el estado de tu piel, cabello y energía diaria.</p>
+            <span class="blog-link">Leer más →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+  ============================================================ -->
+  <div class="cta-band">
+    <div class="cta-inner section-inner">
+      <div>
+        <p class="cta-label">¿Lista para empezar?</p>
+        <h2 class="cta-title">Tu salud,<br><em>tu bienestar.</em></h2>
+      </div>
+      <a href="#contacto" class="btn btn--primary btn--lg">Agendar Consulta</a>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       CONTACTO
+  ============================================================ -->
+  <section id="contacto" class="section">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="section-label reveal">
+            <div class="label-line" aria-hidden="true"></div>
+            <span>Contacto</span>
+          </div>
+          <h2 class="section-title reveal">Hablemos<br><em>hoy.</em></h2>
+          <p class="body-text reveal">Agenda tu consulta inicial y da el primer paso hacia tu bienestar integral. Estoy aquí para acompañarte en cada etapa de tu proceso.</p>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              </div>
+              <div>
+                <strong>Teléfono / WhatsApp</strong>
+                <a href="https://wa.me/521234567890">+52 123 456 7890</a>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+              </div>
+              <div>
+                <strong>E-mail</strong>
+                <a href="mailto:contacto@dradanieladelgado.com">contacto@dradanieladelgado.com</a>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              </div>
+              <div>
+                <strong>Dirección</strong>
+                <p>Av. Salud 123, Col. Centro<br>Ciudad de México, CDMX</p>
+              </div>
+            </li>
+          </ul>
+          <div class="social-links">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Nombre</label>
+              <input id="cf-name" name="name" type="text" placeholder="Tu nombre completo" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="cf-phone">Teléfono</label>
+              <input id="cf-phone" name="phone" type="tel" placeholder="+52 000 000 0000" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" placeholder="tu@email.com" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="cf-service">Servicio de interés</label>
+            <select id="cf-service" name="service">
+              <option value="">Selecciona un servicio</option>
+              <option>Consulta Médica General</option>
+              <option>Medicina Estética Facial</option>
+              <option>Bienestar Integral</option>
+              <option>Dermatología</option>
+              <option>Nutrición Clínica</option>
+              <option>Medicina Preventiva</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Mensaje</label>
+            <textarea id="cf-message" name="message" placeholder="Cuéntame cómo puedo ayudarte..." rows="4"></textarea>
+          </div>
+          <button type="submit" id="form-submit" class="btn btn--primary btn--full btn--lg">
+            Enviar Mensaje
+          </button>
+          <p class="form-note">Tu información es confidencial y está protegida.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#inicio" class="footer-logo-link" aria-label="Inicio">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="footer-dd-logo" aria-hidden="true">
+            <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+            <text x="13" y="54" font-family="Georgia,serif" font-size="40" font-weight="700" fill="currentColor" opacity="0.85">D</text>
+            <text x="33" y="54" font-family="Georgia,serif" font-size="40" font-weight="300" fill="currentColor" opacity="0.42">D</text>
+          </svg>
+        </a>
+        <p class="footer-tagline">"La belleza auténtica florece cuando el cuerpo y la mente están en equilibrio."</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#sobre-mi">Sobre Mí</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Consulta Médica</a></li>
+          <li><a href="#servicios">Estética Facial</a></li>
+          <li><a href="#servicios">Bienestar Integral</a></li>
+          <li><a href="#servicios">Dermatología</a></li>
+          <li><a href="#servicios">Nutrición</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <a href="https://wa.me/521234567890">+52 123 456 7890</a>
+        <a href="mailto:contacto@dradanieladelgado.com">contacto@dradanieladelgado.com</a>
+        <p>Av. Salud 123, Col. Centro<br>Ciudad de México, CDMX</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom section-inner">
+      <p>© 2026 Dra. Daniela Delgado · Todos los derechos reservados</p>
+      <p>v2026.1 · Diseño High-End · <span class="sparkle">✦</span></p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       GSAP + Script
+  ============================================================ -->
+  <script src="script.js" defer></script>
+  <script>
+    // ── Mobile Menu (inline, no dependencies) ──
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let menuOpen = false;
+
+    function openMobileMenu() {
+      menuOpen = true;
+      toggle.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      mobileMenu.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      menuOpen = false;
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+    toggle?.addEventListener('click', () => menuOpen ? closeMobileMenu() : openMobileMenu());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMobileMenu(); });
+
+    // ── VCard download ──
+    document.getElementById('card-guardar-contacto')?.addEventListener('click', function() {
+      const vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'N:Delgado;Daniela;;;Dra.',
+        'FN:Dra. Daniela Delgado',
+        'TITLE:Médico — Salud y Bienestar Integral',
+        'ORG:Consultorio Dra. Daniela Delgado',
+        'TEL;TYPE=CELL,PREF:+521234567890',
+        'EMAIL;TYPE=WORK:contacto@dradanieladelgado.com',
+        'ADR;TYPE=WORK:;;Av. Salud 123;Ciudad de México;CDMX;06600;México',
+        'URL:https://dradanieladelgado.com',
+        'X-SOCIALPROFILE;type=instagram:https://instagram.com/dradanieladelgado',
+        'X-SOCIALPROFILE;type=tiktok:https://tiktok.com/@dradanieladelgado',
+        'NOTE:Especialista en Medicina Estética y Bienestar Integral',
+        'END:VCARD'
+      ].join('\r\n');
+
+      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url; a.download = 'dra-daniela-delgado.vcf'; a.click();
+      URL.revokeObjectURL(url);
+
+      // Visual feedback
+      const textEl = this.querySelector('.card-action-text');
+      if (textEl) {
+        const orig = textEl.textContent;
+        textEl.textContent = 'Contacto Guardado ✓';
+        this.classList.add('opacity-70');
+        setTimeout(() => { textEl.textContent = orig; this.classList.remove('opacity-70'); }, 2800);
+      }
+    });
+
+    // ── GSAP Hero Entrance (runs after GSAP loads) ──
+    function initHeroAnim() {
+      if (typeof gsap === 'undefined') { setTimeout(initHeroAnim, 100); return; }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.hcard-anim').forEach(el => { el.style.opacity='1'; el.style.transform='none'; });
+        return;
+      }
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' }, delay: 0.1 });
+      tl
+        .fromTo('#logo-block',   { opacity:0, y:30, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.85 })
+        .fromTo('#card-mission', { opacity:0, y:20, x:10 },        { opacity:1, y:0, x:0, duration:0.6 }, '-=0.5')
+        .fromTo('#card-icons',   { opacity:0, y:24 },               { opacity:1, y:0, duration:0.65 },     '-=0.4')
+        .fromTo('#card-resultados',      { opacity:0, y:16 },       { opacity:1, y:0, duration:0.5 },      '-=0.35')
+        .fromTo('#card-guardar-contacto',{ opacity:0, y:12 },       { opacity:1, y:0, duration:0.45 },     '-=0.3');
+    }
+    window.addEventListener('load', initHeroAnim);
+  </script>
+
+</body>
+</html>
