@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Dra. Daniela Delgado</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body
+    class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center font-sans antialiased selection:bg-purple-500 selection:text-white">
+
+    <div id="login-card"
+        class="w-full max-w-md p-8 mx-4 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-xl shadow-2xl shadow-purple-950/20 transition-all duration-300">
+        <div class="text-center mb-8">
+            <div
+                class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 text-2xl mb-4">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h1 class="text-2xl font-semibold tracking-tight">Acceso Privado</h1>
+            <p class="text-sm text-slate-400 mt-1">Ingresa al panel de configuración</p>
+        </div>
+
+        <form id="login-form" class="space-y-5">
+            <div>
+                <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Clave de Acceso
+                    Secreta</label>
+                <input type="password" id="password" required
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-center tracking-widest"
+                    placeholder="••••••••">
+            </div>
+            <button type="submit"
+                class="w-full py-3.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-500 active:bg-purple-700 font-medium tracking-wide transition-all shadow-lg shadow-purple-600/20 active:scale-[0.98]">
+                <i class="fa-solid fa-key mr-2"></i> Entrar al Panel
+            </button>
+        </form>
+    </div>
+
+    <div id="dashboard-card"
+        class="hidden w-full max-w-4xl p-6 md:p-8 mx-4 my-8 bg-slate-900/40 border border-slate-800 rounded-3xl backdrop-blur-xl shadow-2xl transition-all duration-300">
+        <div
+            class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-8">
+            <div>
+                <div class="flex items-center gap-3">
+                    <span
+                        class="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sistema Listo
+                    </span>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight mt-2">Configuración de la Web App</h1>
+                <p class="text-sm text-slate-400">Personaliza los colores, textos, enlaces y fotos de la plantilla en
+                    tiempo real</p>
+            </div>
+            <button id="btn-logout"
+                class="self-start md:self-auto px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-medium transition-colors border border-slate-700">
+                <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>Cerrar Sesión
+            </button>
+        </div>
+
+        <form id="config-form" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-6">
+                <h2
+                    class="text-sm font-semibold uppercase tracking-wider text-purple-400 border-b border-slate-800 pb-2">
+                    <i class="fa-solid fa-palette mr-2"></i> Identidad y Estilo</h2>
+
+                <div>
+                    <label class="block text-sm text-slate-300 mb-2">Color Principal de la Marca</label>
+                    <div class="flex gap-3">
+                        <input type="color" id="color-principal" value="#7A3B9F"
+                            class="w-14 h-12 rounded-xl border border-slate-700 bg-transparent cursor-pointer p-1">
+                        <input type="text" id="color-hex" value="#7A3B9F"
+                            class="w-full px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 font-mono focus:outline-none focus:border-purple-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-slate-300 mb-2">Nombre del Titular</label>
+                    <input type="text" id="titulo-web" value="DRA. DANIELA DELGADO"
+                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-slate-300 mb-2">Especialidad o Subtítulo</label>
+                    <input type="text" id="subtitulo-web" value="SALUD Y BIENESTAR INTEGRAL"
+                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-slate-300 mb-2">URL Foto de Perfil / Fondo (Cloudinary)</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="url-foto" placeholder="https://res.cloudinary.com/..."
+                            class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 text-sm focus:outline-none focus:border-purple-500">
+                        <button type="button"
+                            class="px-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition-colors text-sm"><i
+                                class="fa-solid fa-upload"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h2
+                    class="text-sm font-semibold uppercase tracking-wider text-purple-400 border-b border-slate-800 pb-2">
+                    <i class="fa-solid fa-link mr-2"></i> Acciones del Bento Grid</h2>
+
+                <div>
+                    <label class="block text-sm text-slate-300 mb-2"><i
+                            class="fa-brands fa-whatsapp text-emerald-400 mr-1.5"></i> Enlace de WhatsApp
+                        (Citas)</label>
+                    <input type="url" id="link-whatsapp" placeholder="https://wa.me/..."
+                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-slate-300 mb-2"><i
+                            class="fa-solid fa-location-dot text-rose-400 mr-1.5"></i> Enlace de Ubicación (Google
+                        Maps)</label>
+                    <input type="url" id="link-mapa" placeholder="https://maps.google.com/..."
+                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-slate-300 mb-2"><i
+                            class="fa-brands fa-instagram text-pink-400 mr-1.5"></i> Enlace de Instagram</label>
+                    <input type="url" id="link-instagram" placeholder="https://instagram.com/..."
+                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-slate-300 mb-2"><i
+                            class="fa-solid fa-star text-amber-400 mr-1.5"></i> Botón Inferior: Resultados
+                        Reales</label>
+                    <input type="url" id="link-resultados" placeholder="Enlace a landing o portafolio"
+                        class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 focus:outline-none focus:border-purple-500">
+                </div>
+            </div>
+
+            <div class="md:col-span-2 border-t border-slate-800 pt-6 mt-4">
+                <button type="submit" id="btn-guardar"
+                    class="w-full md:w-auto float-right py-3.5 px-8 rounded-xl bg-purple-600 hover:bg-purple-500 active:bg-purple-700 font-medium tracking-wide transition-all shadow-lg shadow-purple-600/20 active:scale-[0.98]">
+                    <i class="fa-solid fa-floppy-disk mr-2"></i> Guardar Cambios en Vivo
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const loginCard = document.getElementById('login-card');
+        const dashboardCard = document.getElementById('dashboard-card');
+        const loginForm = document.getElementById('login-form');
+        const passwordInput = document.getElementById('password');
+        const btnLogout = document.getElementById('btn-logout');
+
+        // LA CLAVE MAESTRA ESTÁ AQUÍ
+        const CLAVE_SECRETA = 'admin';
+
+        // Al presionar el botón de Entrar
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (passwordInput.value === CLAVE_SECRETA) {
+                // Si la clave es correcta, oculta el candado y muestra el panel
+                loginCard.classList.add('hidden');
+                dashboardCard.classList.remove('hidden');
+            } else {
+                // Si es incorrecta, muestra error y limpia la caja
+                alert('Clave incorrecta. Acceso denegado.');
+                passwordInput.value = '';
+            }
+        });
+
+        // Al presionar el botón de Cerrar Sesión
+        btnLogout.addEventListener('click', () => {
+            dashboardCard.classList.add('hidden');
+            loginCard.classList.remove('hidden');
+            passwordInput.value = '';
+        });
+
+        // Prevenir que el panel recargue la página al guardar (temporal hasta conectar Supabase)
+        document.getElementById('config-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Listo para conectar con la base de datos!');
+        });
+    </script>
+</body>
+
+</html>
