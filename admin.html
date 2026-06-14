@@ -54,10 +54,7 @@
             display: none;
         }
     </style>
-    <!-- Cloudinary Upload Widget -->
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-    <!-- Supabase JS v2 (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 
 <body
@@ -85,7 +82,6 @@
 
     <div id="dashboard-card"
         class="hidden w-full max-w-7xl h-[94vh] mx-4 bg-slate-900/80 border border-slate-800 rounded-3xl backdrop-blur-xl shadow-2xl transition-all duration-300 flex flex-col overflow-hidden">
-
         <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/50">
             <div class="flex items-center gap-4">
                 <span
@@ -184,8 +180,7 @@
                             <i class="fa-solid fa-plus mr-2"></i>Añadir Botón
                         </button>
                     </div>
-                    <div class="space-y-3" id="bento-list">
-                    </div>
+                    <div class="space-y-3" id="bento-list"></div>
                 </div>
 
                 <div id="tab-secciones" class="tab-content hidden space-y-6 max-w-3xl">
@@ -227,47 +222,7 @@
                         <div
                             class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
                             <div class="flex-1">
-                                <h3 class="font-medium">Galería (Resultados)</h3>
-                            </div>
-                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
-                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
-                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                            </div>
-                        </div>
-                        <div
-                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
-                            <div class="flex-1">
-                                <h3 class="font-medium">Testimoniales</h3>
-                            </div>
-                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
-                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
-                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                            </div>
-                        </div>
-                        <div
-                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
-                            <div class="flex-1">
                                 <h3 class="font-medium">Blog / Noticias</h3>
-                            </div>
-                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
-                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
-                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                            </div>
-                        </div>
-                        <div
-                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
-                            <div class="flex-1">
-                                <h3 class="font-medium">Contacto y CTA</h3>
-                            </div>
-                            <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
-                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
-                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                            </div>
-                        </div>
-                        <div
-                            class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800">
-                            <div class="flex-1">
-                                <h3 class="font-medium">Pie de Página (Footer)</h3>
                             </div>
                             <div class="relative inline-block w-12 mr-2"><input type="checkbox" checked
                                     class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" /><label
@@ -279,12 +234,9 @@
 
                 <div id="tab-textos" class="tab-content hidden space-y-6 max-w-6xl">
                     <h2 class="text-xl font-bold mb-2">Editor Maestro de Contenidos</h2>
-                    <p class="text-sm text-slate-400 mb-6">Despliega cada sección para editar textos e imágenes de la
-                        web.</p>
-
                     <div class="space-y-4">
 
-                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden" open>
                             <summary
                                 class="flex justify-between items-center font-medium cursor-pointer p-5 text-purple-400 hover:bg-slate-800/50 transition">
                                 <span><i class="fa-solid fa-home mr-2"></i> 1. Portada (Hero)</span><span
@@ -294,44 +246,23 @@
                             <div class="p-5 border-t border-slate-800 grid gap-6">
                                 <div class="grid md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-1">
-                                            Nombre Principal
-                                            <span class="flex gap-2 text-slate-600"><i
-                                                    class="fa-solid fa-arrow-up cursor-pointer hover:text-purple-400"
-                                                    title="Subir"></i><i
-                                                    class="fa-solid fa-arrow-down cursor-pointer hover:text-purple-400"
-                                                    title="Bajar"></i><i
-                                                    class="fa-solid fa-eye text-emerald-400 cursor-pointer ml-1"
-                                                    title="Ocultar/Mostrar"></i></span>
-                                        </label>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-1">Nombre
+                                            Principal</label>
                                         <input type="text" value="DRA. DANIELA DELGADO"
                                             class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none focus:border-purple-500 text-sm font-serif">
                                     </div>
                                     <div>
-                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-1">
-                                            Especialidad (Subtítulo)
-                                            <span class="flex gap-2 text-slate-600"><i
-                                                    class="fa-solid fa-arrow-up cursor-pointer hover:text-purple-400"
-                                                    title="Subir"></i><i
-                                                    class="fa-solid fa-arrow-down cursor-pointer hover:text-purple-400"
-                                                    title="Bajar"></i><i
-                                                    class="fa-solid fa-eye text-emerald-400 cursor-pointer ml-1"
-                                                    title="Ocultar/Mostrar"></i></span>
-                                        </label>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-1">Especialidad
+                                            (Subtítulo)</label>
                                         <input type="text" value="SALUD Y BIENESTAR INTEGRAL"
                                             class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none focus:border-purple-500 text-sm">
                                     </div>
                                     <div class="col-span-2">
-                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-1">
-                                            Misión / Frase en Tarjeta
-                                            <span class="flex gap-2 text-slate-600"><i
-                                                    class="fa-solid fa-arrow-up cursor-pointer hover:text-purple-400"
-                                                    title="Subir"></i><i
-                                                    class="fa-solid fa-arrow-down cursor-pointer hover:text-purple-400"
-                                                    title="Bajar"></i><i
-                                                    class="fa-solid fa-eye text-emerald-400 cursor-pointer ml-1"
-                                                    title="Ocultar/Mostrar"></i></span>
-                                        </label>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-1">Misión
+                                            / Frase en Tarjeta</label>
                                         <input type="text"
                                             value='"Cuidar de tu salud integral es realzar la belleza que nace de tu bienestar."'
                                             class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none focus:border-purple-500 text-sm italic">
@@ -339,22 +270,18 @@
                                 </div>
                                 <div class="grid md:grid-cols-2 gap-4 border-t border-slate-800 pt-5">
                                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-2">
-                                            <span class="font-bold text-slate-300"><i
-                                                    class="fa-solid fa-images mr-1"></i> Botón: Resultados Reales</span>
-                                        </label>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-2"><span
+                                                class="font-bold text-slate-300">Botón: Resultados Reales</span></label>
                                         <input type="text" value="RESULTADOS REALES"
                                             class="w-full bg-transparent border-b border-slate-700 pb-1 outline-none text-sm font-bold mb-3">
                                         <input type="text" value="ANTES & DESPUÉS · CASOS DE ÉXITO"
-                                            class="w-full bg-transparent border-b border-slate-700 pb-1 outline-none text-xs text-slate-400"
-                                            title="Subtítulo del botón">
+                                            class="w-full bg-transparent border-b border-slate-700 pb-1 outline-none text-xs text-slate-400">
                                     </div>
                                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-2">
-                                            <span class="font-bold text-slate-300"><i
-                                                    class="fa-solid fa-address-card mr-1"></i> Botón: Guardar
-                                                Contacto</span>
-                                        </label>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-2"><span
+                                                class="font-bold text-slate-300">Botón: Guardar Contacto</span></label>
                                         <input type="text" value="GUARDAR CONTACTO"
                                             class="w-full bg-transparent border-b border-slate-700 pb-1 outline-none text-sm font-bold">
                                     </div>
@@ -362,24 +289,22 @@
                                 <div
                                     class="grid md:grid-cols-2 gap-4 border-t border-slate-800 pt-5 bg-slate-900/50 -mx-5 px-5 pb-5 rounded-b-2xl">
                                     <div>
-                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-2">
-                                            <span class="font-bold">Instrucción Inferior</span>
-                                        </label>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-2"><span
+                                                class="font-bold">Instrucción Inferior</span></label>
                                         <input type="text" value="TOQUE EN LOS ICONOS"
                                             class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm uppercase">
                                     </div>
                                     <div>
-                                        <label class="flex items-center justify-between text-xs text-slate-500 mb-2">
-                                            <span class="font-bold text-purple-400">Firma / Versión (Con Link)</span>
-                                        </label>
+                                        <label
+                                            class="flex items-center justify-between text-xs text-slate-500 mb-2"><span
+                                                class="font-bold text-purple-400">Firma / Versión (Con
+                                                Link)</span></label>
                                         <div class="flex flex-col gap-2">
                                             <input type="text" value="v2026.1 · Dra. Daniela Delgado"
                                                 class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm font-bold text-white">
-                                            <div class="flex items-center gap-2">
-                                                <i class="fa-solid fa-link text-purple-400 text-xs"></i>
-                                                <input type="url" placeholder="https://tu-enlace.com"
-                                                    class="w-full bg-purple-900/20 border border-purple-500/60 focus:border-purple-400 p-2 rounded-lg outline-none text-xs text-purple-200">
-                                            </div>
+                                            <input type="url" placeholder="https://tu-enlace.com"
+                                                class="w-full bg-purple-900/20 border border-purple-500/60 focus:border-purple-400 p-2 rounded-lg outline-none text-xs text-purple-200">
                                         </div>
                                     </div>
                                 </div>
@@ -433,25 +358,12 @@
                                     </div>
                                     <div class="col-span-2"><label class="block text-xs text-slate-500 mb-1">Párrafo
                                             1</label><textarea rows="2"
-                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">La Dra. Daniela Delgado es especialista en Medicina Estética y Bienestar Integral, con más de diez años dedicados a acompañar a sus pacientes en el camino hacia una salud plena y duradera.</textarea>
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">La Dra. Daniela Delgado es especialista...</textarea>
                                     </div>
                                     <div class="col-span-2"><label class="block text-xs text-slate-500 mb-1">Párrafo
                                             2</label><textarea rows="3"
-                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">Su filosofía es sencilla: la belleza auténtica florece cuando el cuerpo y la mente están en equilibrio. Por eso, cada tratamiento parte de una evaluación integral que combina medicina basada en evidencia con un trato cercano y personalizado.</textarea>
+                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">Su filosofía es sencilla...</textarea>
                                     </div>
-                                </div>
-                                <div class="border-t border-slate-800 pt-5">
-                                    <div class="flex justify-between items-center mb-4">
-                                        <div>
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Tarjetas de Credenciales</h4>
-                                        </div>
-                                        <button id="btn-add-credencial" type="button"
-                                            class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 text-xs font-medium transition-all">
-                                            <i class="fa-solid fa-plus mr-1"></i>Añadir
-                                        </button>
-                                    </div>
-                                    <div class="space-y-3" id="credenciales-list"></div>
                                 </div>
                                 <div
                                     class="grid md:grid-cols-2 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800 mt-2">
@@ -482,32 +394,13 @@
                                         class="fa-solid fa-chevron-down"></i></span>
                             </summary>
                             <div class="p-5 border-t border-slate-800 grid gap-6">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label
-                                            class="flex items-center justify-between text-xs text-slate-500 mb-1">Título
-                                            Principal</label>
-                                        <input type="text" value="Nuestros Tratamientos."
-                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
-                                    </div>
-                                    <div>
-                                        <label
-                                            class="flex items-center justify-between text-xs text-slate-500 mb-1">Texto
-                                            Introductorio</label>
-                                        <textarea rows="2"
-                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none text-sm">Cada servicio está diseñado para llevarte a tu mejor versión, combinando ciencia médica con bienestar integral.</textarea>
-                                    </div>
-                                </div>
                                 <div class="border-t border-slate-800 pt-5">
                                     <div class="flex justify-between items-center mb-4">
-                                        <div>
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Tarjetas de Tratamientos</h4>
-                                        </div>
+                                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Tarjetas
+                                            de Tratamientos</h4>
                                         <button id="btn-add-servicio" type="button"
-                                            class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20 text-xs font-medium transition-all">
-                                            <i class="fa-solid fa-plus mr-1"></i>Añadir
-                                        </button>
+                                            class="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20 text-xs font-medium transition-all"><i
+                                                class="fa-solid fa-plus mr-1"></i>Añadir</button>
                                     </div>
                                     <div class="space-y-3" id="servicios-list"></div>
                                 </div>
@@ -522,20 +415,13 @@
                                         class="fa-solid fa-chevron-down"></i></span>
                             </summary>
                             <div class="p-5 border-t border-slate-800 grid gap-6">
-                                <div><label class="block text-xs text-slate-500 mb-1">Título de la Sección</label><input
-                                        type="text" value="Resultados Reales."
-                                        class="w-full md:w-1/2 bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg">
-                                </div>
                                 <div class="border-t border-slate-800 pt-5">
                                     <div class="flex justify-between items-center mb-4">
-                                        <div>
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Imágenes del Grid</h4>
-                                        </div>
+                                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Imágenes
+                                            del Grid</h4>
                                         <button id="btn-add-galeria" type="button"
-                                            class="px-3 py-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 text-xs font-medium transition-all">
-                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Imagen
-                                        </button>
+                                            class="px-3 py-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 text-xs font-medium transition-all"><i
+                                                class="fa-solid fa-plus mr-1"></i>Añadir Imagen</button>
                                     </div>
                                     <div class="space-y-3" id="galeria-list"></div>
                                 </div>
@@ -549,41 +435,22 @@
                                     class="transition group-open:rotate-180"><i
                                         class="fa-solid fa-chevron-down"></i></span>
                             </summary>
-                            <div class="p-5 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-5 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-4"
+                                id="testimoniales-list">
                                 <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-2">
                                     <input type="text" value="★★★★★"
-                                        class="w-full text-amber-400 bg-transparent text-sm outline-none"><textarea
-                                        rows="3"
-                                        class="w-full text-xs text-slate-300 bg-transparent resize-none outline-none italic">"La Dra. Delgado transformó no solo mi piel sino mi confianza..."</textarea><input
-                                        type="text" value="María G."
-                                        class="w-full font-bold bg-transparent text-sm outline-none border-b border-slate-700"><input
-                                        type="text" value="Paciente · Medicina Estética"
+                                        class="w-full text-amber-400 bg-transparent text-sm outline-none">
+                                    <input type="text" value="María G."
+                                        class="w-full font-bold bg-transparent text-sm outline-none border-b border-slate-700">
+                                    <input type="text" value="Paciente · Medicina Estética"
                                         class="w-full text-xs text-slate-500 bg-transparent outline-none">
-                                </div>
-                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-2">
-                                    <input type="text" value="★★★★★"
-                                        class="w-full text-amber-400 bg-transparent text-sm outline-none"><textarea
-                                        rows="3"
-                                        class="w-full text-xs text-slate-300 bg-transparent resize-none outline-none italic">"Por fin encontré una doctora que me escucha y entiende..."</textarea><input
-                                        type="text" value="Sofía R."
-                                        class="w-full font-bold bg-transparent text-sm outline-none border-b border-slate-700"><input
-                                        type="text" value="Paciente · Bienestar Integral"
-                                        class="w-full text-xs text-slate-500 bg-transparent outline-none">
-                                </div>
-                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col gap-2">
-                                    <input type="text" value="★★★★★"
-                                        class="w-full text-amber-400 bg-transparent text-sm outline-none"><textarea
-                                        rows="3"
-                                        class="w-full text-xs text-slate-300 bg-transparent resize-none outline-none italic">"Profesional, empática y con resultados visibles..."</textarea><input
-                                        type="text" value="Andrea L."
-                                        class="w-full font-bold bg-transparent text-sm outline-none border-b border-slate-700"><input
-                                        type="text" value="Paciente · Nutrición Clínica"
-                                        class="w-full text-xs text-slate-500 bg-transparent outline-none">
+                                    <textarea rows="3"
+                                        class="w-full text-xs text-slate-300 bg-transparent resize-none outline-none italic">"La Dra. Delgado transformó no solo mi piel..."</textarea>
                                 </div>
                             </div>
                         </details>
 
-                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden" open>
+                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
                             <summary
                                 class="flex justify-between items-center font-medium cursor-pointer p-5 text-cyan-400 hover:bg-slate-800/50 transition bg-slate-800/20">
                                 <span><i class="fa-solid fa-newspaper mr-2"></i> 7. Sección Blog</span><span
@@ -591,275 +458,15 @@
                                         class="fa-solid fa-chevron-down"></i></span>
                             </summary>
                             <div class="p-5 border-t border-slate-800 grid gap-6">
-
-                                <div class="grid md:grid-cols-3 gap-4">
-                                    <div class="md:col-span-2">
-                                        <label class="block text-xs text-slate-500 mb-1">Título Principal</label>
-                                        <input type="text" value="Salud & Conocimiento."
-                                            class="w-full bg-slate-950 border border-slate-700 p-2.5 rounded-lg outline-none font-serif text-lg focus:border-cyan-500">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs text-slate-500 mb-1">Botón "Ver Todos"</label>
-                                        <div class="flex flex-col gap-2">
-                                            <input type="text" value="VER TODOS →"
-                                                class="w-full bg-slate-950 border border-slate-700 p-2 rounded-lg outline-none text-xs focus:border-cyan-500"
-                                                title="Texto del botón">
-                                            <input type="text" value="#blog"
-                                                class="w-full bg-slate-950 border border-slate-700 p-2 rounded-lg outline-none text-xs font-mono text-slate-400 focus:border-cyan-500"
-                                                title="Enlace del botón">
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="border-t border-slate-800 pt-5">
                                     <div class="flex justify-between items-center mb-4">
-                                        <div>
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Artículos Destacados</h4>
-                                            <p class="text-[10px] text-slate-500 mt-0.5">Añade, reordena y edita las
-                                                tarjetas del blog (imagen, categoría, título, etc).</p>
-                                        </div>
+                                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Artículos
+                                            Destacados</h4>
                                         <button id="btn-add-blog" type="button"
-                                            class="px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500/20 text-xs font-medium transition-all">
-                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Artículo
-                                        </button>
+                                            class="px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500/20 text-xs font-medium transition-all"><i
+                                                class="fa-solid fa-plus mr-1"></i>Añadir Artículo</button>
                                     </div>
-                                    <div class="space-y-3" id="blog-list">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </details>
-
-                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden" open>
-                            <summary
-                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-teal-400 hover:bg-slate-800/50 transition bg-slate-800/20">
-                                <span><i class="fa-solid fa-paper-plane mr-2"></i> 8. Contacto y Cierre
-                                    (CTA)</span><span class="transition group-open:rotate-180"><i
-                                        class="fa-solid fa-chevron-down"></i></span>
-                            </summary>
-                            <div class="p-5 border-t border-slate-800 grid gap-8">
-
-                                <div>
-                                    <h4
-                                        class="text-sm font-bold text-slate-300 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                        <i class="fa-solid fa-bullhorn text-teal-400"></i> Franja Superior (Call to
-                                        Action)
-                                    </h4>
-                                    <div
-                                        class="grid md:grid-cols-3 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
-                                        <div>
-                                            <label
-                                                class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Subtítulo
-                                                Pequeño</label>
-                                            <input type="text" value="¿Lista para empezar?"
-                                                class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none text-sm pb-1">
-                                        </div>
-                                        <div>
-                                            <label
-                                                class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Título
-                                                Grande</label>
-                                            <input type="text" value="Tu salud, tu bienestar."
-                                                class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none font-serif text-lg pb-1">
-                                        </div>
-                                        <div>
-                                            <label
-                                                class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Texto
-                                                del Botón</label>
-                                            <input type="text" value="Agendar Consulta"
-                                                class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none text-sm font-bold text-purple-400 pb-1">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-800">
-                                    <div class="space-y-4">
-                                        <h4
-                                            class="text-sm font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2">
-                                            <i class="fa-solid fa-message text-teal-400"></i> Textos Principales
-                                        </h4>
-                                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-4">
-                                            <div>
-                                                <label
-                                                    class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Título
-                                                    de la Sección</label>
-                                                <input type="text" value="Hablemos hoy."
-                                                    class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none font-serif text-xl pb-1">
-                                            </div>
-                                            <div>
-                                                <label
-                                                    class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Párrafo
-                                                    Introductorio</label>
-                                                <textarea rows="3"
-                                                    class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none text-sm resize-none pb-1">Agenda tu consulta inicial y da el primer paso hacia tu bienestar integral. Estoy aquí para acompañarte en cada etapa de tu proceso.</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="space-y-4">
-                                        <h4
-                                            class="text-sm font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2">
-                                            <i class="fa-solid fa-server text-teal-400"></i> Configuración del
-                                            Formulario
-                                        </h4>
-                                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                                            <label
-                                                class="block text-[10px] uppercase tracking-wider text-slate-500 mb-2">Enviar
-                                                datos a (Email o Webhook URL)</label>
-                                            <div class="flex items-center gap-2">
-                                                <i class="fa-solid fa-link text-teal-400"></i>
-                                                <input type="text"
-                                                    value="https://formsubmit.co/contacto@dradanieladelgado.com"
-                                                    class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 outline-none text-sm font-mono pb-1"
-                                                    title="URL donde se enviarán los datos del formulario">
-                                            </div>
-                                            <p class="text-[10px] text-slate-500 mt-2">Usa servicios como FormSubmit
-                                                para recibir los correos.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="grid md:grid-cols-2 gap-8 pt-6 border-t border-slate-800">
-                                    <div>
-                                        <div class="flex justify-between items-center mb-4">
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Medios de Contacto</h4>
-                                            <button id="btn-add-contacto" type="button"
-                                                class="px-3 py-1.5 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20 hover:bg-teal-500/20 text-xs font-medium transition-all">
-                                                <i class="fa-solid fa-plus mr-1"></i>Añadir
-                                            </button>
-                                        </div>
-                                        <div class="space-y-3" id="contacto-list">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div class="flex justify-between items-center mb-4">
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Botones de Redes Sociales</h4>
-                                            <button id="btn-add-social" type="button"
-                                                class="px-3 py-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 text-xs font-medium transition-all">
-                                                <i class="fa-solid fa-plus mr-1"></i>Añadir
-                                            </button>
-                                        </div>
-                                        <div class="space-y-3" id="social-list">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </details>
-
-                        <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden" open>
-                            <summary
-                                class="flex justify-between items-center font-medium cursor-pointer p-5 text-fuchsia-400 hover:bg-slate-800/50 transition bg-slate-800/20">
-                                <span><i class="fa-solid fa-arrow-down mr-2"></i> 9. Pie de Página (Footer)</span><span
-                                    class="transition group-open:rotate-180"><i
-                                        class="fa-solid fa-chevron-down"></i></span>
-                            </summary>
-                            <div class="p-5 border-t border-slate-800 grid gap-8">
-
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label
-                                            class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Color
-                                            de Fondo del Footer</label>
-                                        <div class="flex gap-2">
-                                            <input type="color" value="#1A1228"
-                                                class="w-10 h-10 rounded border border-slate-700 bg-transparent cursor-pointer p-0.5">
-                                            <input type="text" value="#1A1228"
-                                                class="w-full bg-slate-950 border border-slate-700 focus:border-fuchsia-500 text-sm text-slate-300 px-3 rounded outline-none font-mono">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label
-                                            class="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Frase
-                                            / Eslogan</label>
-                                        <textarea rows="2"
-                                            class="w-full bg-slate-950 border border-slate-700 focus:border-fuchsia-500 text-xs text-slate-300 p-2 rounded outline-none resize-none">"La belleza auténtica florece cuando el cuerpo y la mente están en equilibrio."</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="border-t border-slate-800 pt-5">
-                                    <div class="flex justify-between items-center mb-4">
-                                        <div>
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Columna 1: Navegación</h4>
-                                            <input type="text" value="NAVEGACIÓN"
-                                                class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 outline-none text-xs text-slate-300 mt-1 pb-0.5"
-                                                title="Título de la columna">
-                                        </div>
-                                        <button id="btn-add-nav-footer" type="button"
-                                            class="px-3 py-1.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20 hover:bg-fuchsia-500/20 text-xs font-medium transition-all">
-                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Link
-                                        </button>
-                                    </div>
-                                    <div class="space-y-2" id="nav-footer-list">
-                                    </div>
-                                </div>
-
-                                <div class="border-t border-slate-800 pt-5">
-                                    <div class="flex justify-between items-center mb-4">
-                                        <div>
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Columna 2: Servicios</h4>
-                                            <input type="text" value="SERVICIOS"
-                                                class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 outline-none text-xs text-slate-300 mt-1 pb-0.5"
-                                                title="Título de la columna">
-                                        </div>
-                                        <button id="btn-add-serv-footer" type="button"
-                                            class="px-3 py-1.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20 hover:bg-fuchsia-500/20 text-xs font-medium transition-all">
-                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Link
-                                        </button>
-                                    </div>
-                                    <div class="space-y-2" id="serv-footer-list">
-                                    </div>
-                                </div>
-
-                                <div class="border-t border-slate-800 pt-5">
-                                    <div class="flex justify-between items-center mb-4">
-                                        <div>
-                                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                                Columna 3: Contacto y Redes</h4>
-                                            <input type="text" value="CONTACTO"
-                                                class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 outline-none text-xs text-slate-300 mt-1 pb-0.5"
-                                                title="Título de la columna">
-                                        </div>
-                                        <button id="btn-add-social-footer" type="button"
-                                            class="px-3 py-1.5 rounded-lg bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20 hover:bg-fuchsia-500/20 text-xs font-medium transition-all">
-                                            <i class="fa-solid fa-plus mr-1"></i>Añadir Red Social
-                                        </button>
-                                    </div>
-
-                                    <div
-                                        class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 bg-slate-950 p-3 rounded-xl border border-slate-800">
-                                        <div><label class="text-[9px] uppercase text-slate-500">Teléfono</label><input
-                                                type="text" value="+52 123 456 7890"
-                                                class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs outline-none pb-0.5 mt-1">
-                                        </div>
-                                        <div><label class="text-[9px] uppercase text-slate-500">Email</label><input
-                                                type="text" value="contacto@dradanieladelgado.com"
-                                                class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs outline-none pb-0.5 mt-1">
-                                        </div>
-                                        <div><label class="text-[9px] uppercase text-slate-500">Dirección</label><input
-                                                type="text" value="Av. Salud 123, Col. Centro, CDMX"
-                                                class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs outline-none pb-0.5 mt-1">
-                                        </div>
-                                    </div>
-
-                                    <div class="space-y-2" id="social-footer-list">
-                                    </div>
-                                </div>
-
-                                <div class="border-t border-slate-800 pt-5 grid md:grid-cols-2 gap-4">
-                                    <div><label class="text-[10px] uppercase text-slate-500">Copyright</label><input
-                                            type="text"
-                                            value="© 2026 Dra. Daniela Delgado · Todos los derechos reservados"
-                                            class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs pb-1 outline-none text-slate-300">
-                                    </div>
-                                    <div><label class="text-[10px] uppercase text-slate-500">Créditos /
-                                            Versión</label><input type="text" value="v2026.1 · Diseño High-End"
-                                            class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs pb-1 outline-none md:text-right text-slate-400">
-                                    </div>
+                                    <div class="space-y-3" id="blog-list"></div>
                                 </div>
                             </div>
                         </details>
@@ -874,755 +481,184 @@
     <script>
         // ============================================================
         // SUPABASE — Configuración de conexión
-        // ⚠️  Reemplaza los valores antes de publicar
         // ============================================================
-        const SUPABASE_URL = 'https://jzvktasmxbgwnvbofwza.supabase.co';       // ej. https://xyzabc.supabase.co
-        const SUPABASE_ANON = 'sb_publishable_VHg5K_dqA7z8KBim25P4RA_Ddsd-zmD';  // clave pública (anon / public)
+        const SUPABASE_URL = 'https://jzvktasmxbgwnvbofwza.supabase.co';
+        const SUPABASE_ANON = 'sb_publishable_VHg5K_dqA7z8KBim25P4RA_Ddsd-zmD';
 
-        // Inicializa el cliente de Supabase de forma segura.
-        // Si falla (red, credenciales, CDN), el error queda contenido
-        // y el login basado en contraseña sigue funcionando sin problema.
         let supabaseClient = null;
         try {
             if (SUPABASE_URL && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
-                // La UMD del CDN expone el objeto global como `supabase` (no `window.supabase`)
                 supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-                console.info('[Supabase] ✅ Cliente inicializado correctamente.');
-            } else {
-                console.warn('[Supabase] ⚠️  Credenciales no configuradas. Reemplaza SUPABASE_URL y SUPABASE_ANON.');
             }
         } catch (err) {
-            console.error('[Supabase] ❌ Error al inicializar el cliente. El login local sigue activo.', err);
+            console.error('[Supabase] Error inicializando', err);
         }
-        // ============================================================
 
-        // Array Global de Íconos para los clientes (Visual y amigable)
+        // ============================================================
+        // UI FUNCIONES GLOBALES
+        // ============================================================
+        window.moverArr = function (arr, index, dir, renderFn) {
+            const ni = index + dir;
+            if (ni < 0 || ni >= arr.length) return;
+            const temp = arr[index]; arr[index] = arr[ni]; arr[ni] = temp;
+            renderFn();
+        };
+        window.eliminarArr = function (arr, id, renderFn) {
+            const idx = arr.findIndex(item => item.id === id);
+            if (idx !== -1) arr.splice(idx, 1);
+            renderFn();
+        };
+
         const GALERIA_ICONOS = [
-            { class: 'fa-solid fa-user-doctor', label: '👩‍⚕️ Médico / Doctora' },
-            { class: 'fa-solid fa-stethoscope', label: '🩺 Estetoscopio' },
+            { class: 'fa-solid fa-user-doctor', label: '👩‍⚕️ Médico' },
             { class: 'fa-solid fa-heart', label: '❤️ Corazón' },
-            { class: 'fa-solid fa-spa', label: '🌿 Spa / Relajación' },
-            { class: 'fa-solid fa-face-smile', label: '✨ Rostro / Estética' },
-            { class: 'fa-solid fa-leaf', label: '🍃 Hoja / Natural' },
-            { class: 'fa-solid fa-sun', label: '☀️ Sol / Piel' },
-            { class: 'fa-solid fa-apple-whole', label: '🍎 Nutrición' },
-            { class: 'fa-solid fa-shield-heart', label: '🛡️ Prevención' },
-            { class: 'fa-solid fa-syringe', label: '💉 Tratamiento' },
-            { class: 'fa-solid fa-capsules', label: '💊 Pastillas' },
-            { class: 'fa-brands fa-whatsapp', label: '💬 WhatsApp' },
-            { class: 'fa-solid fa-phone', label: '📞 Teléfono' },
-            { class: 'fa-regular fa-envelope', label: '✉️ Email' },
-            { class: 'fa-solid fa-location-dot', label: '📍 Ubicación' },
-            { class: 'fa-brands fa-instagram', label: '📸 Instagram' },
-            { class: 'fa-brands fa-tiktok', label: '🎵 TikTok' },
-            { class: 'fa-brands fa-facebook', label: '📘 Facebook' },
-            { class: 'fa-brands fa-youtube', label: '▶️ YouTube' },
-            { class: 'fa-brands fa-linkedin-in', label: '💼 LinkedIn' },
-            { class: 'fa-solid fa-link', label: '🔗 Enlace Web' },
-            { class: 'fa-solid fa-certificate', label: '📜 Certificado' },
-            { class: 'fa-solid fa-user-graduate', label: '🎓 Graduado/a' },
+            { class: 'fa-solid fa-spa', label: '🌿 Spa' },
             { class: 'fa-solid fa-star', label: '⭐ Estrella' }
         ];
 
         function renderIconOptions(selectedClass) {
-            return GALERIA_ICONOS.map(ic =>
-                `<option value="${ic.class}" ${selectedClass === ic.class ? 'selected' : ''}>${ic.label}</option>`
-            ).join('');
+            return GALERIA_ICONOS.map(ic => `<option value="${ic.class}" ${selectedClass === ic.class ? 'selected' : ''}>${ic.label}</option>`).join('');
         }
 
-        // Login & Tabs
-        document.getElementById('login-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (document.getElementById('password').value === 'admin') {
-                document.getElementById('login-card').classList.add('hidden');
-                document.getElementById('dashboard-card').classList.remove('hidden');
-            } else { alert('Clave incorrecta'); }
-        });
-        document.getElementById('btn-logout').addEventListener('click', () => {
-            document.getElementById('dashboard-card').classList.add('hidden');
-            document.getElementById('login-card').classList.remove('hidden');
-            document.getElementById('password').value = '';
-        });
-
+        // Tabs
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                tabBtns.forEach(b => {
-                    b.classList.remove('bg-purple-600/10', 'text-purple-400', 'border-purple-500/20');
-                    b.classList.add('text-slate-400');
-                });
-                btn.classList.add('bg-purple-600/10', 'text-purple-400', 'border-purple-500/20');
-                btn.classList.remove('text-slate-400');
+                tabBtns.forEach(b => { b.classList.remove('bg-purple-600/10', 'text-purple-400'); b.classList.add('text-slate-400'); });
+                btn.classList.add('bg-purple-600/10', 'text-purple-400'); btn.classList.remove('text-slate-400');
                 tabContents.forEach(content => content.classList.add('hidden'));
                 document.getElementById(btn.getAttribute('data-target')).classList.remove('hidden');
             });
         });
 
         // ==========================================
-        // LÓGICAS ANTERIORES (BENTO, SERVICIOS, ETC)
+        // ARRAYS GLOBALES Y RENDERERS
         // ==========================================
-        const bentoList = document.getElementById('bento-list');
-        let botonesBento = [
-            { id: 1, tipo: 'whatsapp', icono: 'fa-brands fa-whatsapp', color: 'text-emerald-400', titulo: 'Agendar Cita Rápida', link: 'https://wa.me/...' },
-            { id: 2, tipo: 'email', icono: 'fa-regular fa-envelope', color: 'text-blue-400', titulo: 'Soporte Médico', link: 'mailto:contacto@...' },
-            { id: 3, tipo: 'mapa', icono: 'fa-solid fa-location-dot', color: 'text-rose-400', titulo: 'Ubicación y Citas', link: 'https://maps.google...' }
-        ];
-
-        function renderBentoGrid() {
-            if (!bentoList) return;
-            bentoList.innerHTML = '';
-            botonesBento.forEach((boton, index) => {
-                const itemHTML = `
-                <div class="bento-item flex items-center gap-4 bg-slate-950 border border-slate-800 p-3 rounded-2xl group hover:border-slate-700">
-                    <div class="flex flex-col gap-1 text-slate-600 px-2">
-                        <button type="button" onclick="moverBoton(${index}, -1)" class="hover:text-purple-400"><i class="fa-solid fa-chevron-up"></i></button>
-                        <button type="button" onclick="moverBoton(${index}, 1)" class="hover:text-purple-400"><i class="fa-solid fa-chevron-down"></i></button>
-                    </div>
-                    <div class="w-12 h-12 rounded-xl bg-slate-900 flex items-center justify-center ${boton.color} border border-slate-800">
-                        <i class="${boton.icono} text-xl" id="b-preview-${boton.id}"></i>
-                    </div>
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <div>
-                            <label class="text-[10px] uppercase tracking-wider text-slate-500">Ícono Visual</label>
-                            <div class="bg-slate-900 border border-slate-700 rounded px-2">
-                                <select onchange="document.getElementById('b-preview-${boton.id}').className = this.value + ' text-xl'" class="w-full bg-transparent text-xs text-purple-400 py-2 outline-none cursor-pointer">
-                                    ${renderIconOptions(boton.icono)}
-                                </select>
-                            </div>
-                        </div>
-                        <div><label class="text-[10px] uppercase tracking-wider text-slate-500">Título</label><input type="text" value="${boton.titulo}" class="w-full bg-transparent border-b border-slate-800 focus:border-purple-500 text-sm text-slate-200 pb-1 outline-none"></div>
-                        <div><label class="text-[10px] uppercase tracking-wider text-slate-500">Enlace (URL)</label><input type="text" value="${boton.link}" class="w-full bg-transparent border-b border-slate-800 focus:border-purple-500 text-sm text-slate-400 pb-1 outline-none font-mono"></div>
-                    </div>
-                    <div class="flex items-center gap-2 px-2 border-l border-slate-800">
-                        <button type="button" onclick="eliminarBoton(${boton.id})" class="w-8 h-8 rounded-lg text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>`;
-                bentoList.insertAdjacentHTML('beforeend', itemHTML);
-            });
-        }
-
-        document.getElementById('btn-add-bento')?.addEventListener('click', () => {
-            botonesBento.push({ id: Date.now(), icono: 'fa-solid fa-link', color: 'text-slate-400', titulo: 'Nuevo Botón', link: 'https://...' });
-            renderBentoGrid();
-        });
-        window.eliminarBoton = function (id) { botonesBento = botonesBento.filter(b => b.id !== id); renderBentoGrid(); }
-        window.moverBoton = function (index, dir) {
-            const ni = index + dir; if (ni < 0 || ni >= botonesBento.length) return;
-            const temp = botonesBento[index]; botonesBento[index] = botonesBento[ni]; botonesBento[ni] = temp; renderBentoGrid();
-        }
-        renderBentoGrid();
-
-        const credencialesList = document.getElementById('credenciales-list');
-        let listaCredenciales = [
-            { id: 1, icono: 'fa-solid fa-user-graduate', titulo: 'Médico Cirujano', subtitulo: 'Universidad Autónoma — Promoción Cum Laude' },
-            { id: 2, icono: 'fa-solid fa-certificate', titulo: 'Especialidad en Medicina Estética', subtitulo: 'Certificada · Colegio de Médicos Estéticos' },
-            { id: 3, icono: 'fa-solid fa-heart', titulo: 'Bienestar Integral', subtitulo: '+10 años de experiencia · +2,000 pacientes' }
-        ];
-
-        function renderCredenciales() {
-            if (!credencialesList) return;
-            credencialesList.innerHTML = '';
-            listaCredenciales.forEach((cred, index) => {
-                const itemHTML = `
-                <div class="flex items-center gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
-                    <div class="flex flex-col gap-1 text-slate-500 px-1">
-                        <button type="button" onclick="moverCredencial(${index}, -1)" class="hover:text-blue-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverCredencial(${index}, 1)" class="hover:text-blue-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
-                    </div>
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-3">
-                        <div class="md:col-span-3">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Ícono Visual</label>
-                            <div class="flex items-center gap-2 bg-slate-950 border border-slate-700 rounded px-2">
-                                <i class="${cred.icono} text-blue-400 text-xs w-4 text-center" id="c-preview-${cred.id}"></i>
-                                <select onchange="document.getElementById('c-preview-${cred.id}').className = this.value + ' text-blue-400 text-xs w-4 text-center'" class="w-full bg-transparent focus:border-blue-500 text-xs text-slate-300 py-1.5 outline-none cursor-pointer">
-                                    ${renderIconOptions(cred.icono)}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="md:col-span-4">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Título</label>
-                            <input type="text" value="${cred.titulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-blue-500 text-sm text-slate-200 pb-1 outline-none font-bold">
-                        </div>
-                        <div class="md:col-span-5">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Subtítulo / Descripción</label>
-                            <input type="text" value="${cred.subtitulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-blue-500 text-xs text-slate-400 pb-1 outline-none">
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2 px-2 border-l border-slate-700">
-                        <button type="button" class="w-7 h-7 rounded flex items-center justify-center text-emerald-500/70 hover:bg-slate-800 hover:text-emerald-400 transition-colors" title="Ocultar/Mostrar"><i class="fa-solid fa-eye"></i></button>
-                        <button type="button" onclick="eliminarCredencial(${cred.id})" class="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>`;
-                credencialesList.insertAdjacentHTML('beforeend', itemHTML);
-            });
-        }
-        document.getElementById('btn-add-credencial')?.addEventListener('click', () => { listaCredenciales.push({ id: Date.now(), icono: 'fa-solid fa-star', titulo: 'Nueva Credencial', subtitulo: 'Descripción breve...' }); renderCredenciales(); });
-        window.eliminarCredencial = function (id) { listaCredenciales = listaCredenciales.filter(c => c.id !== id); renderCredenciales(); }
-        window.moverCredencial = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaCredenciales.length) return; const temp = listaCredenciales[index]; listaCredenciales[index] = listaCredenciales[ni]; listaCredenciales[ni] = temp; renderCredenciales(); }
-        renderCredenciales();
+        let listaServicios = [];
+        let listaGaleria = [];
+        let listaBlog = [];
 
         const serviciosList = document.getElementById('servicios-list');
-        const SERVICIOS_FALLBACK = [
-            { id: 1, icono: 'fa-solid fa-user-doctor', titulo: 'Consulta Médica', desc: 'Evaluación integral de salud...', link: 'Ver más →' },
-            { id: 2, icono: 'fa-solid fa-face-smile', titulo: 'Estética Facial', desc: 'Tratamientos no invasivos...', link: 'Ver más →' },
-            { id: 3, icono: 'fa-solid fa-heart', titulo: 'Bienestar Integral', desc: 'Programa holístico...', link: 'Ver más →' }
-        ];
-        let listaServicios = [...SERVICIOS_FALLBACK];
-
         function renderServicios() {
             if (!serviciosList) return;
             serviciosList.innerHTML = '';
             listaServicios.forEach((srv, index) => {
                 const itemHTML = `
-                <div class="flex items-center gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
-                    <div class="flex flex-col gap-1 text-slate-500 px-1">
-                        <button type="button" onclick="moverServicio(${index}, -1)" class="hover:text-rose-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverServicio(${index}, 1)" class="hover:text-rose-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                <div class="flex items-center gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl">
+                    <div class="flex flex-col gap-1"><button onclick="moverArr(listaServicios, ${index}, -1, renderServicios)"><i class="fa-solid fa-chevron-up"></i></button></div>
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <select onchange="document.getElementById('s-preview-${srv.id}').className = this.value + ' text-rose-400 text-xs w-4'" class="w-full bg-slate-950 text-xs p-1.5 text-white">${renderIconOptions(srv.icono)}</select>
+                        <input type="text" value="${srv.titulo}" class="w-full bg-transparent border-b border-slate-700 text-sm text-white pb-1 outline-none" placeholder="Título">
+                        <input type="text" value="${srv.link}" class="w-full bg-transparent border-b border-slate-700 text-xs text-slate-400 pb-1 outline-none" placeholder="Link">
+                        <textarea rows="2" class="w-full bg-slate-950 border border-slate-700 text-xs text-slate-300 p-2 outline-none" placeholder="Descripción">${srv.descripcion}</textarea>
                     </div>
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-3">
-                        <div class="md:col-span-3">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Ícono Visual</label>
-                            <div class="flex items-center gap-2 bg-slate-950 border border-slate-700 rounded px-2">
-                                <i class="${srv.icono} text-rose-400 text-xs w-4 text-center" id="s-preview-${srv.id}"></i>
-                                <select onchange="document.getElementById('s-preview-${srv.id}').className = this.value + ' text-rose-400 text-xs w-4 text-center'" class="w-full bg-transparent focus:border-rose-500 text-xs text-slate-300 py-1.5 outline-none cursor-pointer">
-                                    ${renderIconOptions(srv.icono)}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="md:col-span-4">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Título del Tratamiento</label>
-                            <input type="text" value="${srv.titulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-rose-500 text-sm text-slate-200 pb-1 outline-none font-bold">
-                        </div>
-                        <div class="md:col-span-5">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Texto del Enlace</label>
-                            <input type="text" value="${srv.link}" class="w-full bg-transparent border-b border-slate-700 focus:border-rose-500 text-xs text-slate-400 pb-1 outline-none">
-                        </div>
-                        <div class="md:col-span-12 mt-1">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Descripción</label>
-                            <textarea rows="2" class="w-full bg-slate-950 border border-slate-700 focus:border-rose-500 text-xs text-slate-300 p-2 rounded outline-none resize-none">${srv.desc}</textarea>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2 px-2 border-l border-slate-700 h-full">
-                        <button type="button" class="w-7 h-7 rounded flex items-center justify-center text-emerald-500/70 hover:bg-slate-800 hover:text-emerald-400 transition-colors" title="Ocultar/Mostrar"><i class="fa-solid fa-eye"></i></button>
-                        <button type="button" onclick="eliminarServicio(${srv.id})" class="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-                    </div>
+                    <button onclick="eliminarArr(listaServicios, ${srv.id}, renderServicios)"><i class="fa-solid fa-trash text-slate-500"></i></button>
                 </div>`;
                 serviciosList.insertAdjacentHTML('beforeend', itemHTML);
             });
         }
-        document.getElementById('btn-add-servicio')?.addEventListener('click', () => { listaServicios.push({ id: Date.now(), icono: 'fa-solid fa-star', titulo: 'Nuevo', desc: '...', link: 'Ver más →' }); renderServicios(); });
-        window.eliminarServicio = function (id) { listaServicios = listaServicios.filter(c => c.id !== id); renderServicios(); }
-        window.moverServicio = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaServicios.length) return; const temp = listaServicios[index]; listaServicios[index] = listaServicios[ni]; listaServicios[ni] = temp; renderServicios(); }
-        renderServicios();
+        document.getElementById('btn-add-servicio')?.addEventListener('click', () => { listaServicios.push({ id: Date.now(), icono: 'fa-solid fa-star', titulo: 'Nuevo', descripcion: '...', link: '#' }); renderServicios(); });
 
         const galeriaList = document.getElementById('galeria-list');
-        let listaGaleria = [
-            { id: 1, formato: 'tall', url: '', etiqueta: 'Antes / Después' },
-            { id: 2, formato: 'normal', url: '', etiqueta: 'Estética Facial' },
-            { id: 3, formato: 'normal', url: '', etiqueta: 'Bienestar' },
-            { id: 4, formato: 'wide', url: '', etiqueta: 'Clínica & Consultorio' }
-        ];
-
         function renderGaleria() {
             if (!galeriaList) return;
             galeriaList.innerHTML = '';
             listaGaleria.forEach((img, index) => {
                 const itemHTML = `
-                <div class="flex items-center gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
-                    <div class="flex flex-col gap-1 text-slate-500 px-1">
-                        <button type="button" onclick="moverGaleria(${index}, -1)" class="hover:text-indigo-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverGaleria(${index}, 1)" class="hover:text-indigo-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                <div class="flex items-center gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl">
+                    <div class="flex flex-col gap-1"><button onclick="moverArr(listaGaleria, ${index}, -1, renderGaleria)"><i class="fa-solid fa-chevron-up"></i></button></div>
+                    <div class="flex-1 grid grid-cols-3 gap-3">
+                        <select class="w-full bg-slate-950 border border-slate-700 text-xs text-white p-1.5"><option value="normal" ${img.formato === 'normal' ? 'selected' : ''}>Normal</option><option value="tall" ${img.formato === 'tall' ? 'selected' : ''}>Alto</option></select>
+                        <input type="text" value="${img.url}" class="w-full bg-transparent border-b border-slate-700 text-xs text-white pb-1 outline-none" placeholder="URL Imagen">
+                        <input type="text" value="${img.etiqueta}" class="w-full bg-transparent border-b border-slate-700 text-xs text-white pb-1 outline-none" placeholder="Etiqueta">
                     </div>
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-3">
-                        <div class="md:col-span-3">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Formato (Grid)</label>
-                            <select class="w-full bg-slate-950 border border-slate-700 focus:border-indigo-500 text-xs text-slate-300 p-1.5 rounded outline-none cursor-pointer">
-                                <option value="normal" ${img.formato === 'normal' ? 'selected' : ''}>Cuadrado (Normal)</option>
-                                <option value="tall" ${img.formato === 'tall' ? 'selected' : ''}>Vertical (Alto)</option>
-                                <option value="wide" ${img.formato === 'wide' ? 'selected' : ''}>Horizontal (Ancho)</option>
-                            </select>
-                        </div>
-                        <div class="md:col-span-5">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">URL Imagen</label>
-                            <div class="flex gap-2 items-center">
-                                <input type="text" placeholder="https://..." value="${img.url}" class="w-full bg-transparent border-b border-slate-700 focus:border-indigo-500 text-xs text-slate-300 pb-1 outline-none font-mono">
-                                <button class="px-2 text-slate-400 hover:text-white transition"><i class="fa-solid fa-upload text-[10px]"></i></button>
-                            </div>
-                        </div>
-                        <div class="md:col-span-4">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Etiqueta (Texto)</label>
-                            <input type="text" value="${img.etiqueta}" class="w-full bg-transparent border-b border-slate-700 focus:border-indigo-500 text-sm text-slate-200 pb-1 outline-none font-bold">
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2 px-2 border-l border-slate-700 h-full">
-                        <button type="button" class="w-7 h-7 rounded flex items-center justify-center text-emerald-500/70 hover:bg-slate-800 hover:text-emerald-400 transition-colors" title="Ocultar/Mostrar"><i class="fa-solid fa-eye"></i></button>
-                        <button type="button" onclick="eliminarGaleria(${img.id})" class="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-                    </div>
+                    <button onclick="eliminarArr(listaGaleria, ${img.id}, renderGaleria)"><i class="fa-solid fa-trash text-slate-500"></i></button>
                 </div>`;
                 galeriaList.insertAdjacentHTML('beforeend', itemHTML);
             });
         }
-        document.getElementById('btn-add-galeria')?.addEventListener('click', () => { listaGaleria.push({ id: Date.now(), formato: 'normal', url: '', etiqueta: 'Nueva Imagen' }); renderGaleria(); });
-        window.eliminarGaleria = function (id) { listaGaleria = listaGaleria.filter(c => c.id !== id); renderGaleria(); }
-        window.moverGaleria = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaGaleria.length) return; const temp = listaGaleria[index]; listaGaleria[index] = listaGaleria[ni]; listaGaleria[ni] = temp; renderGaleria(); }
-        renderGaleria();
+        document.getElementById('btn-add-galeria')?.addEventListener('click', () => { listaGaleria.push({ id: Date.now(), formato: 'normal', url: '', etiqueta: 'Nueva' }); renderGaleria(); });
 
-        // ==========================================
-        // 7. LÓGICA DEL BLOG (CONSTRUCTOR)
-        // ==========================================
         const blogList = document.getElementById('blog-list');
-        // Datos de fallback — se usan si Supabase no está disponible o la tabla está vacía
-        const BLOG_FALLBACK = [
-            { id: 1, tag: 'BIENESTAR', fecha: 'JUNIO 2026', titulo: '5 Hábitos Diarios para una Piel Radiante y Saludable', desc: 'Descubre los rituales de cuidado que la ciencia respalda para mantener tu piel joven y luminosa desde adentro.', linkTxt: 'Leer más →', linkUrl: '#', img: '' },
-            { id: 2, tag: 'MEDICINA ESTÉTICA', fecha: 'MAYO 2026', titulo: 'Ácido Hialurónico: Mitos y Verdades que Debes Conocer', desc: 'La guía definitiva sobre el tratamiento más popular de medicina estética, explicada por nuestra especialista.', linkTxt: 'Leer más →', linkUrl: '#', img: '' },
-            { id: 3, tag: 'NUTRICIÓN', fecha: 'ABRIL 2026', titulo: 'La Conexión entre Intestino Sano y Belleza Integral', desc: 'Cómo el microbioma intestinal influye directamente en el estado de tu piel, cabello y energía diaria.', linkTxt: 'Leer más →', linkUrl: '#', img: '' }
-        ];
-        let listaBlog = [...BLOG_FALLBACK];
-
         function renderBlog() {
             if (!blogList) return;
             blogList.innerHTML = '';
             listaBlog.forEach((item, index) => {
                 const html = `
-                <div class="flex items-start gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
-                    <div class="flex flex-col gap-1 text-slate-500 px-1 mt-2">
-                        <button type="button" onclick="moverArr(listaBlog, ${index}, -1, renderBlog)" class="hover:text-cyan-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverArr(listaBlog, ${index}, 1, renderBlog)" class="hover:text-cyan-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                <div class="flex items-start gap-4 bg-slate-900 border border-slate-700 p-3 rounded-xl">
+                    <div class="flex flex-col gap-1"><button onclick="moverArr(listaBlog, ${index}, -1, renderBlog)"><i class="fa-solid fa-chevron-up"></i></button></div>
+                    <div class="flex-1 grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="URL Imagen" value="${item.img}" class="w-full bg-slate-950 border border-slate-700 text-xs text-white p-1.5">
+                        <input type="text" placeholder="Categoría" value="${item.tag}" class="w-full bg-slate-950 border border-slate-700 text-xs text-cyan-400 p-1.5">
+                        <input type="text" placeholder="Fecha" value="${item.fecha}" class="w-full bg-slate-950 border border-slate-700 text-xs text-slate-400 p-1.5">
+                        <input type="text" placeholder="Título" value="${item.titulo}" class="w-full bg-transparent border-b border-slate-700 text-sm text-white pb-1 font-bold">
+                        <input type="text" placeholder="Texto Link" value="${item.link_txt}" class="w-full bg-transparent border-b border-slate-700 text-xs text-cyan-400 pb-1">
+                        <input type="text" placeholder="URL Link" value="${item.link_url}" class="w-full bg-transparent border-b border-slate-700 text-xs text-slate-400 pb-1">
+                        <textarea rows="2" class="col-span-2 w-full bg-slate-950 border border-slate-700 text-xs text-slate-300 p-2" placeholder="Descripción">${item.descripcion}</textarea>
                     </div>
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4">
-                        <div class="md:col-span-4 space-y-2">
-                            <div>
-                                <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">URL Imagen Portada</label>
-                                <div class="flex gap-2 items-center">
-                                    <input type="text" placeholder="https://..." value="${item.img}" class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 text-xs text-slate-300 p-1.5 rounded outline-none font-mono">
-                                    <button type="button" class="px-2 py-1.5 bg-slate-800 rounded hover:bg-slate-700 text-slate-300 transition"><i class="fa-solid fa-upload text-[10px]"></i></button>
-                                </div>
-                            </div>
-                            <div class="flex gap-2">
-                                <div class="w-1/2">
-                                    <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Categoría</label>
-                                    <input type="text" value="${item.tag}" class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 text-xs text-cyan-400 p-1.5 rounded outline-none font-semibold">
-                                </div>
-                                <div class="w-1/2">
-                                    <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Fecha</label>
-                                    <input type="text" value="${item.fecha}" class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 text-xs text-slate-400 p-1.5 rounded outline-none text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:col-span-8 space-y-2 md:border-l border-slate-700 md:pl-4">
-                            <div>
-                                <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Título del Artículo</label>
-                                <input type="text" value="${item.titulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-cyan-500 text-sm text-slate-200 pb-1 outline-none font-bold font-serif">
-                            </div>
-                            <div>
-                                <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Extracto (Resumen)</label>
-                                <textarea rows="2" class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 text-xs text-slate-300 p-2 rounded outline-none resize-none">${item.desc}</textarea>
-                            </div>
-                            <div class="flex gap-3">
-                                <div class="w-1/3">
-                                    <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">Texto Enlace</label>
-                                    <input type="text" value="${item.linkTxt}" class="w-full bg-transparent border-b border-slate-700 focus:border-cyan-500 text-xs text-cyan-400 pb-1 outline-none font-medium">
-                                </div>
-                                <div class="w-2/3">
-                                    <label class="text-[9px] uppercase tracking-wider text-slate-500 mb-1 block">URL Destino</label>
-                                    <input type="text" value="${item.linkUrl}" class="w-full bg-transparent border-b border-slate-700 focus:border-cyan-500 text-xs text-slate-400 pb-1 outline-none font-mono">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 pl-2 border-l border-slate-700 h-full justify-center">
-                        <button type="button" class="w-7 h-7 rounded flex items-center justify-center text-emerald-500/70 hover:bg-slate-800 hover:text-emerald-400 transition-colors" title="Ocultar/Mostrar"><i class="fa-solid fa-eye text-xs"></i></button>
-                        <button type="button" onclick="eliminarArr(listaBlog, ${item.id}, renderBlog)" class="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:bg-rose-500/20 hover:text-rose-400 transition-colors" title="Eliminar"><i class="fa-solid fa-trash text-xs"></i></button>
-                    </div>
+                    <button onclick="eliminarArr(listaBlog, ${item.id}, renderBlog)"><i class="fa-solid fa-trash text-slate-500"></i></button>
                 </div>`;
                 blogList.insertAdjacentHTML('beforeend', html);
             });
         }
-
-        document.getElementById('btn-add-blog')?.addEventListener('click', () => {
-            listaBlog.push({ id: Date.now(), tag: 'NUEVA', fecha: 'MES AÑO', titulo: 'Título...', desc: '...', linkTxt: 'Leer más →', linkUrl: '#', img: '' });
-            renderBlog();
-        });
-
-        // NOTA: Asegúrate de llamar a renderBlog() en tu lista de inicializadores al final del script.
-        renderBlog();
-        // ==========================================
-        // 8. LÓGICA DE CONTACTO Y REDES SOCIALES
-        // ==========================================
-
-        // 8.1 Contacto
-        const contactoList = document.getElementById('contacto-list');
-        const CONTACTO_FALLBACK = [
-            { id: 1, icono: 'fa-brands fa-whatsapp', titulo: 'TELÉFONO / WHATSAPP', valor: '+52 123 456 7890' },
-            { id: 2, icono: 'fa-regular fa-envelope', titulo: 'E-MAIL', valor: 'contacto@dradanieladelgado.com' },
-            { id: 3, icono: 'fa-solid fa-location-dot', titulo: 'DIRECCIÓN', valor: 'Av. Salud 123, Col. Centro, CDMX' }
-        ];
-        let listaContacto = [...CONTACTO_FALLBACK];
-
-        function renderContacto() {
-            if (!contactoList) return;
-            contactoList.innerHTML = '';
-            listaContacto.forEach((c, index) => {
-                const itemHTML = `
-                <div class="flex items-center gap-3 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
-                    <div class="flex flex-col text-slate-500">
-                        <button type="button" onclick="moverArr(listaContacto, ${index}, -1, renderContacto)" class="hover:text-teal-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverArr(listaContacto, ${index}, 1, renderContacto)" class="hover:text-teal-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
-                    </div>
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-3">
-                        <div class="md:col-span-4">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Ícono</label>
-                            <div class="flex items-center gap-2 bg-slate-950 border border-slate-700 rounded px-2">
-                                <i class="${c.icono} text-teal-400 text-xs w-4 text-center" id="con-preview-${c.id}"></i>
-                                <select onchange="document.getElementById('con-preview-${c.id}').className = this.value + ' text-teal-400 text-xs w-4 text-center'" class="w-full bg-transparent focus:border-teal-500 text-xs text-slate-300 py-1.5 outline-none cursor-pointer">
-                                    ${renderIconOptions(c.icono)}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="md:col-span-3">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Título</label>
-                            <input type="text" value="${c.titulo}" class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 text-xs text-slate-200 pb-1 outline-none font-bold">
-                        </div>
-                        <div class="md:col-span-5">
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Dato</label>
-                            <input type="text" value="${c.valor}" class="w-full bg-transparent border-b border-slate-700 focus:border-teal-500 text-xs text-slate-400 pb-1 outline-none">
-                        </div>
-                    </div>
-                    <div class="flex items-center pl-2 border-l border-slate-700 h-full">
-                        <button type="button" onclick="eliminarArr(listaContacto, ${c.id}, renderContacto)" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
-                    </div>
-                </div>`;
-                contactoList.insertAdjacentHTML('beforeend', itemHTML);
-            });
-        }
-
-        document.getElementById('btn-add-contacto')?.addEventListener('click', () => {
-            listaContacto.push({ id: Date.now(), icono: 'fa-solid fa-phone', titulo: 'NUEVO CONTACTO', valor: '+00 000...' });
-            renderContacto();
-        });
-
-        // 8.2 Redes Sociales
-        const socialList = document.getElementById('social-list');
-        const SOCIAL_FALLBACK = [
-            { id: 1, icono: 'fa-brands fa-instagram', link: 'https://instagram.com/dradanieladelgado' },
-            { id: 2, icono: 'fa-brands fa-tiktok', link: 'https://tiktok.com/@dradanieladelgado' },
-            { id: 3, icono: 'fa-brands fa-facebook', link: 'https://facebook.com/dradanieladelgado' }
-        ];
-        let listaSocial = [...SOCIAL_FALLBACK];
-
-        function renderSocial() {
-            if (!socialList) return;
-            socialList.innerHTML = '';
-            listaSocial.forEach((r, index) => {
-                const itemHTML = `
-                <div class="flex items-center gap-3 bg-slate-900 border border-slate-700 p-3 rounded-xl group hover:border-slate-600">
-                    <div class="flex flex-col text-slate-500">
-                        <button type="button" onclick="moverArr(listaSocial, ${index}, -1, renderSocial)" class="hover:text-indigo-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverArr(listaSocial, ${index}, 1, renderSocial)" class="hover:text-indigo-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
-                    </div>
-                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Red Social (Ícono)</label>
-                            <div class="flex items-center gap-2 bg-slate-950 border border-slate-700 rounded px-2">
-                                <i class="${r.icono} text-indigo-400 text-xs w-4 text-center" id="soc-preview-${r.id}"></i>
-                                <select onchange="document.getElementById('soc-preview-${r.id}').className = this.value + ' text-indigo-400 text-xs w-4 text-center'" class="w-full bg-transparent focus:border-indigo-500 text-xs text-slate-300 py-1.5 outline-none cursor-pointer">
-                                    ${renderIconOptions(r.icono)}
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-[9px] uppercase tracking-wider text-slate-500">Enlace (URL del perfil)</label>
-                            <input type="text" value="${r.link}" class="w-full bg-transparent border-b border-slate-700 focus:border-indigo-500 text-xs text-slate-400 pb-1 outline-none font-mono">
-                        </div>
-                    </div>
-                    <div class="flex items-center pl-2 border-l border-slate-700 h-full">
-                        <button type="button" onclick="eliminarArr(listaSocial, ${r.id}, renderSocial)" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
-                    </div>
-                </div>`;
-                socialList.insertAdjacentHTML('beforeend', itemHTML);
-            });
-        }
-
-        document.getElementById('btn-add-social')?.addEventListener('click', () => {
-            listaSocial.push({ id: Date.now(), icono: 'fa-solid fa-link', link: 'https://...' });
-            renderSocial();
-        });
-
-        // NOTA: Asegúrate de que tu bloque final de inicializadores incluya renderContacto() y renderSocial()
-        // ==========================================
-        // NUEVA LÓGICA DEL FOOTER (SECCIÓN 9)
-        // ==========================================
-
-        // 9.1 Lista de Navegación Footer
-        const navFooterList = document.getElementById('nav-footer-list');
-        const NAV_FOOTER_FALLBACK = [
-            { id: 1, titulo: 'Sobre Mí', link: '#sobre-mi' },
-            { id: 2, titulo: 'Servicios', link: '#servicios' },
-            { id: 3, titulo: 'Galería', link: '#galeria' },
-            { id: 4, titulo: 'Blog', link: '#blog' },
-            { id: 5, titulo: 'Contacto', link: '#contacto' }
-        ];
-        let listaNavFooter = [...NAV_FOOTER_FALLBACK];
-
-        function renderNavFooter() {
-            if (!navFooterList) return;
-            navFooterList.innerHTML = '';
-            listaNavFooter.forEach((item, index) => {
-                const html = `
-                <div class="flex items-center gap-2 bg-slate-900 border border-slate-700 p-2 rounded-lg">
-                    <div class="flex flex-col text-slate-500 px-1">
-                        <button type="button" onclick="moverNavFooter(${index}, -1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverNavFooter(${index}, 1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
-                    </div>
-                    <div class="flex-1 grid grid-cols-2 gap-2">
-                        <input type="text" value="${item.titulo}" class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-200 outline-none pb-0.5">
-                        <input type="text" value="${item.link}" class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-400 outline-none font-mono pb-0.5">
-                    </div>
-                    <button type="button" onclick="eliminarNavFooter(${item.id})" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
-                </div>`;
-                navFooterList.insertAdjacentHTML('beforeend', html);
-            });
-        }
-        document.getElementById('btn-add-nav-footer')?.addEventListener('click', () => { listaNavFooter.push({ id: Date.now(), titulo: 'Nuevo Link', link: '#' }); renderNavFooter(); });
-        window.eliminarNavFooter = function (id) { listaNavFooter = listaNavFooter.filter(c => c.id !== id); renderNavFooter(); }
-        window.moverNavFooter = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaNavFooter.length) return; const temp = listaNavFooter[index]; listaNavFooter[index] = listaNavFooter[ni]; listaNavFooter[ni] = temp; renderNavFooter(); }
-        renderNavFooter();
-
-        // 9.2 Lista de Servicios Footer
-        const servFooterList = document.getElementById('serv-footer-list');
-        const SERV_FOOTER_FALLBACK = [
-            { id: 1, titulo: 'Consulta Médica', link: '#servicios' },
-            { id: 2, titulo: 'Estética Facial', link: '#servicios' },
-            { id: 3, titulo: 'Bienestar Integral', link: '#servicios' },
-            { id: 4, titulo: 'Dermatología', link: '#servicios' },
-            { id: 5, titulo: 'Nutrición', link: '#servicios' }
-        ];
-        let listaServFooter = [...SERV_FOOTER_FALLBACK];
-
-        function renderServFooter() {
-            if (!servFooterList) return;
-            servFooterList.innerHTML = '';
-            listaServFooter.forEach((item, index) => {
-                const html = `
-                <div class="flex items-center gap-2 bg-slate-900 border border-slate-700 p-2 rounded-lg">
-                    <div class="flex flex-col text-slate-500 px-1">
-                        <button type="button" onclick="moverServFooter(${index}, -1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverServFooter(${index}, 1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
-                    </div>
-                    <div class="flex-1 grid grid-cols-2 gap-2">
-                        <input type="text" value="${item.titulo}" class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-200 outline-none pb-0.5">
-                        <input type="text" value="${item.link}" class="bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-400 outline-none font-mono pb-0.5">
-                    </div>
-                    <button type="button" onclick="eliminarServFooter(${item.id})" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
-                </div>`;
-                servFooterList.insertAdjacentHTML('beforeend', html);
-            });
-        }
-        document.getElementById('btn-add-serv-footer')?.addEventListener('click', () => { listaServFooter.push({ id: Date.now(), titulo: 'Nuevo Link', link: '#' }); renderServFooter(); });
-        window.eliminarServFooter = function (id) { listaServFooter = listaServFooter.filter(c => c.id !== id); renderServFooter(); }
-        window.moverServFooter = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaServFooter.length) return; const temp = listaServFooter[index]; listaServFooter[index] = listaServFooter[ni]; listaServFooter[ni] = temp; renderServFooter(); }
-        renderServFooter();
-
-        // 9.3 Lista de Redes Sociales Footer
-        const socialFooterList = document.getElementById('social-footer-list');
-        const SOCIAL_FOOTER_FALLBACK = [
-            { id: 1, icono: 'fa-brands fa-instagram', link: 'https://instagram.com/dradanieladelgado' },
-            { id: 2, icono: 'fa-brands fa-tiktok', link: 'https://tiktok.com/@dradanieladelgado' },
-            { id: 3, icono: 'fa-brands fa-facebook', link: 'https://facebook.com/dradanieladelgado' }
-        ];
-        let listaSocialFooter = [...SOCIAL_FOOTER_FALLBACK];
-
-        function renderSocialFooter() {
-            if (!socialFooterList) return;
-            socialFooterList.innerHTML = '';
-            listaSocialFooter.forEach((item, index) => {
-                const html = `
-                <div class="flex items-center gap-2 bg-slate-900 border border-slate-700 p-2 rounded-lg group hover:border-slate-600">
-                    <div class="flex flex-col text-slate-500 px-1">
-                        <button type="button" onclick="moverSocialFooter(${index}, -1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
-                        <button type="button" onclick="moverSocialFooter(${index}, 1)" class="hover:text-fuchsia-400"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
-                    </div>
-                    <div class="flex items-center gap-2 px-2 border-r border-slate-700">
-                        <i class="${item.icono} text-fuchsia-400 text-xs w-4 text-center" id="sf-preview-${item.id}"></i>
-                        <select onchange="document.getElementById('sf-preview-${item.id}').className = this.value + ' text-fuchsia-400 text-xs w-4 text-center'" class="w-24 bg-transparent text-xs text-slate-300 outline-none cursor-pointer">
-                            ${renderIconOptions(item.icono)}
-                        </select>
-                    </div>
-                    <div class="flex-1 px-2">
-                        <input type="text" value="${item.link}" class="w-full bg-transparent border-b border-slate-700 focus:border-fuchsia-500 text-xs text-slate-400 outline-none font-mono pb-0.5">
-                    </div>
-                    <button type="button" onclick="eliminarSocialFooter(${item.id})" class="w-6 h-6 text-slate-500 hover:text-rose-400 transition-colors"><i class="fa-solid fa-trash text-xs"></i></button>
-                </div>`;
-                socialFooterList.insertAdjacentHTML('beforeend', html);
-            });
-        }
-        document.getElementById('btn-add-social-footer')?.addEventListener('click', () => { listaSocialFooter.push({ id: Date.now(), icono: 'fa-solid fa-link', link: 'https://...' }); renderSocialFooter(); });
-        window.eliminarSocialFooter = function (id) { listaSocialFooter = listaSocialFooter.filter(c => c.id !== id); renderSocialFooter(); }
-        window.moverSocialFooter = function (index, dir) { const ni = index + dir; if (ni < 0 || ni >= listaSocialFooter.length) return; const temp = listaSocialFooter[index]; listaSocialFooter[index] = listaSocialFooter[ni]; listaSocialFooter[ni] = temp; renderSocialFooter(); }
-        renderSocialFooter();
-        // ==========================================
-        // SISTEMA DE SUBIDA DE IMÁGENES (CLOUDINARY)
-        // ==========================================
-        const cloudName = "drpuhj6mc";
-        const uploadPreset = "dradadel";
-
-        const myWidget = cloudinary.createUploadWidget({
-            cloudName: cloudName,
-            uploadPreset: uploadPreset,
-            sources: ['local', 'url', 'camera'],
-            multiple: false,
-            language: "es",
-            text: {
-                es: {
-                    menu: { files: "Subir desde equipo" },
-                    local: { browse: "Seleccionar archivo" }
-                }
-            }
-        }, (error, result) => {
-            if (!error && result && result.event === "success") {
-                const urlSegura = result.info.secure_url;
-                if (window.currentUploadInput) {
-                    window.currentUploadInput.value = urlSegura;
-                    window.currentUploadInput.dispatchEvent(new Event('input'));
-                }
-            }
-        });
-
-        document.body.addEventListener('click', function (e) {
-            const uploadBtn = e.target.closest('button');
-            if (uploadBtn && uploadBtn.querySelector('.fa-upload')) {
-                const inputElement = uploadBtn.previousElementSibling;
-                if (inputElement && inputElement.tagName === 'INPUT') {
-                    window.currentUploadInput = inputElement;
-                    myWidget.open();
-                }
-            }
-        });
-        // ============================================================
-        // INICIALIZADORES DE ARRANQUE (¡No borrar!)
-        // ============================================================
-        // Render inmediato con datos locales (fallback) para que el
-        // CMS sea usable al instante, sin esperar a la red.
-        renderBentoGrid();
-        renderCredenciales();
-        renderServicios();
-        renderGaleria();
-        renderBlog();
-        renderContacto();
-        renderSocial();
-        renderNavFooter();
-        renderServFooter();
-        renderSocialFooter();
+        document.getElementById('btn-add-blog')?.addEventListener('click', () => { listaBlog.push({ id: Date.now(), img: '', tag: 'NUEVA', fecha: 'MES', titulo: 'Título', link_txt: 'Leer más', link_url: '#', descripcion: '' }); renderBlog(); });
 
         // ============================================================
-        // CARGA DINÁMICA DESDE SUPABASE
-        // Sobreescribe los fallback con los datos reales de la BD.
-        // Si supabaseClient es null o cualquier tabla falla,
-        // se mantiene el fallback y NO se interrumpe nada.
+        // LECTORES DEL DOM — MAPEO EXACTO PARA SUPABASE
         // ============================================================
-        async function cargarDatos() {
-            if (!supabaseClient) {
-                console.info('[CMS] Supabase no disponible — usando datos locales.');
-                return;
-            }
-
-            // Helper: extrae data de la respuesta; devuelve fallback si hay error o vacío
-            function extraer(resultado, fallback) {
-                if (resultado.status === 'rejected') return fallback;
-                const { data, error } = resultado.value;
-                if (error) { console.warn('[Supabase] Error en consulta:', error.message); return fallback; }
-                return (Array.isArray(data) && data.length > 0) ? data : fallback;
-            }
-
-            console.info('[CMS] 🔄 Cargando datos desde Supabase...');
-
-            const resultados = await Promise.allSettled([
-                supabaseClient.from('blog').select('*').order('id'),
-                supabaseClient.from('servicios').select('*').order('id'),
-                supabaseClient.from('contacto').select('*').order('id'),
-                supabaseClient.from('redes_sociales').select('*').order('id'),
-                supabaseClient.from('footer_nav').select('*').order('id'),
-                supabaseClient.from('footer_servicios').select('*').order('id'),
-                supabaseClient.from('footer_social').select('*').order('id')
-            ]);
-
-            const [resBlog, resServ, resCont, resSoc, resNavF, resSrvF, resSocF] = resultados;
-
-            listaBlog = extraer(resBlog, BLOG_FALLBACK);
-            listaServicios = extraer(resServ, SERVICIOS_FALLBACK);
-            listaContacto = extraer(resCont, CONTACTO_FALLBACK);
-            listaSocial = extraer(resSoc, SOCIAL_FALLBACK);
-            listaNavFooter = extraer(resNavF, NAV_FOOTER_FALLBACK);
-            listaServFooter = extraer(resSrvF, SERV_FOOTER_FALLBACK);
-            listaSocialFooter = extraer(resSocF, SOCIAL_FOOTER_FALLBACK);
-
-            // Re-pintar todas las secciones con los datos de la BD
-            renderBlog();
-            renderServicios();
-            renderContacto();
-            renderSocial();
-            renderNavFooter();
-            renderServFooter();
-            renderSocialFooter();
-
-            console.info('[CMS] ✅ Datos cargados correctamente desde Supabase.');
-        }
-
-        // ============================================================
-        // GUARDAR EN VIVO — Sincronización con Supabase
-        // ============================================================
-
-        // Toast de notificación premium (reemplaza alert() nativo)
-        function mostrarToast(mensaje, tipo = 'ok') {
-            const existing = document.getElementById('cms-toast');
-            if (existing) existing.remove();
-            const estilos = {
-                ok: 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300',
-                error: 'bg-rose-500/20 border-rose-500/40 text-rose-300',
-                info: 'bg-purple-500/20 border-purple-500/40 text-purple-300'
+        function leerHeroDelDOM() {
+            const inputs = document.querySelectorAll('#tab-textos details:nth-of-type(1) input');
+            return {
+                id: 1,
+                nombre_principal: inputs[0]?.value ?? '',
+                especialidad: inputs[1]?.value ?? '',
+                mision: inputs[2]?.value ?? '',
+                btn_resultados: inputs[3]?.value ?? '',
+                btn_resultados_sub: inputs[4]?.value ?? '',
+                btn_contacto: inputs[5]?.value ?? '',
+                instruccion: inputs[6]?.value ?? '',
+                firma: inputs[7]?.value ?? '',
+                link_firma: inputs[8]?.value ?? ''
             };
-            const iconos = { ok: 'fa-circle-check', error: 'fa-circle-xmark', info: 'fa-circle-info' };
-            const toast = document.createElement('div');
-            toast.id = 'cms-toast';
-            toast.className = `fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-2xl border backdrop-blur-xl shadow-2xl ${estilos[tipo]}`;
-            toast.style.cssText = 'transition: opacity 0.3s, transform 0.3s; transform: translateY(1rem); opacity: 0;';
-            toast.innerHTML = `<i class="fa-solid ${iconos[tipo]} text-lg"></i><span class="text-sm font-medium">${mensaje}</span>`;
-            document.body.appendChild(toast);
-            requestAnimationFrame(() => { toast.style.transform = 'translateY(0)'; toast.style.opacity = '1'; });
-            setTimeout(() => {
-                toast.style.opacity = '0'; toast.style.transform = 'translateY(1rem)';
-                setTimeout(() => toast.remove(), 350);
-            }, 3500);
         }
 
-        // ——— Lectores del DOM: convierten inputs visibles en arrays de objetos ———
-
-        function leerBlogDelDOM() {
-            return Array.from(document.querySelectorAll('#blog-list > div')).map((el, i) => {
-                const inputs = el.querySelectorAll('input[type="text"]');
-                const ta = el.querySelector('textarea');
+        function leerEstadisticasDelDOM() {
+            const divs = document.querySelectorAll('#tab-textos details:nth-of-type(2) .grid > div');
+            return Array.from(divs).map((div, i) => {
+                const inputs = div.querySelectorAll('input');
                 return {
-                    id: listaBlog[i]?.id ?? (Date.now() + i),
-                    img: inputs[0]?.value ?? '',
-                    tag: inputs[1]?.value ?? '',
-                    fecha: inputs[2]?.value ?? '',
-                    titulo: inputs[3]?.value ?? '',
-                    linkTxt: inputs[4]?.value ?? '',
-                    linkUrl: inputs[5]?.value ?? '',
-                    descripcion: ta?.value ?? ''
+                    orden: i + 1,
+                    valor: inputs[0]?.value ?? '',
+                    etiqueta: inputs[1]?.value ?? ''
+                };
+            });
+        }
+
+        function leerTestimonialesDelDOM() {
+            const cards = document.querySelectorAll('#testimoniales-list > div');
+            return Array.from(cards).map((card, i) => {
+                const inputs = card.querySelectorAll('input');
+                const ta = card.querySelector('textarea');
+                return {
+                    orden: i + 1,
+                    estrellas: inputs[0]?.value ?? '',
+                    nombre: inputs[1]?.value ?? '',
+                    cargo: inputs[2]?.value ?? '',
+                    texto: ta?.value ?? ''
                 };
             });
         }
 
         function leerServiciosDelDOM() {
-            return Array.from(document.querySelectorAll('#servicios-list > div')).map((el, i) => {
-                const sel = el.querySelector('select');
-                const inputs = el.querySelectorAll('input[type="text"]');
+            const items = document.querySelectorAll('#servicios-list > div');
+            return Array.from(items).map((el, i) => {
+                const select = el.querySelector('select');
+                const inputs = el.querySelectorAll('input');
                 const ta = el.querySelector('textarea');
                 return {
-                    id: listaServicios[i]?.id ?? (Date.now() + i),
-                    icono: sel?.value ?? '',
+                    orden: i + 1,
+                    icono: select?.value ?? '',
                     titulo: inputs[0]?.value ?? '',
                     link: inputs[1]?.value ?? '',
                     descripcion: ta?.value ?? ''
@@ -1630,340 +666,110 @@
             });
         }
 
-        function leerContactoDelDOM() {
-            return Array.from(document.querySelectorAll('#contacto-list > div')).map((el, i) => {
-                const sel = el.querySelector('select');
-                const inputs = el.querySelectorAll('input[type="text"]');
-                return {
-                    id: listaContacto[i]?.id ?? (Date.now() + i),
-                    icono: sel?.value ?? '',
-                    titulo: inputs[0]?.value ?? '',
-                    valor: inputs[1]?.value ?? ''
-                };
-            });
-        }
-
-        function leerSocialDelDOM() {
-            return Array.from(document.querySelectorAll('#social-list > div')).map((el, i) => {
-                const sel = el.querySelector('select');
-                const inputs = el.querySelectorAll('input[type="text"]');
-                return {
-                    id: listaSocial[i]?.id ?? (Date.now() + i),
-                    icono: sel?.value ?? '',
-                    link: inputs[0]?.value ?? ''
-                };
-            });
-        }
-
-        function leerNavFooterDelDOM() {
-            return Array.from(document.querySelectorAll('#nav-footer-list > div')).map((el, i) => {
-                const inputs = el.querySelectorAll('input[type="text"]');
-                return {
-                    id: listaNavFooter[i]?.id ?? (Date.now() + i),
-                    titulo: inputs[0]?.value ?? '',
-                    link: inputs[1]?.value ?? ''
-                };
-            });
-        }
-
-        function leerServFooterDelDOM() {
-            return Array.from(document.querySelectorAll('#serv-footer-list > div')).map((el, i) => {
-                const inputs = el.querySelectorAll('input[type="text"]');
-                return {
-                    id: listaServFooter[i]?.id ?? (Date.now() + i),
-                    titulo: inputs[0]?.value ?? '',
-                    link: inputs[1]?.value ?? ''
-                };
-            });
-        }
-
-        function leerSocialFooterDelDOM() {
-            return Array.from(document.querySelectorAll('#social-footer-list > div')).map((el, i) => {
-                const sel = el.querySelector('select');
-                const inputs = el.querySelectorAll('input[type="text"]');
-                return {
-                    id: listaSocialFooter[i]?.id ?? (Date.now() + i),
-                    icono: sel?.value ?? '',
-                    link: inputs[0]?.value ?? ''
-                };
-            });
-        }
-
-        // ============================================================
-        // LECTORES DEL DOM — Cada función lee su sección y devuelve
-        // el objeto/array listo para ser enviado a Supabase.
-        // ============================================================
-
-        /** Lee la pestaña Identidad & Estilo → tabla `identidad` */
-        function leerIdentidadDelDOM() {
-            const tabId = document.querySelector('#tab-identidad');
-            const allInputs = tabId.querySelectorAll('input, select');
-            // [0] símbolo logo, [1] color picker, [2] color text, [3] tipografía
-            // [4] portada URL (dentro del div con flex)
-            const simbolo = allInputs[0]?.value ?? '';
-            const portada = allInputs[1]?.value ?? '';
-            const colorPicker = allInputs[2]?.value ?? '#7A3B9F';
-            const colorText = allInputs[3]?.value ?? '#7A3B9F';
-            const tipografia = tabId.querySelector('select')?.value ?? 'cormorant';
-            return {
-                id: 1,
-                simbolo,
-                portada_url: portada,
-                color_principal: colorText || colorPicker,
-                tipografia
-            };
-        }
-
-        /** Lee la sección Hero (tab-textos → details #1) → tabla `hero` */
-        function leerHeroDelDOM() {
-            // El primer <details> del tab-textos contiene los inputs del Hero
-            const heroDetails = document.querySelector('#tab-textos details:nth-of-type(1)');
-            if (!heroDetails) return { id: 1 };
-            const inputs = heroDetails.querySelectorAll('input[type="text"], input[type="url"]');
-            const [
-                nombre_principal,   // "DRA. DANIELA DELGADO"
-                especialidad,       // "SALUD Y BIENESTAR INTEGRAL"
-                mision,             // frase tarjeta
-                btn_resultados,     // "RESULTADOS REALES"
-                btn_resultados_sub, // subtítulo botón
-                btn_contacto,       // "GUARDAR CONTACTO"
-                instruccion,        // "TOQUE EN LOS ICONOS"
-                firma,              // "v2026.1 · Dra. Daniela Delgado"
-                link_firma          // url de firma
-            ] = Array.from(inputs).map(i => i.value ?? '');
-            return {
-                id: 1,
-                nombre_principal: nombre_principal ?? '',
-                especialidad: especialidad ?? '',
-                mision: mision ?? '',
-                btn_resultados: btn_resultados ?? '',
-                btn_resultados_sub: btn_resultados_sub ?? '',
-                btn_contacto: btn_contacto ?? '',
-                instruccion: instruccion ?? '',
-                firma: firma ?? '',
-                link_firma: link_firma ?? ''
-            };
-        }
-
-        /** Lee la Franja de Estadísticas (details #2) → tabla `estadisticas` */
-        function leerEstadisticasDelDOM() {
-            const det = document.querySelector('#tab-textos details:nth-of-type(2)');
-            if (!det) return [];
-            const cols = det.querySelectorAll('.p-5 > .grid > div, .border-t + .grid > div');
-            // Cada <div> contiene 2 inputs: valor y etiqueta
-            const divs = det.querySelectorAll('div > div');
-            const filas = [];
-            let orden = 1;
-            det.querySelectorAll('.grid > div').forEach(col => {
-                const ins = col.querySelectorAll('input[type="text"]');
-                if (ins.length >= 2) {
-                    filas.push({
-                        id: orden,
-                        orden: orden,
-                        valor: ins[0]?.value ?? '',
-                        etiqueta: ins[1]?.value ?? ''
-                    });
-                    orden++;
-                }
-            });
-            return filas;
-        }
-
-        /** Lee la sección Sobre Mí (details #3) → tabla `sobre_mi` */
-        function leerSobreMiDelDOM() {
-            const det = document.querySelector('#tab-textos details:nth-of-type(3)');
-            if (!det) return { id: 1 };
-            const inputs = det.querySelectorAll('input[type="text"]');
-            const textareas = det.querySelectorAll('textarea');
-            return {
-                id: 1,
-                titulo: inputs[0]?.value ?? '',
-                parrafo1: textareas[0]?.value ?? '',
-                parrafo2: textareas[1]?.value ?? '',
-                cita: inputs[inputs.length - 2]?.value ?? '',
-                imagen_url: inputs[inputs.length - 1]?.value ?? ''
-            };
-        }
-
-        /** Lee las tarjetas de Credenciales (en Sobre Mí) → tabla `credenciales` */
-        function leerCredencialesDelDOM() {
-            return Array.from(document.querySelectorAll('#credenciales-list > div')).map((el, i) => {
-                const sel = el.querySelector('select');
-                const inputs = el.querySelectorAll('input[type="text"]');
-                return {
-                    id: listaCredenciales[i]?.id ?? (Date.now() + i),
-                    orden: i + 1,
-                    icono: sel?.value ?? '',
-                    titulo: inputs[0]?.value ?? '',
-                    subtitulo: inputs[1]?.value ?? ''
-                };
-            });
-        }
-
-        /** Lee la sección Servicios (details #4) → tabla `servicios_header` */
-        function leerServiciosHeaderDelDOM() {
-            const det = document.querySelector('#tab-textos details:nth-of-type(4)');
-            if (!det) return { id: 1 };
-            const inputs = det.querySelectorAll('input[type="text"]');
-            const ta = det.querySelector('textarea');
-            return {
-                id: 1,
-                titulo: inputs[0]?.value ?? '',
-                intro: ta?.value ?? ''
-            };
-        }
-
-        /** Lee la Galería (details #5) → ya cubierto por leerGaleriaDelDOM() */
-        function leerGaleriaHeaderDelDOM() {
-            const det = document.querySelector('#tab-textos details:nth-of-type(5)');
-            if (!det) return { id: 1 };
-            const input = det.querySelector('input[type="text"]');
-            return { id: 1, titulo: input?.value ?? '' };
-        }
-
         function leerGaleriaDelDOM() {
-            return Array.from(document.querySelectorAll('#galeria-list > div')).map((el, i) => {
-                const sel = el.querySelector('select');
-                const inputs = el.querySelectorAll('input[type="text"]');
+            const items = document.querySelectorAll('#galeria-list > div');
+            return Array.from(items).map((el, i) => {
+                const select = el.querySelector('select');
+                const inputs = el.querySelectorAll('input');
                 return {
-                    id: listaGaleria[i]?.id ?? (Date.now() + i),
                     orden: i + 1,
-                    formato: sel?.value ?? 'normal',
+                    formato: select?.value ?? 'normal',
                     url: inputs[0]?.value ?? '',
                     etiqueta: inputs[1]?.value ?? ''
                 };
             });
         }
 
-        /** Lee Testimoniales (details #6) → tabla `testimoniales` */
-        function leerTestimonialesDelDOM() {
-            const det = document.querySelector('#tab-textos details:nth-of-type(6)');
-            if (!det) return [];
-            const cards = det.querySelectorAll('.bg-slate-950');
-            return Array.from(cards).map((card, i) => {
-                const inputs = card.querySelectorAll('input[type="text"]');
-                const ta = card.querySelector('textarea');
+        function leerBlogDelDOM() {
+            const items = document.querySelectorAll('#blog-list > div');
+            return Array.from(items).map((el, i) => {
+                const inputs = el.querySelectorAll('input');
+                const ta = el.querySelector('textarea');
                 return {
-                    id: i + 1,
-                    orden: i + 1,
-                    estrellas: inputs[0]?.value ?? '★★★★★',
-                    texto: ta?.value ?? '',
-                    nombre: inputs[1]?.value ?? '',
-                    cargo: inputs[2]?.value ?? ''
-                };
-            });
-        }
-
-        /** Lee los toggles de Secciones → tabla `secciones_config` */
-        function leerSeccionesDelDOM() {
-            const toggles = document.querySelectorAll('#tab-secciones .toggle-checkbox');
-            const nombres = ['estadisticas', 'sobre_mi', 'servicios', 'galeria', 'testimoniales', 'blog', 'contacto', 'footer'];
-            return nombres.map((nombre, i) => ({
-                id: i + 1,
-                seccion: nombre,
-                visible: toggles[i]?.checked ?? true
-            }));
-        }
-
-        /** Lee los botones Bento → tabla `bento` */
-        function leerBentoDelDOM() {
-            return Array.from(document.querySelectorAll('#bento-list > div')).map((el, i) => {
-                const sel = el.querySelector('select');
-                const inputs = el.querySelectorAll('input[type="text"]');
-                return {
-                    id: botonesBento[i]?.id ?? (Date.now() + i),
-                    orden: i + 1,
-                    icono: sel?.value ?? '',
-                    titulo: inputs[0]?.value ?? '',
-                    link: inputs[1]?.value ?? ''
+                    img: inputs[0]?.value ?? '',
+                    tag: inputs[1]?.value ?? '',
+                    fecha: inputs[2]?.value ?? '',
+                    titulo: inputs[3]?.value ?? '',
+                    link_txt: inputs[4]?.value ?? '',
+                    link_url: inputs[5]?.value ?? '',
+                    descripcion: ta?.value ?? ''
                 };
             });
         }
 
         // ============================================================
-        // FUNCIÓN PRINCIPAL DE GUARDADO — guardarCambiosEnVivo()
-        // Envía TODOS los datos a Supabase con Promise.allSettled para
-        // que un fallo parcial no bloquee el resto.
+        // GUARDAR CAMBIOS Y TOAST
         // ============================================================
+        function mostrarToast(mensaje, tipo = 'ok') {
+            const existing = document.getElementById('cms-toast');
+            if (existing) existing.remove();
+            const color = tipo === 'ok' ? 'emerald' : 'rose';
+            const icon = tipo === 'ok' ? 'fa-check' : 'fa-xmark';
+            const toast = document.createElement('div');
+            toast.id = 'cms-toast';
+            toast.className = `fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3 rounded-xl border bg-${color}-500/20 border-${color}-500/40 text-${color}-300`;
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i><span class="text-sm font-medium">${mensaje}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
         async function guardarCambiosEnVivo() {
-            if (!supabaseClient) {
-                mostrarToast('Supabase no configurado. Revisa las credenciales.', 'error');
-                return;
-            }
-
+            if (!supabaseClient) return mostrarToast('Supabase no conectado', 'error');
             const btn = document.getElementById('btn-guardar-vivo');
-            btn.disabled = true;
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Guardando...';
 
             try {
-                const [
-                    identidad, hero, estadisticas, sobreMi, credenciales,
-                    servHeader, galeriaHeader, galeria, testimoniales, secciones,
-                    bento, blog, servicios, contacto, social,
-                    navFooter, servFooter, socialFooter
-                ] = await Promise.allSettled([
-                    supabaseClient.from('identidad').upsert(leerIdentidadDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('hero').upsert(leerHeroDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('estadisticas').upsert(leerEstadisticasDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('sobre_mi').upsert(leerSobreMiDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('credenciales').upsert(leerCredencialesDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('servicios_header').upsert(leerServiciosHeaderDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('galeria_header').upsert(leerGaleriaHeaderDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('galeria').upsert(leerGaleriaDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('testimoniales').upsert(leerTestimonialesDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('secciones_config').upsert(leerSeccionesDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('bento').upsert(leerBentoDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('blog').upsert(leerBlogDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('servicios').upsert(leerServiciosDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('contacto').upsert(leerContactoDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('redes_sociales').upsert(leerSocialDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('footer_nav').upsert(leerNavFooterDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('footer_servicios').upsert(leerServFooterDelDOM(), { onConflict: 'id' }),
-                    supabaseClient.from('footer_social').upsert(leerSocialFooterDelDOM(), { onConflict: 'id' })
+                // Se vacían las tablas de arrays para insertar los nuevos actualizados
+                await Promise.all([
+                    supabaseClient.from('estadisticas').delete().neq('id', 0),
+                    supabaseClient.from('galeria').delete().neq('id', 0),
+                    supabaseClient.from('testimoniales').delete().neq('id', 0),
+                    supabaseClient.from('blog').delete().neq('id', 0),
+                    supabaseClient.from('servicios').delete().neq('id', 0)
                 ]);
 
-                // Analizar resultados y reportar errores individuales sin bloquear
-                const todas = [
-                    identidad, hero, estadisticas, sobreMi, credenciales,
-                    servHeader, galeriaHeader, galeria, testimoniales, secciones,
-                    bento, blog, servicios, contacto, social,
-                    navFooter, servFooter, socialFooter
-                ];
-                const nombresTablas = [
-                    'identidad', 'hero', 'estadisticas', 'sobre_mi', 'credenciales',
-                    'servicios_header', 'galeria_header', 'galeria', 'testimoniales', 'secciones_config',
-                    'bento', 'blog', 'servicios', 'contacto', 'redes_sociales',
-                    'footer_nav', 'footer_servicios', 'footer_social'
-                ];
-                const fallos = todas.reduce((acc, r, i) => {
-                    if (r.status === 'rejected' || r.value?.error) {
-                        acc.push(nombresTablas[i]);
-                        console.error(`[Supabase] ❌ Error en tabla "${nombresTablas[i]}":`, r.reason ?? r.value?.error);
-                    }
-                    return acc;
-                }, []);
+                const resultados = await Promise.allSettled([
+                    supabaseClient.from('hero').upsert(leerHeroDelDOM(), { onConflict: 'id' }),
+                    supabaseClient.from('estadisticas').insert(leerEstadisticasDelDOM()),
+                    supabaseClient.from('galeria').insert(leerGaleriaDelDOM()),
+                    supabaseClient.from('testimoniales').insert(leerTestimonialesDelDOM()),
+                    supabaseClient.from('blog').insert(leerBlogDelDOM()),
+                    supabaseClient.from('servicios').insert(leerServiciosDelDOM())
+                ]);
 
-                if (fallos.length === 0) {
-                    mostrarToast('✅ ¡Todo guardado en la nube!', 'ok');
-                } else if (fallos.length < todas.length) {
-                    mostrarToast(`⚠️ Guardado parcial. Falló: ${fallos.join(', ')}`, 'error');
+                const fallos = resultados.filter(r => r.status === 'rejected' || r.value?.error);
+                if (fallos.length > 0) {
+                    console.error('Errores:', fallos);
+                    mostrarToast('Guardado con algunos errores. Revisa la consola.', 'error');
                 } else {
-                    mostrarToast('❌ Error total. Revisa la consola.', 'error');
+                    mostrarToast('¡Cambios guardados exitosamente!', 'ok');
                 }
-
             } catch (err) {
-                mostrarToast('❌ Error inesperado al guardar.', 'error');
-                console.error('[Supabase] Error inesperado:', err);
+                console.error(err);
+                mostrarToast('Error al guardar.', 'error');
             } finally {
-                btn.disabled = false;
                 btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-2"></i>Guardar en Vivo';
             }
         }
 
-        document.getElementById('btn-guardar-vivo')
-            ?.addEventListener('click', guardarCambiosEnVivo);
+        document.getElementById('btn-guardar-vivo')?.addEventListener('click', guardarCambiosEnVivo);
 
-        // Disparar la carga dinámica (no bloquea el hilo principal)
+        // ============================================================
+        // INICIALIZACIÓN
+        // ============================================================
+        async function cargarDatos() {
+            if (!supabaseClient) return;
+            const [{ data: h }, { data: b }, { data: s }, { data: g }] = await Promise.all([
+                supabaseClient.from('hero').select('*').eq('id', 1).single(),
+                supabaseClient.from('blog').select('*').order('id'),
+                supabaseClient.from('servicios').select('*').order('orden'),
+                supabaseClient.from('galeria').select('*').order('orden')
+            ]);
+            if (b && b.length) listaBlog = b;
+            if (s && s.length) listaServicios = s;
+            if (g && g.length) listaGaleria = g;
+            renderBlog(); renderServicios(); renderGaleria();
+        }
         cargarDatos();
     </script>
 </body>
